@@ -9,7 +9,7 @@
     
     <title>
         
-            关于 |
+            HTML基础（一）：meta标签 |
         
         Wu Shihan&#39;Blog
     </title>
@@ -104,7 +104,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/about"
                             >
                                 关于
@@ -158,7 +158,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/about">关于</a>
                 </li>
             
@@ -178,17 +178,165 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="page-template-container">
-        
-        
-        <div class="page-template-content markdown-body">
-            
-                <h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><div style="color: red;">About me</div>
+    <div class="article-content-container">
 
-            
+        <div class="article-title">
+            <span class="title-hover-animation">HTML基础（一）：meta标签</span>
         </div>
-        <div class="page-template-comments">
-            
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-02-26 22:24:20</span>
+        <span class="mobile">2022-02-26 22:24</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HTML/">HTML</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>291 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>设置网页中的元数据，用于浏览器渲染网页，元数据对用户是不可见的。</p>
+<h2 id="xxxxxxxxxx-html"><a href="#xxxxxxxxxx-html" class="headerlink" title="xxxxxxxxxx html"></a>xxxxxxxxxx <!--指的是当前目录的上一级目录下的target文件--><a href="../target.html"></a><!--指的是当前目录的上两级目录下的target文件--><a href="../../target.html"></a>html</h2><ul>
+<li><p>charset：指定网页的字符集编码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>name：指定的数据的名称</p>
+<ul>
+<li><p>keywords：网页的关键字，搜索引擎的搜索关键词</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;网上购物,网上商城,家电,手机,电脑,服装,居家,母婴,美妆,个护,食品,生鲜,京东&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>description：网页的描述，搜索结果简介</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;京东JD.COM-专业的综合网上购物商城，为您提供正品低价的购物选择、优质便捷的服务体验。商品来自全球数十万品牌商家，囊括家电、手机、电脑、服装、居家、母婴、美妆、个护、食品、生鲜等丰富品类，满足各种购物需求。&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/assets/image-20220225160554543.png"
+                      alt="image-20220225160554543"
+                ></p>
+</li>
+</ul>
+</li>
+<li><p>content：指定的数据的内容</p>
+</li>
+<li><p>http-equiv：将页面重定向到另一个网站</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--三秒后跳转到百度--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;3;url=https://www.baidu.com&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：HTML基础（一）：meta标签</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-02-26 22:24:20</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/02/26/HTML基础（一）：meta标签/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/HTML/">#HTML</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HTML基础（二）：相对路径</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
@@ -265,8 +413,8 @@
     
 </div>
 
-            
-        </div>
+            </div>
+        
     </div>
 </div>
 
@@ -314,6 +462,27 @@
     </div>
 
     
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
@@ -359,6 +528,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xxxxxxxxxx-html"><span class="nav-number">3.</span> <span class="nav-text">xxxxxxxxxx html</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -416,6 +593,8 @@
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 

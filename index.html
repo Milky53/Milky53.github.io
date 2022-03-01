@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -18,123 +18,11 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
     KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 6.0.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
@@ -323,23 +211,44 @@ mjx-container[display="true"] + br {
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/test-action/">
-                        test action
+                    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%B8%83%E5%B1%80%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        CSS基础（五）：布局相关知识
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        第1题  图像放大缩小一、实验要求设一幅大小为M×N的灰度图像I中，现要变成（放大或缩小）为 P×Q的图像J，请写出J的生成算法。
-【要编写出程序，以及算法描述】【参考函数：imresize() 】 
-二、算法描述（一）最近邻插值法
-根据原始图像大小...
+                        文档流（normal flow）
+网页是一个多层结构，用户只能看到最顶层
+最底下的一层称为文档流，文档流是网页的基础
+创建的元素默认都在文档流中进行排列
+元素主要有两个状态：
+
+​    在文档流中
+
+​    不在文档流中（脱离文档流）
+
+
+
+元素...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 17:56:12 GMT+0800">2022-02-26</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 01 2022 15:45:43 GMT+0800">2022-03-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
         
         
             <span class="home-article-tag">
@@ -348,7 +257,12 @@ mjx-container[display="true"] + br {
                     
                         <li>
                             
-                            <a href="/tags/test/">test</a>&nbsp;
+                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">盒子模型</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -356,7 +270,7 @@ mjx-container[display="true"] + br {
         
     </div>
 
-    <a href="/2022/02/26/test-action/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%B8%83%E5%B1%80%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -366,25 +280,61 @@ mjx-container[display="true"] + br {
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/article-title/">
-                        article title
+                    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">
+                        CSS基础（四）：单位
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        test
+                        长度单位
+像素 （px）
+不同屏幕的像素大小不同，像素越小的屏幕显示效果越清晰
+同样的200px在不同的设备下显示效果不一样
+
+
+百分比 （%）
+将其属性值设置为相对于其父元素属性的百分比
+设置百分比可以使子元素跟随父元素的改变而改变
+
+
+em
+em...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 10:42:41 GMT+0800">2022-02-26</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 01 2022 15:04:55 GMT+0800">2022-03-01</span></span>
         
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
         
     </div>
 
-    <a href="/2022/02/26/article-title/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -394,25 +344,281 @@ mjx-container[display="true"] + br {
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/hello-world/">
-                        Hello World
+                    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">
+                        CSS基础（三）：选择器的权重
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, yo...
+                        
+样式的冲突：通过不同的选择器，选中相同的元素，并且为相同的样式设置不同的值。
+发生样式冲突时，应用哪个样式由选择器的权重（优先级）决定
+
+选择器的权重排序
+内联样式
+优先级：1,0,0,0（最高）
+
+示例：
+123&lt;div id=&quot;...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 09:56:42 GMT+0800">2022-02-26</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Feb 27 2022 22:52:49 GMT+0800">2022-02-27</span></span>
         
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
         
     </div>
 
-    <a href="/2022/02/26/hello-world/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">
+                        CSS基础（二）：继承
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        定义为一个元素设置的样式同时也会应用到它的后代元素上，发生在祖先和后代之间
+作用继承的设计是为了方便开发，利用继承可以将一些通用的样式统一设置到共同的祖先元素上，这样就只需设置一次即可让所有的元素都具有该样式
+注意并不是所有的样式都会被继承，比如：背...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Feb 27 2022 22:37:22 GMT+0800">2022-02-27</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">
+                        CSS基础（一）：选择器的分类及作用
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        常用选择器
+元素选择器
+作用：根据标签名来选中指定元素
+
+语法：标签名{}
+
+示例：
+123456789p&#123;	color: red;&#125;h1&#123;    color: green;&#125;div&#123;    colo...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 22:48:05 GMT+0800">2022-02-26</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">
+                        HTML基础（二）：相对路径
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        含义​    .&#x2F; 表示当前文件所在的目录，可省略不写
+123&lt;!--两者都指的是当前目录下的target文件--&gt;&lt;a href=&quot;./target.html&quot;&gt;&lt;/a&gt;&lt;a ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 22:24:32 GMT+0800">2022-02-26</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/HTML/">HTML</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">
+                        HTML基础（一）：meta标签
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        格式123&lt;head&gt;    &lt;meta&gt;&lt;/head&gt;
+
+作用设置网页中的元数据，用于浏览器渲染网页，元数据对用户是不可见的。
+xxxxxxxxxx html
+charset：指定网页的字符集编码
+1&lt;me...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 26 2022 22:24:20 GMT+0800">2022-02-26</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/HTML/">HTML</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -451,18 +657,18 @@ mjx-container[display="true"] + br {
             <div class="website-count info-item">
                 
                     <span id="busuanzi_container_site_uv">
-                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
                     </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
         </div>
         
         
@@ -536,7 +742,7 @@ mjx-container[display="true"] + br {
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="Search..."
+                       placeholder="搜索..."
                        spellcheck="false"
                        type="search"
                        class="search-input"
