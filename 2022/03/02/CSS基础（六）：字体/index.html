@@ -9,7 +9,7 @@
     
     <title>
         
-            标签 |
+            CSS基础（六）：字体 |
         
         Wu Shihan&#39;Blog
     </title>
@@ -88,7 +88,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/tags"
                             >
                                 标签
@@ -148,7 +148,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/tags">标签</a>
                 </li>
             
@@ -177,15 +177,246 @@
             <div class="main-content">
 
                 
-                    
-    <div class="fade-in-down-animation">
-        <div class="tagcloud-container">
-            <div class="tagcloud-content">
-                <a href="/tags/BFC/" style="font-size: 1rem;">BFC</a> <a href="/tags/CSS/" style="font-size: 1.6rem;">CSS</a> <a href="/tags/HTML/" style="font-size: 1.3rem;">HTML</a> <a href="/tags/clear/" style="font-size: 1rem;">clear</a> <a href="/tags/float/" style="font-size: 1rem;">float</a> <a href="/tags/%E5%85%83%E7%B4%A0%E5%B1%82%E7%BA%A7/" style="font-size: 1rem;">元素层级</a> <a href="/tags/%E5%AE%9A%E4%BD%8D/" style="font-size: 1rem;">定位</a> <a href="/tags/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/" style="font-size: 1rem;">盒子模型</a> <a href="/tags/%E9%AB%98%E5%BA%A6%E5%A1%8C%E9%99%B7/" style="font-size: 1rem;">高度塌陷</a>
-            </div>
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">CSS基础（六）：字体</span>
         </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-02 22:10:13</span>
+        <span class="mobile">2022-03-02 22:10</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CSS/">CSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>238 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="字体相关样式"><a href="#字体相关样式" class="headerlink" title="字体相关样式"></a>字体相关样式</h1><ul>
+<li><p>color  字体颜色（严格：前景色，一般用来设置字体颜色）</p>
+</li>
+<li><p>font-size：字体大小</p>
+<ul>
+<li>1 em &#x3D; 当前元素的一个font-size</li>
+<li>1 rem &#x3D; 根元素的一个font-size</li>
+</ul>
+</li>
+<li><p>font-family：字体族（格式）</p>
+<ul>
+<li><p>可同时指定多个字体，字体间使用逗号隔开，字体生效时优先使用第一个，第一个无法使用则使用第二个，以此类推</p>
+</li>
+<li><p>可选值：具体的字体名（eg.’微软雅黑’ ）或者 字体分类</p>
+<p>​    字体分类：浏览器自动使用该类别下的字体</p>
+<ul>
+<li>serif 衬线字体</li>
+<li>sans-serif 非衬线字体</li>
+<li>monospace 等宽字体（每个字母宽度一样）</li>
+</ul>
+</li>
+<li><p>若用户本地没有相关字体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span>&#123;</span><br><span class="line">    <span class="comment">/*指定字体的名字*/</span></span><br><span class="line">    <span class="attribute">font-family</span>:<span class="string">&#x27;myfont&#x27;</span>;</span><br><span class="line">    <span class="comment">/*服务器中字体的路径*/</span></span><br><span class="line">    <span class="attribute">src</span>:<span class="built_in">url</span>(<span class="string">&#x27;./font/xxxx.ttf&#x27;</span>)<span class="built_in">format</span>(<span class="string">&#x27;truetye&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>:myfont;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题：加载速度、版权、字体格式</p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：CSS基础（六）：字体</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-03-02 22:10:13</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/03/02/CSS基础（六）：字体/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CSS/">#CSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/02/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%AE%9A%E4%BD%8D%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CSS提升（三）：定位相关知识</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
     </div>
 
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 
@@ -230,6 +461,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -276,6 +528,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%9B%B8%E5%85%B3%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">字体相关样式</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -333,6 +593,8 @@
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 
