@@ -9,7 +9,7 @@
     
     <title>
         
-            JS基础（一）：基本语法 |
+            将Hexo博客同时部署至GitHub与Gitee |
         
         Wu Shihan&#39;Blog
     </title>
@@ -181,7 +181,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">JS基础（一）：基本语法</span>
+            <span class="title-hover-animation">将Hexo博客同时部署至GitHub与Gitee</span>
         </div>
 
         
@@ -200,8 +200,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-03-08 09:50:27</span>
-        <span class="mobile">2022-03-08 09:50</span>
+        <span class="pc">2022-03-24 16:04:02</span>
+        <span class="mobile">2022-03-24 16:04</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -209,7 +209,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                        <a href="/categories/Blog/">Blog</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,7 +221,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/JS/">JS</a>&nbsp;
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
                     </li>
                 
             </ul>
@@ -231,12 +231,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>651 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>892 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -252,127 +252,92 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="编写位置"><a href="#编写位置" class="headerlink" title="编写位置"></a>编写位置</h1><ul>
-<li><p>onclick属性中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;xxxxxxxxx&#x27;);&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>半个多月前在Github上部署了Hexo个人博客：<a class="link"   target="_blank" rel="noopener" href="https://milky53.github.io/" >Wu Shihan’Blog<i class="fas fa-external-link-alt"></i></a>。考虑到GitHub经常出现访问不上的情况，如果没有科学上网的话，不够稳定容易翻车，所以打算在国内的Gitee上也部署一份，双重保险！</p>
+<p>前提：已经在Github上成功部署过Hexo博客了，具体的配置过程可以参照此博文：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/105275509" >基于Hexo + Github &amp; Gitee 搭建个人Blog<i class="fas fa-external-link-alt"></i></a></p>
+<p>如何实现将博客同时部署到两个托管平台呢？</p>
+<p>在查阅资料之前，我能想到的解决方案是在本地创建两份一模一样的博客文件，每次更新后分别向Github和Gitee提交两次博文。但我觉得肯定有更简单的解决方案，实现“一键“即可同时更新Github和Gitee上的blog，以下将介绍实现将Hexo博客从单一部署（Github）到多部署（Github+Gitee）的方法。</p>
+<h1 id="第一步：配置ssh文件"><a href="#第一步：配置ssh文件" class="headerlink" title="第一步：配置ssh文件"></a>第一步：配置ssh文件</h1><p>起初在配置GitHub的时，没有使用config文件，因为只需要将id_rsa.pub文件中的公钥拷贝到个人GitHub的settings下新建ssh就好了。</p>
+<p>但由于部署到两个不同平台时，可能会出现需要用两个不同的邮箱账号的情况，因此就需要用到config。</p>
+<ol>
+<li><p>生成另外一个账号（注册gitee的邮箱）的rsa，因为我是要部署到gitee，所以以<code>gitee_id_rsa</code>命名以区分。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">ssh-keygen -t rsa -C <span class="string">&#x27;邮箱名@qq.com&#x27;</span> -f ~/.ssh/gitee_id_rsa</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>href属性中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(&#x27;xxxxxxxxx&#x27;);&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>把公钥放到gitee的设置下的ssh中。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.phelc8wfymo.webp"
+                     
+                ></p>
 </li>
-<li><p>script标签中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(<span class="string">&#x27;警告窗口&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&quot;在页面输出一个内容&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;向控制台输出一个内容&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>配置config，在 <code>C:\Users\你的账户的名字.ssh</code> 目录下新建一个config文件（没有后缀的），添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gitee</span><br><span class="line">Host gitee.com </span><br><span class="line">HostName gitee.com </span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/gitee_id_rsa  # gitee的ssh路径</span><br><span class="line"># github</span><br><span class="line">Host github.com </span><br><span class="line">HostName github.com </span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa # github的ssh路径</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>外部js文件中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;js/script.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--script标签一旦用于引入外部文件，其内部就不能再写代码了--&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ul>
-<li><p>声明变量：var a;</p>
-<p>声明+赋值：var a &#x3D; 0;</p>
+<li><p>在命令行测试一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">ssh -T git@gitee.com</span></span><br><span class="line"><span class="meta">$ </span><span class="language-bash">ssh -T git@github.com</span></span><br></pre></td></tr></table></figure>
+
+<p>出现以下则说明测试成功！</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.7cudty3vbjs0.webp"
+                       
+                >
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.e3hzm9jd3ns.webp"
+                       
+                ></li>
+</ol>
+<h1 id="第二步：在Gitee中创建一个仓库"><a href="#第二步：在Gitee中创建一个仓库" class="headerlink" title="第二步：在Gitee中创建一个仓库"></a>第二步：在Gitee中创建一个仓库</h1><ol>
+<li><p>仓库名称要与用户名相同。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.27mw6ulehhwk.webp"
+                     
+                ></p>
+<blockquote>
+<p>注：用户名指的是gitee域名里你的名字，而不是你在gitee设置里个性化设置的姓名。</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220324164319419.png"
+                      alt="image-20220324164319419"
+                ></p>
 </li>
-<li><p>标识符：自主命名的（如变量名、函数名、属性名）</p>
-<ul>
-<li>命名规则：<ul>
-<li>标识符中可含有字母、数字、_、$</li>
-<li>标识符不能以数字开头</li>
-<li>标识符不能是ES中的关键字或保留字</li>
-<li>标识符一般次啊用驼峰命名法<ul>
-<li>首字母小写，每个单词开头字母大写，其余字母小写</li>
-</ul>
+<li><p>创建完成后打开当前仓库的gitee pages服务，并勾选”强制使用HTTPS“。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.7gyh2eq2g4k0.webp"
+                     
+                ></p>
+<blockquote>
+<p>注：新建的仓库如果没有任何文件，是没有入口打开Gitee pages服务的，此时可以先自动生成readme文档，使其开启该服务接口。</p>
+</blockquote>
 </li>
-</ul>
+</ol>
+<h1 id="第三步：配置博客的-config-yml"><a href="#第三步：配置博客的-config-yml" class="headerlink" title="第三步：配置博客的_config.yml"></a>第三步：配置博客的_config.yml</h1><p>更新完~&#x2F;.ssh&#x2F;config后，博客的config.yml也要修改（注：不是修改主题的config.yml）</p>
+<ol>
+<li><p>打开博客的_config.yml，找到deployment栏，如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="string">git@github.com:Milky53/Milky53.github.io.git</span> <span class="comment">#这是已经配置的github的repo</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-</li>
-<li><p>字符串：双引号或单引号都可以，但不要混用</p>
-</li>
-<li><p>typeof检查变量类型</p>
-<p>console.log(typeof a);</p>
-</li>
-<li><p>Number类型</p>
-<ul>
-<li><p>Number.MAX_VALUE 最大值</p>
-<p>Number.MIN_VALUE 最小正值</p>
-<p>Infinity 正无穷</p>
-<p>-Infinity 负无穷</p>
-<p>NaN 特殊数字，表示Not A Number</p>
-</li>
-</ul>
-</li>
-<li><p>Null类型</p>
-<ul>
-<li>表示空对象</li>
-<li>typeof检查null时，返回object</li>
-</ul>
-</li>
-<li><p>Undefined类型</p>
-<ul>
-<li>当声明一个变量，但没有给它负值时，它的值为undefined</li>
-</ul>
-</li>
-<li><p>强制类型转换</p>
-<ul>
-<li><p>将其它数据类型转换为String</p>
-<ul>
-<li>toString()    注：null和undefined没有此方法</li>
-<li>调用String()函数   注：null和undefined可用此方法</li>
-</ul>
-</li>
-<li><p>将其它数据类型转换为Number</p>
-<ul>
-<li><p>调用Number()函数</p>
-<ul>
-<li><p>字符串 –&gt; 数字</p>
-<p>纯数字字符串 - 数字</p>
-<p>存在非数字 - NaN</p>
-<p>空串或全空格 - 0</p>
-</li>
-<li><p>布尔 –&gt; 数字</p>
-<p>true - 1</p>
-<p>flase -0</p>
-</li>
-<li><p>null –&gt; 数字 0</p>
-</li>
-<li><p>undefined –&gt; 数字 0</p>
-</li>
-</ul>
-</li>
-<li><p>调用parseInt()函数  将字符串转换为一个整数：</p>
-<p>​    可将字符串中有效的整数取出（即存在非数字也可以）</p>
-<p>​    在parseInt()中传递第二个参数，来指定数字的进制</p>
-<p>调用parseFloat()函数  将字符串转换为一个浮点数：</p>
-<p>​    可将字符串中有效的小数取出（即存在非数字也可以）</p>
-<p>若对非String使用以上函数，则先将其转换为String再操作</p>
-</li>
-</ul>
-</li>
-<li><p>将其它数据类型转换为Boolean</p>
-<ul>
-<li><p>调用Boolean()函数</p>
-<ul>
-<li><p>数字 –&gt; 布尔</p>
-<p>除了0和NaN，其余都是true</p>
-</li>
-<li><p>字符串 –&gt; 布尔</p>
-<p>除了空串，其余都是true</p>
-</li>
-<li><p>null和undefined都会转为false</p>
-</li>
-<li><p>对象也会转换为true</p>
-</li>
-</ul>
-</li>
-<li><p>对任意数据类型做两次非运算</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>逻辑运算符</p>
-<ul>
-<li>！非   &amp;&amp;与  ||或</li>
-</ul>
-</li>
-</ul>
+<li><p>现在需要加入一个新的repo，保证仓库名称和路径一致。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:Milky53/Milky53.github.io.git</span></span><br><span class="line">    <span class="attr">gitee:</span> <span class="string">git@gitee.com:wu_shi_han/wu_shi_han.git</span> <span class="comment">#新增的gitee的repo</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="第四步：部署博客"><a href="#第四步：部署博客" class="headerlink" title="第四步：部署博客"></a>第四步：部署博客</h1><p>执行博客提交三件套：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不成功的话</p>
+<p>若提示cannot find repository之类的话，那么是上面前三个步骤中的某一步做错了。</p>
+<p>若是提示邮箱要公开的问题，复制报错提示的网址去邮箱界面把邮箱设置成公开即可。</p>
+</blockquote>
+<p>对于Gitee，它不会自动帮你更新，所以每次部署完之后都要进入gitee pages服务中点一次“更新”。</p>
 
         </div>
 
@@ -380,11 +345,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：JS基础（一）：基本语法</li>
+        <li>本文标题：将Hexo博客同时部署至GitHub与Gitee</li>
         <li>本文作者：Wu Shihan</li>
-        <li>创建时间：2022-03-08 09:50:27</li>
+        <li>创建时间：2022-03-24 16:04:02</li>
         <li>
-            本文链接：https://keep.xpoet.cn/2022/03/08/JS基础（一）：基本语法/
+            本文链接：https://keep.xpoet.cn/2022/03/24/将Hexo博客同时部署至GitHub与Gitee/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -399,7 +364,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/JS/">#JS</a>&nbsp;
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>&nbsp;
                     </li>
                 
             </ul>
@@ -408,29 +373,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/03/08/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">JS基础（二）：对象和函数</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/"
+                           href="/2022/03/12/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AJSON/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">CSS提升（七）：响应式布局</span>
+                                <span class="post-nav-title-item">JS基础（十二）：JSON</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -636,7 +586,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">编写位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">基本语法</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEssh%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">第一步：配置ssh文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%9C%A8Gitee%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">第二步：在Gitee中创建一个仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E7%9A%84-config-yml"><span class="nav-number">4.</span> <span class="nav-text">第三步：配置博客的_config.yml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2"><span class="nav-number">5.</span> <span class="nav-text">第四步：部署博客</span></a></li></ol>
     </div>
 </div>
         </aside>
