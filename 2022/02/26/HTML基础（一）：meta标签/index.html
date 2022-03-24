@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -193,7 +193,7 @@
                     <div class="author">
                         <span class="name">Wu Shihan</span>
                         
-                            <span class="author-label">Lv2</span>
+                            <span class="author-label">Lv3</span>
                         
                     </div>
                     <div class="meta-info">
@@ -209,7 +209,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        <a href="/categories/HTML/">HTML</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,7 +221,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/HTML/">HTML</a>&nbsp;
+                        <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/HTML/">HTML</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/meta/">meta</a>&nbsp;
                     </li>
                 
             </ul>
@@ -231,7 +239,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>291 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>463 字</span>
         </span>
     
     
@@ -255,7 +263,7 @@
             <h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>设置网页中的元数据，用于浏览器渲染网页，元数据对用户是不可见的。</p>
-<h2 id="xxxxxxxxxx-html"><a href="#xxxxxxxxxx-html" class="headerlink" title="xxxxxxxxxx html"></a>xxxxxxxxxx <!--指的是当前目录的上一级目录下的target文件--><a href="../target.html"></a><!--指的是当前目录的上两级目录下的target文件--><a href="../../target.html"></a>html</h2><ul>
+<ul>
 <li><p>charset：指定网页的字符集编码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -274,6 +282,17 @@
                       alt="image-20220225160554543"
                 ></p>
 </li>
+<li><p>viewport：设置视口大小（为适配<strong>移动端</strong>）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--设置的是css像素，与物理像素区分--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width:100px&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>完美视口：</p>
+<p>每一款移动设备设计时，都会有一个最佳像素比（ css像素&#x2F;物理像素）。设置视口width，使之与物理像素的像素比为该值，即可得到最佳效果</p>
+</li>
+<li><p>不同移动设备的完美视口不同：</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--将网页的视口设置为完美视口--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--利用device-width设置视口大小--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--initial-scale=1.0，防止横竖屏切换混乱--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width，initial-scale=1.0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>content：指定的数据的内容</p>
@@ -307,7 +326,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
+                        <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">#移动端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
                         <a href="/tags/HTML/">#HTML</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/meta/">#meta</a>&nbsp;
                     </li>
                 
             </ul>
@@ -430,9 +457,6 @@
         <div class="copyright-info info-item">
             &copy;
             
-              <span>2020</span>
-              -
-            
             2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
         </div>
         
@@ -532,7 +556,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xxxxxxxxxx-html"><span class="nav-number">3.</span> <span class="nav-text">xxxxxxxxxx html</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">作用</span></a></li></ol>
     </div>
 </div>
         </aside>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            JS基础（六）：正则表达式 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">JS基础（六）：正则表达式</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-09 16:30:21</span>
+        <span class="mobile">2022-03-09 16:30</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JS/">JS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="创建正则表达式的对象"><a href="#创建正则表达式的对象" class="headerlink" title="创建正则表达式的对象"></a>创建正则表达式的对象</h1><ul>
+<li>语法：var 变量 &#x3D; new RegExp(“正则表达式”,”匹配模式”)；</li>
+<li>test() 检查字符串是否符合正则表达式的规则</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;a&quot;</span>));  <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;bcabc&quot;</span>));  <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;bcbc&quot;</span>));  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匹配模式：<ul>
+<li>i 忽略大小写</li>
+<li>g 全局匹配模式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;i&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;A&quot;</span>));  <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;bcAbc&quot;</span>));  <span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(<span class="string">&quot;bcbc&quot;</span>));  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="正则语法"><a href="#正则语法" class="headerlink" title="正则语法"></a>正则语法</h1><ul>
+<li><p>创建正则表达式简单方法(字面量方式)</p>
+<p>语法：var 变量 &#x3D; &#x2F;正则表达式&#x2F;匹配模式</p>
+<p>使用字面量方式创建更加简单，使用构造函数创建更加灵活（因为可以传递正则表达式变量）</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="comment">//相当于如下</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/a/i</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>a|b   检查字符串中是否有a或b</p>
+</li>
+<li><p>[abcd]  检查字符串中是否有a或b或c或d（[]中的内容也是或的关系)</p>
+</li>
+<li><p>[a-z] 任意小写字母</p>
+<p>[A-Z] 任意大写字母</p>
+<p>[A-z] 任意字母</p>
+</li>
+<li><p>a[bde]c 检查字符串中是否含有abc或ade或aec</p>
+</li>
+<li><p>[^ac] 含有除了ab的字母</p>
+<p>[^0-9] 除了数字</p>
+</li>
+<li><p><strong>量词：</strong>量词只对它前面的一个内容起作用</p>
+<ul>
+<li><p>{n} 正好连续出现n次</p>
+<p>a{3} a连续出现3次</p>
+<p>(ab){3} ab连续出现3次</p>
+</li>
+<li><p>{m,n} 出现m-n次</p>
+</li>
+<li><p>{m，} 出现m次以上</p>
+</li>
+<li><p>+，至少一个，相当于{1，}</p>
+</li>
+<li><p>*，0个或多个，相当于{0，}</p>
+</li>
+<li><p>？，0个或一个，相当于{0，1}</p>
+</li>
+</ul>
+</li>
+<li><p>^a 匹配以a开头  （与[^a]区分）</p>
+</li>
+<li><p>a$ 匹配以a结尾</p>
+</li>
+<li><p>^a$ 完全匹配a</p>
+<p>如果在正则表达式中同时使用^ $则要求字符串必须完全符合正则表达式</p>
+</li>
+<li><p>^a|a$ 以a开头或以a结尾</p>
+</li>
+<li><p>示例：</p>
+<ul>
+<li><p><strong>检查一个字符串是否是个合法手机号</strong></p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>3</th>
+<th>567890123</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以1开头</td>
+<td>第二位3-9</td>
+<td>第三位以后任意数字</td>
+</tr>
+<tr>
+<td>^1</td>
+<td>[3-9]</td>
+<td>[0-9]{9}$</td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> phoneStr = <span class="string">&quot;13067890123&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> phoneReg = <span class="regexp">/^1[3-9][0-9]&#123;9&#125;$/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(phoneReg.<span class="title function_">test</span>(phoneStr));</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>.    表示任意字符</p>
+<ul>
+<li><p><strong>检查一个字符串中是否含有. （\）</strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\./</span>;</span><br><span class="line">reg = <span class="keyword">new</span> <span class="title class_">RegExo</span>(<span class="string">&quot;\\.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\\/</span>;</span><br><span class="line">reg = <span class="keyword">new</span> <span class="title class_">RegExo</span>(<span class="string">&quot;\\\\&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>\w 表示任意字母、数字、下划线_</p>
+<p>\W 表示除任意字母、数字、下划线_外</p>
+</li>
+<li><p>\d 表示任意的数字</p>
+<p>\D 表示除了数字</p>
+</li>
+<li><p>\s 空格</p>
+<p>\S 除了空格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除开头的空格</span></span><br><span class="line">str = str.<span class="title function_">replace</span>(<span class="regexp">/^\s*/</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">//删除结尾的空格</span></span><br><span class="line">str = str.<span class="title function_">replace</span>(<span class="regexp">/\s*$/</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment">//删除开头和结尾的空格</span></span><br><span class="line">str = str.<span class="title function_">replace</span>(<span class="regexp">/^\s*|\s*$/g</span>,<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>\b 单词边界</p>
+<p>\D 除了单词边界</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg = <span class="regexp">/\bchild\b/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(hello children));<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg.<span class="title function_">test</span>(hello child));<span class="comment">//ture</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例：</p>
+<ul>
+<li><p><strong>电子邮件正则表达式</strong></p>
+<table>
+<thead>
+<tr>
+<th>hello.nihao</th>
+<th>@</th>
+<th>abc.com.cn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任意字母数字下划线.任意字母数字下划线</td>
+<td></td>
+<td>任意字母数字.任意字母（2-5位）.任意字母（2-5位）</td>
+</tr>
+<tr>
+<td>^\w{3,} (\.\w+)*</td>
+<td>@</td>
+<td>[A-z0-9]+ (\.[A-z]{2,5}){1,2}$</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emaiReg = <span class="regexp">/^\w&#123;3,&#125;(\\.\w+)*@[A-z0-9]+ (\\.[A-z]&#123;2,5&#125;)&#123;1,2&#125;$/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字符串和正则表达式"><a href="#字符串和正则表达式" class="headerlink" title="字符串和正则表达式"></a>字符串和正则表达式</h1></li>
+</ul>
+<blockquote>
+<p>split()</p>
+<p>可以将一个字符串拆分为一个数组</p>
+<p>方法中可以传递一个正则表达式作为参数，那么将会根据正则表达式去拆分字符串</p>
+<p>不需要设置全局匹配</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">&quot;1a2b3c4d5e6f7&quot;</span>;</span><br><span class="line"><span class="comment">//根据任意字母将字符串拆分</span></span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">split</span>(<span class="regexp">/[A-z]/</span>);  <span class="comment">//输出1，2，3，4，5，6，7</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>search()可以搜索字符串中是否有指定内容</p>
+<p>不能设置全局匹配</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">&quot;hello abc hello aec afc&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">search</span>(<span class="regexp">/a[bef]c/</span>);  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>match()</p>
+<p>可以根据正则表达式，从一个字符串中将符合条件的内容提取出来</p>
+<p>match()会将匹配到的内容封装到一个数组中返回，即使只查询到一个结果</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">&quot;1a2b3c4d5e6f7&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">match</span>(<span class="regexp">/[A-z]/</span>); <span class="comment">//输出a</span></span><br><span class="line"><span class="comment">//全局匹配</span></span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">match</span>(<span class="regexp">/[A-z]/g</span>); <span class="comment">//输出a,b,c,d,e,f</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str =<span class="string">&quot;1a2b3c4d5e6f7A8B9C&quot;</span>;</span><br><span class="line"><span class="comment">//全局匹配+忽略大小写</span></span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">match</span>(<span class="regexp">/[a-z]/ig</span>); <span class="comment">//输出a,b,c,d,e,f,A,B,C</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>replace() </p>
+<p>可将字符串中指定内容替换为新的内容</p>
+<p>参数：</p>
+<ol>
+<li>被替换的内容，可接受一个正则表达式作为参数</li>
+<li>新的内容</li>
+</ol>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">&quot;1a2b3c4d5e6f7&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">replace</span>(<span class="regexp">/[a-z]/ig</span>,<span class="string">&quot;@&quot;</span>); <span class="comment">//输出1@2@3@4@5@6@7</span></span><br><span class="line"><span class="comment">//删除字母</span></span><br><span class="line"><span class="keyword">var</span> result = str.<span class="title function_">replace</span>(<span class="regexp">/[a-z]/ig</span>,<span class="string">&quot;&quot;</span>); <span class="comment">//输出1234567</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：JS基础（六）：正则表达式</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-03-09 16:30:21</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/03/09/JS基础（六）：正则表达式/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/JS/">#JS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">#正则表达式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/09/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9ADOM/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JS基础（七）：DOM</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/09/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95call%E5%92%8Capply/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JS基础（五）：函数的方法call和apply</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">创建正则表达式的对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">正则语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">字符串和正则表达式</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
