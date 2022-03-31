@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            数据结构与算法（二）：队列 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据结构与算法（二）：队列</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-24 18:21:25</span>
+        <span class="mobile">2022-03-24 18:21</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%98%9F%E5%88%97/">队列</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>904 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="js中队列的实现方式"><a href="#js中队列的实现方式" class="headerlink" title="js中队列的实现方式"></a>js中队列的实现方式</h1><ol>
+<li>基于数组实现：队列基于数组元素性能不高</li>
+<li>基于链表实现</li>
+</ol>
+<h1 id="队列的实现（基于数组）"><a href="#队列的实现（基于数组）" class="headerlink" title="队列的实现（基于数组）"></a>队列的实现（基于数组）</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义队列</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Queue</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> items = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 队列操作的方法</span></span><br><span class="line">    <span class="comment">// enter queue方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">enqueue</span> = <span class="keyword">function</span> (<span class="params">element</span>) &#123;</span><br><span class="line">        items.<span class="title function_">push</span>(element)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// delete queue方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dequeue</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="title function_">shift</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看前端的元素</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">front</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看队列是否为空</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">isEmpty</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span> == <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看队列中元素的个数</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">size</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//toString方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">toString</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> resultString = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span>;i++)&#123;</span><br><span class="line">            resultString += <span class="variable language_">this</span>.<span class="property">items</span>[i]+<span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resultString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建队列对象</span></span><br><span class="line"><span class="keyword">var</span> queue = <span class="keyword">new</span> <span class="title class_">Queue</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="队列的相关方法（需自己实现）"><a href="#队列的相关方法（需自己实现）" class="headerlink" title="队列的相关方法（需自己实现）"></a>队列的相关方法（需自己实现）</h2><ul>
+<li>enqueue() 入队</li>
+<li>dequeue() 出队</li>
+<li>front() 返回队列中第一个元素</li>
+<li>isEmpty() 判断队列是否为空</li>
+<li>size() 队列中元素个数</li>
+<li>toString() 将队列结构的内容以字符形式返回</li>
+</ul>
+<h1 id="队列实现击鼓传花"><a href="#队列实现击鼓传花" class="headerlink" title="队列实现击鼓传花"></a>队列实现击鼓传花</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现击鼓传花的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">passGame</span>(<span class="params">nameList, num</span>) &#123;</span><br><span class="line">    <span class="comment">// 1.创建一个队列, 并且将所有的人放在队列中</span></span><br><span class="line">    <span class="comment">// 1.1.创建队列</span></span><br><span class="line">    <span class="keyword">var</span> queue = <span class="keyword">new</span> <span class="title class_">Queue</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.2.通过for循环, 将nameList中的人放在队列中</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nameList.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        queue.<span class="title function_">enqueue</span>(nameList[i])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.寻找最后剩下的人</span></span><br><span class="line">    <span class="keyword">while</span> (queue.<span class="title function_">size</span>() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// 将前num-1中的人, 都从队列的前端取出放在队列的后端</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; num-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            queue.<span class="title function_">enqueue</span>(queue.<span class="title function_">dequeue</span>())</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将第num个人, 从队列中移除</span></span><br><span class="line">        queue.<span class="title function_">dequeue</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.获取剩下的一个人</span></span><br><span class="line">    <span class="title function_">alert</span>(queue.<span class="title function_">size</span>())</span><br><span class="line">    <span class="keyword">var</span> endName = queue.<span class="title function_">dequeue</span>()</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;最终留下来的人:&quot;</span> + endName)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取该人在队列中的位置</span></span><br><span class="line">    <span class="keyword">return</span> nameList.<span class="title function_">indexOf</span>(endName)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证结果</span></span><br><span class="line"><span class="keyword">var</span> names = [<span class="string">&#x27;John&#x27;</span>,<span class="string">&#x27;Jack&#x27;</span>,<span class="string">&#x27;Camila&#x27;</span>,<span class="string">&#x27;Ingrid&#x27;</span>,<span class="string">&#x27;Carl&#x27;</span>];</span><br><span class="line"><span class="keyword">var</span> index = <span class="title function_">passGame</span>(names, <span class="number">7</span>)</span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;最终位置:&quot;</span> + index)</span><br></pre></td></tr></table></figure>
+
+<h1 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h1><blockquote>
+<p>优先级队列，在插入一个元素的时候会考虑该数据的优先级，和其它数据优先级进行比较，比较完成后，可以得出这个元素在。</p>
+<p>应用：计算机中线程处理的任务重要性不同</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装优先级队列</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PriorityQueue</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> items = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 内部类，封装一个新的构造函数, 用于保存元素和元素的优先级</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">QueueElement</span>(<span class="params">element, priority</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">element</span> = element</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">priority</span> = priority</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加元素的方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">enqueue</span> = <span class="keyword">function</span> (<span class="params">element, priority</span>) &#123;</span><br><span class="line">        <span class="comment">// 1.根据传入的元素, 创建新的QueueElement</span></span><br><span class="line">        <span class="keyword">var</span> queueElement = <span class="keyword">new</span> <span class="title class_">QueueElement</span>(element, priority)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2.获取传入元素应该在正确的位置</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">            items.<span class="title function_">push</span>(queueElement)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> added = <span class="literal">false</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; items.<span class="property">length</span>; i++) &#123;</span><br><span class="line">                <span class="comment">// 注意: 我们这里是数字越小, 优先级越高</span></span><br><span class="line">                <span class="keyword">if</span> (queueElement.<span class="property">priority</span> &lt; items[i].<span class="property">priority</span>) &#123;</span><br><span class="line">                    <span class="comment">//第二个参数为0时，为插入函数</span></span><br><span class="line">                    items.<span class="title function_">splice</span>(i, <span class="number">0</span>, queueElement)</span><br><span class="line">                    added = <span class="literal">true</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历完所有的元素, 优先级都大于新插入的元素时, 就插入到最后</span></span><br><span class="line">            <span class="keyword">if</span> (!added) &#123;</span><br><span class="line">                items.<span class="title function_">push</span>(queueElement)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除元素的方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dequeue</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="title function_">shift</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取前端的元素</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">front</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看元素是否为空</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">isEmpty</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span> == <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取元素的个数</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">size</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建优先级队列对象</span></span><br><span class="line"><span class="keyword">var</span> pQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>()</span><br><span class="line"><span class="comment">// 添加元素</span></span><br><span class="line">    pQueue.<span class="title function_">enqueue</span>(<span class="string">&quot;abc&quot;</span>, <span class="number">10</span>)</span><br><span class="line">    pQueue.<span class="title function_">enqueue</span>(<span class="string">&quot;cba&quot;</span>, <span class="number">5</span>)</span><br><span class="line">    pQueue.<span class="title function_">enqueue</span>(<span class="string">&quot;nba&quot;</span>, <span class="number">12</span>)</span><br><span class="line">    pQueue.<span class="title function_">enqueue</span>(<span class="string">&quot;mba&quot;</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&#x27;\u66f4\u591a\u6559\u7a0b\u8bf7\u8bbf\u95ee\u0020\u0069\u0074\u006a\u0063\u0038\u002e\u0063\u006f\u006d&#x27;</span>);</span><br><span class="line">    <span class="comment">// 遍历所有的元素</span></span><br><span class="line">    <span class="keyword">var</span> size = pQueue.<span class="title function_">size</span>()</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> item = pQueue.<span class="title function_">dequeue</span>()</span><br><span class="line">        <span class="title function_">alert</span>(item.<span class="property">element</span> + <span class="string">&quot;-&quot;</span> + item.<span class="property">priority</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：数据结构与算法（二）：队列</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-03-24 18:21:25</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/03/24/数据结构与算法（二）：队列/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%98%9F%E5%88%97/">#队列</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%93%BE%E8%A1%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据结构与算法（三）：链表</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%88/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据结构与算法（一）：栈</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E4%B8%AD%E9%98%9F%E5%88%97%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">js中队列的实现方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%9F%BA%E4%BA%8E%E6%95%B0%E7%BB%84%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">队列的实现（基于数组）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%EF%BC%88%E9%9C%80%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">队列的相关方法（需自己实现）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E5%87%BB%E9%BC%93%E4%BC%A0%E8%8A%B1"><span class="nav-number">3.</span> <span class="nav-text">队列实现击鼓传花</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97"><span class="nav-number">4.</span> <span class="nav-text">优先级队列</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

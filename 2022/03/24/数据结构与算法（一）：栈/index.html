@@ -9,7 +9,7 @@
     
     <title>
         
-            将Hexo博客同时部署至GitHub与Gitee |
+            数据结构与算法（一）：栈 |
         
         Wu Shihan&#39;Blog
     </title>
@@ -181,7 +181,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">将Hexo博客同时部署至GitHub与Gitee</span>
+            <span class="title-hover-animation">数据结构与算法（一）：栈</span>
         </div>
 
         
@@ -200,8 +200,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-03-24 16:04:02</span>
-        <span class="mobile">2022-03-24 16:04</span>
+        <span class="pc">2022-03-24 17:57:37</span>
+        <span class="mobile">2022-03-24 17:57</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -209,7 +209,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Blog/">Blog</a>&nbsp;
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
                     </li>
                 
             </ul>
@@ -221,7 +221,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
+                        <a href="/tags/%E6%A0%88/">栈</a>&nbsp;
                     </li>
                 
             </ul>
@@ -231,12 +231,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>892 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>314 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
         </span>
     
     
@@ -252,92 +252,22 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>半个多月前在Github上部署了Hexo个人博客：<a class="link"   target="_blank" rel="noopener" href="https://milky53.github.io/" >Wu Shihan’Blog<i class="fas fa-external-link-alt"></i></a>。考虑到GitHub经常出现访问不上的情况，如果没有科学上网的话，不够稳定容易翻车，所以打算在国内的Gitee上也部署一份，双重保险！</p>
-<p>前提：已经在Github上成功部署过Hexo博客了，具体的配置过程可以参照此博文：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/105275509" >基于Hexo + Github &amp; Gitee 搭建个人Blog<i class="fas fa-external-link-alt"></i></a></p>
-<p>如何实现将博客同时部署到两个托管平台呢？</p>
-<p>在查阅资料之前，我能想到的解决方案是在本地创建两份一模一样的博客文件，每次更新后分别向Github和Gitee提交两次博文。但我觉得肯定有更简单的解决方案，实现“一键“即可同时更新Github和Gitee上的blog，以下将介绍实现将Hexo博客从单一部署（Github）到多部署（Github+Gitee）的方法。</p>
-<h1 id="第一步：配置ssh文件"><a href="#第一步：配置ssh文件" class="headerlink" title="第一步：配置ssh文件"></a>第一步：配置ssh文件</h1><p>起初在配置GitHub的时，没有使用config文件，因为只需要将id_rsa.pub文件中的公钥拷贝到个人GitHub的settings下新建ssh就好了。</p>
-<p>但由于部署到两个不同平台时，可能会出现需要用两个不同的邮箱账号的情况，因此就需要用到config。</p>
-<ol>
-<li><p>生成另外一个账号（注册gitee的邮箱）的rsa，因为我是要部署到gitee，所以以<code>gitee_id_rsa</code>命名以区分。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">ssh-keygen -t rsa -C <span class="string">&#x27;邮箱名@qq.com&#x27;</span> -f ~/.ssh/gitee_id_rsa</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把公钥放到gitee的设置下的ssh中。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.phelc8wfymo.webp"
-                     
-                ></p>
-</li>
-<li><p>配置config，在 <code>C:\Users\你的账户的名字.ssh</code> 目录下新建一个config文件（没有后缀的），添加如下内容（其中Host和HostName填写git服务器的域名，IdentityFile指定私钥的路径）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gitee</span><br><span class="line">Host gitee.com </span><br><span class="line">HostName gitee.com </span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/gitee_id_rsa  # gitee的ssh路径</span><br><span class="line"># github</span><br><span class="line">Host github.com </span><br><span class="line">HostName github.com </span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa # github的ssh路径</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在命令行测试一下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">ssh -T git@gitee.com</span></span><br><span class="line"><span class="meta">$ </span><span class="language-bash">ssh -T git@github.com</span></span><br></pre></td></tr></table></figure>
-
-<p>出现以下则说明测试成功！</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.7cudty3vbjs0.webp"
-                       
-                >
-
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.e3hzm9jd3ns.webp"
-                       
-                ></li>
+            <h1 id="js中栈的实现方式"><a href="#js中栈的实现方式" class="headerlink" title="js中栈的实现方式"></a>js中栈的实现方式</h1><ol>
+<li>基于数组实现</li>
+<li>基于链表实现</li>
 </ol>
-<h1 id="第二步：在Gitee中创建一个仓库"><a href="#第二步：在Gitee中创建一个仓库" class="headerlink" title="第二步：在Gitee中创建一个仓库"></a>第二步：在Gitee中创建一个仓库</h1><ol>
-<li><p>仓库名称要与用户名相同。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.27mw6ulehhwk.webp"
-                     
-                ></p>
-<blockquote>
-<p>注：用户名指的是gitee域名里你的名字，而不是你在gitee设置里个性化设置的姓名。</p>
-</blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220324164319419.png"
-                      alt="image-20220324164319419"
-                ></p>
-</li>
-<li><p>创建完成后打开当前仓库的gitee pages服务，并勾选”强制使用HTTPS“。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.7gyh2eq2g4k0.webp"
-                     
-                ></p>
-<blockquote>
-<p>注：新建的仓库如果没有任何文件，是没有入口打开Gitee pages服务的，此时可以先自动生成readme文档，使其开启该服务接口。</p>
-</blockquote>
-</li>
-</ol>
-<h1 id="第三步：配置博客的-config-yml"><a href="#第三步：配置博客的-config-yml" class="headerlink" title="第三步：配置博客的_config.yml"></a>第三步：配置博客的_config.yml</h1><p>更新完~&#x2F;.ssh&#x2F;config后，博客的config.yml也要修改（注：不是修改主题的config.yml）</p>
-<ol>
-<li><p>打开博客的_config.yml，找到deployment栏，如下所示：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="string">git@github.com:Milky53/Milky53.github.io.git</span> <span class="comment">#这是已经配置的github的repo</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>现在需要加入一个新的repo，保证仓库名称和路径一致。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:Milky53/Milky53.github.io.git</span></span><br><span class="line">    <span class="attr">gitee:</span> <span class="string">git@gitee.com:wu_shi_han/wu_shi_han.git</span> <span class="comment">#新增的gitee的repo</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="第四步：部署博客"><a href="#第四步：部署博客" class="headerlink" title="第四步：部署博客"></a>第四步：部署博客</h1><p>执行博客提交三件套：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h1 id="栈的实现（基于数组）"><a href="#栈的实现（基于数组）" class="headerlink" title="栈的实现（基于数组）"></a>栈的实现（基于数组）</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 栈的封装</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Stack</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 栈中的属性</span></span><br><span class="line">    <span class="keyword">var</span> items = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 栈相关的方法</span></span><br><span class="line">    <span class="comment">// 压栈操作</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">push</span> = <span class="keyword">function</span> (<span class="params">element</span>) &#123;</span><br><span class="line">        items.<span class="title function_">push</span>(element)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 出栈操作</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">pop</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="title function_">pop</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// peek操作</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">peek</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items[items.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断栈中的元素是否为空</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">isEmpty</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span> == <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取栈中元素的个数</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">size</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> items.<span class="property">length</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//toString方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">toString</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> resultString = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="variable language_">this</span>.<span class="property">items</span>.<span class="property">length</span>;i++)&#123;</span><br><span class="line">            resultString += <span class="variable language_">this</span>.<span class="property">items</span>[i]+<span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resultString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//栈的使用</span></span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="title class_">Stack</span>()</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>不成功的话</p>
-<p>若提示cannot find repository之类的话，那么是上面前三个步骤中的某一步做错了。</p>
-<p>若是提示邮箱要公开的问题，复制报错提示的网址去邮箱界面把邮箱设置成公开即可。</p>
-</blockquote>
-<p>对于Gitee，它不会自动帮你更新，所以每次部署完之后都要进入gitee pages服务中点一次“更新”。</p>
+<h2 id="栈的相关方法（需自己实现）"><a href="#栈的相关方法（需自己实现）" class="headerlink" title="栈的相关方法（需自己实现）"></a>栈的相关方法（需自己实现）</h2><ul>
+<li>push() 入栈</li>
+<li>pop() 出栈</li>
+<li>peek() 返回栈顶元素</li>
+<li>isEmpty() 判断栈是否为空</li>
+<li>size() 栈中元素个数</li>
+<li>toString() 将栈结构的内容以字符形式返回</li>
+</ul>
+<h1 id="栈实现十进制转二进制"><a href="#栈实现十进制转二进制" class="headerlink" title="栈实现十进制转二进制"></a>栈实现十进制转二进制</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装十进制转二进制的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dec2bin</span>(<span class="params">decNumer</span>) &#123;</span><br><span class="line">    <span class="comment">// 定义变量</span></span><br><span class="line">    <span class="keyword">var</span> stack = <span class="keyword">new</span> <span class="title class_">Stack</span>()</span><br><span class="line">    <span class="keyword">var</span> remainder;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环除法</span></span><br><span class="line">    <span class="keyword">while</span> (decNumer &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        remainder = decNumer % <span class="number">2</span></span><br><span class="line">        decNumer = <span class="title class_">Math</span>.<span class="title function_">floor</span>(decNumer / <span class="number">2</span>) <span class="comment">//向下取整</span></span><br><span class="line">        stack.<span class="title function_">push</span>(remainder)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将数据取出</span></span><br><span class="line">    <span class="keyword">var</span> binayriStrng = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> (!stack.<span class="title function_">isEmpty</span>()) &#123;</span><br><span class="line">        binayriStrng += stack.<span class="title function_">pop</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> binayriStrng</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试函数</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">dec2bin</span>(<span class="number">10</span>))</span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">dec2bin</span>(<span class="number">233</span>))</span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">dec2bin</span>(<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -345,11 +275,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：将Hexo博客同时部署至GitHub与Gitee</li>
+        <li>本文标题：数据结构与算法（一）：栈</li>
         <li>本文作者：Wu Shihan</li>
-        <li>创建时间：2022-03-24 16:04:02</li>
+        <li>创建时间：2022-03-24 17:57:37</li>
         <li>
-            本文链接：https://keep.xpoet.cn/2022/03/24/将Hexo博客同时部署至GitHub与Gitee/
+            本文链接：https://keep.xpoet.cn/2022/03/24/数据结构与算法（一）：栈/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -364,7 +294,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>&nbsp;
+                        <a href="/tags/%E6%A0%88/">#栈</a>&nbsp;
                     </li>
                 
             </ul>
@@ -376,13 +306,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/03/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A0%88/"
+                           href="/2022/03/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%98%9F%E5%88%97/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">数据结构与算法（一）：栈</span>
+                                <span class="post-nav-title-item">数据结构与算法（二）：队列</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -392,10 +322,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/03/12/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AJSON/"
+                           href="/2022/03/24/%E5%B0%86Hexo%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E8%87%B3GitHub%E4%B8%8EGitee/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">JS基础（十二）：JSON</span>
+                                <span class="post-nav-title-item">将Hexo博客同时部署至GitHub与Gitee</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -601,7 +531,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEssh%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">第一步：配置ssh文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%9C%A8Gitee%E4%B8%AD%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">第二步：在Gitee中创建一个仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E7%9A%84-config-yml"><span class="nav-number">4.</span> <span class="nav-text">第三步：配置博客的_config.yml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2"><span class="nav-number">5.</span> <span class="nav-text">第四步：部署博客</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E4%B8%AD%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">js中栈的实现方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%9F%BA%E4%BA%8E%E6%95%B0%E7%BB%84%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">栈的实现（基于数组）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%EF%BC%88%E9%9C%80%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">栈的相关方法（需自己实现）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88%E5%AE%9E%E7%8E%B0%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">栈实现十进制转二进制</span></a></li></ol>
     </div>
 </div>
         </aside>

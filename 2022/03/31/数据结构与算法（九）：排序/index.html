@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            数据结构与算法（九）：排序 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">数据结构与算法（九）：排序</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-31 14:55:57</span>
+        <span class="mobile">2022-03-31 14:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="大O表示法"><a href="#大O表示法" class="headerlink" title="大O表示法"></a>大O表示法</h1><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.6zck9fap2yo0.webp"
+                     
+                ></p>
+<blockquote>
+<p><strong>排序算法：冒泡排序、选择排序、插入排序、归并排序、计数排序（counting sort)、基数排序(radix sort)、希尔排序、堆排序、桶排序</strong></p>
+</blockquote>
+<h1 id="简单排序"><a href="#简单排序" class="headerlink" title="简单排序"></a>简单排序</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 封装ArrayList</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ArrayList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">array</span> = []</span><br><span class="line"></span><br><span class="line">    <span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">insert</span> = <span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">array</span>.<span class="title function_">push</span>(item)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">array</span>.<span class="title function_">join</span>(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><ul>
+<li>时间复杂度：$$O(N^2)$$</li>
+<li>比较次数：$$O(N^2)$$</li>
+<li>交换次数：$$O(N^2)$$</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.5cii4pixv5k0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.3p428uvqzuw0.webp"
+                     
+                ></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//交换两个位置的数据</span></span><br><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">swap</span> = <span class="keyword">function</span> (<span class="params">m, n</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> temp = <span class="variable language_">this</span>.<span class="property">array</span>[m]</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">array</span>[m] = <span class="variable language_">this</span>.<span class="property">array</span>[n]</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">array</span>[n] = temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">bubbleSort</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 1.获取数组的长度</span></span><br><span class="line">    <span class="keyword">var</span> length = <span class="variable language_">this</span>.<span class="property">array</span>.<span class="property">length</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.反向循环, 因此次数越来越少</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">// 3.根据i的次数, 比较循环到i位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="comment">// 4.如果j位置比j+1位置的数据大, 那么就交换</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">array</span>[j] &gt; <span class="variable language_">this</span>.<span class="property">array</span>[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="comment">// 交换</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">swap</span>(j, j+<span class="number">1</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><ul>
+<li>时间复杂度：$$O(N^2)$$</li>
+<li>比较次数：$$O(N^2)$$</li>
+<li>交换次数：$$O(N)$$</li>
+<li>选择排序同在认为在执行效率上高于冒泡排序</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.gc8najbemj4.webp"
+                     
+                ></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">selectionSort</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 1.获取数组的长度</span></span><br><span class="line">    <span class="keyword">var</span> length = <span class="variable language_">this</span>.<span class="property">array</span>.<span class="property">length</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.外层循环: 从0位置开始取出数据, 直到length-2位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 3.内层循环: 从i+1位置开始, 和后面的内容比较</span></span><br><span class="line">        <span class="keyword">var</span> min = i</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = min + <span class="number">1</span>; j &lt; length; j++) &#123;</span><br><span class="line">            <span class="comment">// 4.如果i位置的数据大于j位置的数据, 记录最小的位置</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">array</span>[min] &gt; <span class="variable language_">this</span>.<span class="property">array</span>[j]) &#123;</span><br><span class="line">                min = j</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">swap</span>(min, i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><ul>
+<li>时间复杂度：$$O(N^2)$$</li>
+<li>比较次数：$$O(N^2)$$</li>
+<li>复制次数：$$O(N^2)$$</li>
+<li>插入排序是简单排序中效率最好的</li>
+<li>对于基本有序的数据来说，插入排序要好很多</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.q4n55k19u4w.webp"
+                     
+                ></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">insertionSort</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 1.获取数组的长度</span></span><br><span class="line">    <span class="keyword">var</span> length = <span class="variable language_">this</span>.<span class="property">array</span>.<span class="property">length</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.外层循环: 外层循环是从1位置开始, 依次遍历到最后</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="comment">// 3.记录选出的元素, 放在变量temp中</span></span><br><span class="line">        <span class="keyword">var</span> j = i</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="variable language_">this</span>.<span class="property">array</span>[i]</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4.内层循环: 内层循环不确定循环的次数, 最好使用while循环</span></span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">array</span>[j-<span class="number">1</span>] &gt; temp) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">array</span>[j] = <span class="variable language_">this</span>.<span class="property">array</span>[j-<span class="number">1</span>]</span><br><span class="line">            j--</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5.将选出的j位置, 放入temp元素</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">array</span>[j] = temp</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="高级排序"><a href="#高级排序" class="headerlink" title="高级排序"></a>高级排序</h1><h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.7d1klfr62rw0.webp"
+                     
+                ></p>
+<ul>
+<li>最快情况下时间复杂度：$$O(N^2)$$，通常情况下都好于$$O(N^2)$$</li>
+<li>希尔排序是插入排序的一种高效的改进版，其效率比插入排序更快</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.6ywbdvrh72o0.webp"
+                     
+                ></p>
+<ul>
+<li><p>数据按间隔分组，组内插入排序。下一次分组间隔减小，直到间隔为1时，进行插入排序。</p>
+</li>
+<li><p>如何选择间隔？</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.3jzjgxqd2620.webp"
+                     
+                ></p>
+</li>
+<li><p>希尔排序大多数情况下效率高于简单排序</p>
+</li>
+<li><p>在合适的增量和某些数量N的情况下，甚至好于快速排序</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">shellSort</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 1.获取数组的长度</span></span><br><span class="line">    <span class="keyword">var</span> length = <span class="variable language_">this</span>.<span class="property">array</span>.<span class="property">length</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.根据长度计算增量</span></span><br><span class="line">    <span class="keyword">var</span> gap = <span class="title class_">Math</span>.<span class="title function_">floor</span>(length / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.增量不断变量小, 大于0就继续排序</span></span><br><span class="line">    <span class="keyword">while</span> (gap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 4.以gap为间隔进行分组，对组内进行插入排序</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = gap; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="comment">// 4.1.保存临时变量</span></span><br><span class="line">            <span class="keyword">var</span> j = i</span><br><span class="line">            <span class="keyword">var</span> temp = <span class="variable language_">this</span>.<span class="property">array</span>[i]</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 4.2.插入排序的内层循环</span></span><br><span class="line">            <span class="keyword">while</span> (j &gt; gap - <span class="number">1</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">array</span>[j - gap] &gt; temp) &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">array</span>[j] = <span class="variable language_">this</span>.<span class="property">array</span>[j - gap]</span><br><span class="line">                j -= gap</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 4.3.将选出的j位置设置为temp</span></span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">array</span>[j] = temp</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5.重新计算新的间隔</span></span><br><span class="line">        gap = <span class="title class_">Math</span>.<span class="title function_">floor</span>(gap / <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><ul>
+<li><p>平均时间复杂度：$$O(NlogN)$$</p>
+</li>
+<li><p>快速排序几乎时目前所有排序算法中最快的排序算法</p>
+</li>
+<li><p>应用于C++的STL、Java等</p>
+</li>
+<li><p>快速排序可以看作时最慢的冒泡排序的升级版：在一次循环中（其实时递归调用），找出某个元素的正确位置，并且该元素之后不需要任何移动。</p>
+</li>
+<li><p>快排思想：分而治之</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.78l2q74opu00.webp"
+                     
+                ></p>
+</li>
+<li><p>如何选择快速排序的枢纽？</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.2obivw0d2bc0.webp"
+                     
+                ></p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择枢纽</span></span><br><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">median</span> = <span class="keyword">function</span> (<span class="params">left, right</span>) &#123;</span><br><span class="line">    <span class="comment">// 1.求出中间的位置</span></span><br><span class="line">    <span class="keyword">var</span> center = <span class="title class_">Math</span>.<span class="title function_">floor</span>((left + right) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.判断并且进行交换 （相当于一个冒泡）</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">array</span>[left] &gt; <span class="variable language_">this</span>.<span class="property">array</span>[center]) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">swap</span>(left, center)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">array</span>[center] &gt; <span class="variable language_">this</span>.<span class="property">array</span>[right]) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">swap</span>(center, right)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">array</span>[left] &gt; <span class="variable language_">this</span>.<span class="property">array</span>[center]) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">swap</span>(left, center)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.巧妙的操作: 将center移动到right - 1的位置.</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">swap</span>(center, right - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.返回pivot</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">array</span>[right - <span class="number">1</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速排序实现</span></span><br><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">quickSort</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">quickSortRec</span>(<span class="number">0</span>, <span class="variable language_">this</span>.<span class="property">array</span>.<span class="property">length</span> - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ArrayList</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">quickSortRec</span> = <span class="keyword">function</span> (<span class="params">left, right</span>) &#123;</span><br><span class="line">    <span class="comment">// 0.递归结束条件</span></span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1.获取枢纽</span></span><br><span class="line">    <span class="keyword">var</span> pivot = <span class="variable language_">this</span>.<span class="title function_">median</span>(left, right)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.开始进行交换</span></span><br><span class="line">    <span class="keyword">var</span> i = left</span><br><span class="line">    <span class="keyword">var</span> j = right - <span class="number">1</span> <span class="comment">//枢纽位置</span></span><br><span class="line">    <span class="keyword">while</span> (i!=j) &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="variable language_">this</span>.<span class="property">array</span>[++i] &lt; pivot) &#123; &#125;</span><br><span class="line">        <span class="keyword">while</span> (<span class="variable language_">this</span>.<span class="property">array</span>[--j] &gt; pivot) &#123; &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">swap</span>(i, j)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.将枢纽放在正确的位置</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">swap</span>(i, right - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.递归调用左边</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">quickSortRec</span>(left, i - <span class="number">1</span>)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">quickSortRec</span>(i + <span class="number">1</span>, right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：数据结构与算法（九）：排序</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-03-31 14:55:57</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/03/31/数据结构与算法（九）：排序/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%8E%92%E5%BA%8F/">#排序</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9B%BE%E8%AE%BA/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">数据结构与算法（八）：图论</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">大O表示法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">简单排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">2.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">插入排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">高级排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">3.1.</span> <span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">3.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
