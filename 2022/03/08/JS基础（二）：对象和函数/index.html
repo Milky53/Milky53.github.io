@@ -239,12 +239,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
         </span>
     
     
@@ -260,15 +260,41 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="对象的分类"><a href="#对象的分类" class="headerlink" title="对象的分类"></a>对象的分类</h1><h2 id="内建对象"><a href="#内建对象" class="headerlink" title="内建对象"></a>内建对象</h2><blockquote>
+            <h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="什么是对象？"><a href="#什么是对象？" class="headerlink" title="什么是对象？"></a>什么是对象？</h2><ul>
+<li>多个数据的封装体</li>
+<li>用来保存多个数据的容器</li>
+<li>一个对象代表现实中的一个事物</li>
+</ul>
+<h2 id="为什么要用对象？"><a href="#为什么要用对象？" class="headerlink" title="为什么要用对象？"></a>为什么要用对象？</h2><ul>
+<li>统一管理多个数据</li>
+</ul>
+<h2 id="对象的组成"><a href="#对象的组成" class="headerlink" title="对象的组成"></a>对象的组成</h2><ul>
+<li>属性：属性名（字符串，允许不写引号）和属性值（任意数据类型）组成</li>
+<li>方法：一种特别的属性（属性值是函数）</li>
+</ul>
+<h2 id="如何访问对象的内部数据？"><a href="#如何访问对象的内部数据？" class="headerlink" title="如何访问对象的内部数据？"></a>如何访问对象的内部数据？</h2><ul>
+<li><p><code>.属性名</code> 常用，但有时不能用</p>
+</li>
+<li><p><code>[&#39;属性名&#39;]</code>  不常用，但任何情况下都能用</p>
+<ul>
+<li><p>什么时候必须用<code>[&#39;属性名&#39;]</code> </p>
+<ul>
+<li>属性名包含特殊字符：- 空格</li>
+<li>属性名不确定</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p=&#123;&#125;</span><br><span class="line"><span class="comment">//1.给p对象添加一个属性：content-type:text/json</span></span><br><span class="line">p[<span class="string">&#x27;content-type&#x27;</span>]=<span class="string">&#x27;text/json&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p[<span class="string">&#x27;content-type&#x27;</span>])</span><br><span class="line"><span class="comment">//2.属性名不确定</span></span><br><span class="line"><span class="keyword">var</span> propName = <span class="string">&#x27;myAge&#x27;</span></span><br><span class="line"><span class="keyword">var</span> valve = <span class="number">18</span></span><br><span class="line"><span class="comment">// p.propNa = value //不能用</span></span><br><span class="line">p[propName] = value</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p[propName])</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="对象的分类"><a href="#对象的分类" class="headerlink" title="对象的分类"></a>对象的分类</h2><h3 id="内建对象"><a href="#内建对象" class="headerlink" title="内建对象"></a>内建对象</h3><blockquote>
 <p>由ES标准定义的对象，在任何的ES的实现中都可以使用</p>
 <p>比如Date、Math、String、Number、Boolean、Function、Object……</p>
 </blockquote>
-<h2 id="宿主对象"><a href="#宿主对象" class="headerlink" title="宿主对象"></a>宿主对象</h2><blockquote>
+<h3 id="宿主对象"><a href="#宿主对象" class="headerlink" title="宿主对象"></a>宿主对象</h3><blockquote>
 <p>由JS的运行环境提供的对象，目前来说主要指由浏览器提供的对象</p>
 <p>比如BOM、DOM（一组对象）</p>
 </blockquote>
-<h2 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h2><blockquote>
+<h3 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h3><blockquote>
 <p>由开发任意自己创建的对象</p>
 </blockquote>
 <ul>
@@ -313,10 +339,18 @@
 <p>​            }</p>
 </li>
 </ul>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="什么是函数？"><a href="#什么是函数？" class="headerlink" title="什么是函数？"></a>什么是函数？</h2><blockquote>
 <p>函数也是一种对象</p>
 </blockquote>
 <ul>
+<li>函数：具有特定功能的n条语句的封装体</li>
+<li>只有函数是可以执行的，其它类型的数据不能执行</li>
+</ul>
+<h2 id="为什么要用函数？"><a href="#为什么要用函数？" class="headerlink" title="为什么要用函数？"></a>为什么要用函数？</h2><ul>
+<li>提高代码复用</li>
+<li>便于阅读交流</li>
+</ul>
+<h2 id="如何定义函数？"><a href="#如何定义函数？" class="headerlink" title="如何定义函数？"></a>如何定义函数？</h2><ul>
 <li><p>创建函数</p>
 <ul>
 <li><p>var fun &#x3D; new Function()  少用</p>
@@ -357,11 +391,50 @@
 <li>return xxx；</li>
 <li>可以是任意的数据类型，也可以是对象，也可以是函数</li>
 </ul>
-<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><blockquote>
-<p>立即执行函数：函数定义完，立即被调用</p>
+</li>
+</ul>
+<h2 id="如何调用（执行）函数？"><a href="#如何调用（执行）函数？" class="headerlink" title="如何调用（执行）函数？"></a>如何调用（执行）函数？</h2><ul>
+<li><p>test()：直接调用</p>
+</li>
+<li><p>obj.test()：通过对象调用</p>
+</li>
+<li><p>new test()：new调用</p>
+</li>
+<li><p>test.call(obj)&#x2F;apply(obj)：相当于obj.test()，可以让一个函数成为指定任意对象的方法进行调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">xxx</span> = <span class="string">&#x27;atguigu&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//相当于obj.test() 不能直接调用，根本就没有</span></span><br><span class="line">test.<span class="title function_">call</span>(obj)   <span class="comment">//相当于obj.test()</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">xxx</span>) <span class="comment">//&#x27;atguigu&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><h3 id="什么函数是回调函数？"><a href="#什么函数是回调函数？" class="headerlink" title="什么函数是回调函数？"></a>什么函数是回调函数？</h3><ul>
+<li>自己定义的、自己没有调用、但最终执行了（某个时刻或某个条件下）</li>
+</ul>
+<h3 id="常见的回调函数"><a href="#常见的回调函数" class="headerlink" title="常见的回调函数"></a>常见的回调函数</h3><ul>
+<li><p>dom事件回调函数（this是发生事件的dom元素）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElement</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">innerHTML</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定时器回调函数（this是window）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//超时定时器、循环定时器</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;到点了&#x27;</span>)</span><br><span class="line">&#125;,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ajax请求回调函数</p>
+</li>
+<li><p>生命周期回调函数</p>
+</li>
+</ul>
+<h2 id="立即执行函数（IIFE，Immediately-Invoked-Function-Expression）"><a href="#立即执行函数（IIFE，Immediately-Invoked-Function-Expression）" class="headerlink" title="立即执行函数（IIFE，Immediately-Invoked Function Expression）"></a>立即执行函数（IIFE，Immediately-Invoked Function Expression）</h2><blockquote>
+<p>立即执行函数：函数定义完，立即被调用（别名：匿名函数自调用）</p>
 <p>立即执行函数往往只会执行一次</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接这样写会报错</span></span><br><span class="line"><span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加括号表示它是一个整体，则不会报错，但不会执行</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//立即执行函数</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//立即执行函数（带参数）</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a=&quot;</span>+a);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;b=&quot;</span>+b);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接这样写会报错</span></span><br><span class="line"><span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加括号表示它是一个整体，则不会报错，但不会执行</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//立即执行函数</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;我是一个匿名函数&quot;</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//立即执行函数（带参数）</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a=&quot;</span>+a);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;b=&quot;</span>+b);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>作用：</p>
+<ul>
+<li><p>隐藏实现</p>
+</li>
+<li><p>不会污染外部（全局）命名空间</p>
+</li>
+<li><p>用它来编写js模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a+<span class="number">3</span>)</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">4</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"></span><br><span class="line">;(<span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(++a)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">$</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">test</span>:test</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">$().<span class="title function_">test</span>() <span class="comment">//2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 </ul>
 <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><blockquote>
 <p>作用域：指一个变量的作用范围</p>
@@ -380,15 +453,39 @@
 <p>每调用一次函数就会创建一个新的函数作用域，它们之间是相互独立的</p>
 <p>在函数作用域中要访问同名的全局作用域属性a，可用window.a</p>
 </blockquote>
-<h1 id="使用工厂方法创建对象"><a href="#使用工厂方法创建对象" class="headerlink" title="使用工厂方法创建对象"></a>使用工厂方法创建对象</h1><blockquote>
+<h1 id="对象创建模式"><a href="#对象创建模式" class="headerlink" title="对象创建模式"></a>对象创建模式</h1><h2 id="使用Object构造函数创建对象"><a href="#使用Object构造函数创建对象" class="headerlink" title="使用Object构造函数创建对象"></a>使用Object构造函数创建对象</h2><ul>
+<li>套路：先创建空Object对象，再动态添加属性&#x2F;方法</li>
+<li>适用场景：起始时不确定对象内部数据</li>
+<li>问题：语句太多（使用对象字面量模式解决）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="title class_">Object</span>()</span><br><span class="line">p.<span class="property">name</span> = <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">p.<span class="property">age</span> = <span class="number">12</span></span><br><span class="line">p.<span class="property">setName</span> = <span class="keyword">function</span>(<span class="params">name</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用对象字面量创建对象"><a href="#使用对象字面量创建对象" class="headerlink" title="使用对象字面量创建对象"></a>使用对象字面量创建对象</h2><ul>
+<li>套路：使用{}创建对象，同时指定属性&#x2F;方法</li>
+<li>适用场景：起始时对象内部数据是确定的</li>
+<li>问题：如果创建多个对象，有重复代码（使用工厂模式解决）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = &#123;</span><br><span class="line">    name = <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">    age = <span class="number">12</span></span><br><span class="line">    setName = <span class="keyword">function</span>(<span class="params">name</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用工厂方法创建对象"><a href="#使用工厂方法创建对象" class="headerlink" title="使用工厂方法创建对象"></a>使用工厂方法创建对象</h2><blockquote>
 <p>批量创建对象</p>
 </blockquote>
+<ul>
+<li>套路：通过工厂函数创建对象并返回</li>
+<li>适用场景：需要创建多个对象</li>
+<li>问题：对象没有一个具体的类型，都是Object类型（使用自定义构造函数解决）</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fuction <span class="title function_">createPerson</span>(<span class="params">name, age, gender</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    </span><br><span class="line">    obj.<span class="property">name</span> = name;</span><br><span class="line">    obj.<span class="property">age</span> = age;</span><br><span class="line">    obj.<span class="property">gender</span> = gender;</span><br><span class="line">    obj.<span class="property">sayName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj1 = <span class="title function_">createPerson</span>(<span class="string">&quot;孙悟空&quot;</span>,<span class="number">18</span>,<span class="string">&quot;男&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> obj2 = <span class="title function_">createPerson</span>(<span class="string">&quot;猪八戒&quot;</span>,<span class="number">28</span>,<span class="string">&quot;男&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>使用工厂方法创建的对象，使用的<strong>构造函数都是Object</strong>，所创建的对象都是Object类型，导致无法区分出多种不同类型的对象</p>
 </blockquote>
-<h1 id="使用构造函数创建对象"><a href="#使用构造函数创建对象" class="headerlink" title="使用构造函数创建对象"></a>使用构造函数创建对象</h1><blockquote>
+<h2 id="使用自定义构造函数创建对象"><a href="#使用自定义构造函数创建对象" class="headerlink" title="使用自定义构造函数创建对象"></a>使用自定义构造函数创建对象</h2><ul>
+<li>套路：自定义构造函数，通过new创建对象</li>
+<li>适用场景：需要创建多个类型确定的对象</li>
+<li>问题：每个兑现都有相同的数据，浪费内存（使用构造函数+原型解决）</li>
+</ul>
+<blockquote>
 <p>构造函数和普通函数的区别就调用方式的不同</p>
 <p>普通函数直接调用，构造函数需要使用new关键词调用</p>
 <p>构造函数执行流程：</p>
@@ -415,7 +512,14 @@
 
 <blockquote>
 <p>但将函数定义在全局作用域，污染了全局作用域的命名空间，且不安全（容易被覆盖）</p>
+<p>因此可以将将sayName在原型对象里定义</p>
 </blockquote>
+<h2 id="构造函数-原型的组合模式"><a href="#构造函数-原型的组合模式" class="headerlink" title="构造函数+原型的组合模式"></a>构造函数+原型的组合模式</h2><ul>
+<li>套路：自定义构造函数，属性再函数中初始化，方法添加到原型上</li>
+<li>适用场景：需要创建多个类型确定的对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name, age, gender</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">gender</span> = gender;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">sayName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h1 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h1><blockquote>
 <p>我们所创建的每一个函数，解析器都会向函数中添加一个属性prototype，这个属性对应着一个对象，这个对象称原型对象</p>
 </blockquote>
@@ -454,7 +558,7 @@
         <li>本文作者：Wu Shihan</li>
         <li>创建时间：2022-03-08 11:13:28</li>
         <li>
-            本文链接：https://keep.xpoet.cn/2022/03/08/JS基础（二）：对象/
+            本文链接：https://keep.xpoet.cn/2022/03/08/JS基础（二）：对象和函数/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -714,7 +818,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">对象的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">内建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">宿主对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.3.</span> <span class="nav-text">自定义对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">立即执行函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.2.</span> <span class="nav-text">函数作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">使用工厂方法创建对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.</span> <span class="nav-text">使用构造函数创建对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="nav-number">6.</span> <span class="nav-text">原型对象</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%AF%B9%E8%B1%A1%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要用对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">1.3.</span> <span class="nav-text">对象的组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E9%83%A8%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">如何访问对象的内部数据？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">对象的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.1.</span> <span class="nav-text">内建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.2.</span> <span class="nav-text">宿主对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.5.3.</span> <span class="nav-text">自定义对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">为什么要用函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">如何定义函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%EF%BC%88%E6%89%A7%E8%A1%8C%EF%BC%89%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">如何调用（执行）函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.</span> <span class="nav-text">回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E5%87%BD%E6%95%B0%E6%98%AF%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">2.5.1.</span> <span class="nav-text">什么函数是回调函数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.2.</span> <span class="nav-text">常见的回调函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%EF%BC%88IIFE%EF%BC%8CImmediately-Invoked-Function-Expression%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">立即执行函数（IIFE，Immediately-Invoked Function Expression）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.1.</span> <span class="nav-text">全局作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">3.2.</span> <span class="nav-text">函数作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">对象创建模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Object%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.1.</span> <span class="nav-text">使用Object构造函数创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.2.</span> <span class="nav-text">使用对象字面量创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.3.</span> <span class="nav-text">使用工厂方法创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.4.</span> <span class="nav-text">使用自定义构造函数创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E5%8E%9F%E5%9E%8B%E7%9A%84%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.5.</span> <span class="nav-text">构造函数+原型的组合模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.</span> <span class="nav-text">原型对象</span></a></li></ol>
     </div>
 </div>
         </aside>

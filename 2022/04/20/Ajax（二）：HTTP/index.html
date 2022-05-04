@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            Ajax（二）：HTTP |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Ajax（二）：HTTP</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-04-20 10:32:25</span>
+        <span class="mobile">2022-04-20 10:32</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Ajax/">Ajax</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HTTP/">HTTP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>843 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><ul>
+<li>HTTP（hypertext transport protocol）超文本传输协议，协议详细规定了浏览器和万维网服务器之间相互通信的规则</li>
+<li>约定、规则</li>
+</ul>
+<h2 id="MDN-文档"><a href="#MDN-文档" class="headerlink" title="MDN 文档"></a>MDN 文档</h2><p><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview" >https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="HTTP-请求交互的基本过程"><a href="#HTTP-请求交互的基本过程" class="headerlink" title="HTTP 请求交互的基本过程"></a>HTTP 请求交互的基本过程</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.143lhqe4upc0.webp"
+                     
+                ></p>
+<p>-<br>  前后应用从浏览器端向服务器发送HTTP 请求(<strong>请求</strong>报文)</p>
+<ul>
+<li>后台服务器接收到请求后, 调度服务器应用处理请求, 向浏览器端返回HTTP响应(<strong>响应</strong>报文)</li>
+<li>浏览器端接收到响应, 解析显示响应体&#x2F;调用监视回调</li>
+</ul>
+<h2 id="HTTP-请求报文"><a href="#HTTP-请求报文" class="headerlink" title="HTTP 请求报文"></a>HTTP 请求报文</h2><ol>
+<li><h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3></li>
+</ol>
+<p>  格式：<strong>method &#x2F; url</strong> <strong>协议版本</strong><br>  <code>GET / product_detail?id=2 HTTP/1.1</code><br>  <code>POST /login</code></p>
+<ol start="2">
+<li><h3 id="多个请求头"><a href="#多个请求头" class="headerlink" title="多个请求头"></a>多个请求头</h3></li>
+</ol>
+<p>  格式：<strong>名字: 值</strong></p>
+<p>  <code>Host: www.baidu.com</code><br>  <code>Cookie: BAIDUID=AD3B0FA706E; BIDUPSID=AD3B0FA706;</code><br>  <code>Content-Type: application/x-www-form-urlencoded</code> 或者<code>application/json</code></p>
+<p>  <code>User-Agent: chrome 83</code></p>
+<ol start="3">
+<li><h3 id="空行"><a href="#空行" class="headerlink" title="空行"></a>空行</h3></li>
+<li><h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3></li>
+</ol>
+<ul>
+<li>如果是GET请求，请求体为空</li>
+<li>如果是POST请求，请求体可以不为空</li>
+</ul>
+<p>  <code>username=tom&amp;pwd=123</code><br>  {“username”: “tom”, “pwd”: 123}</p>
+<h2 id="HTTP-响应报文"><a href="#HTTP-响应报文" class="headerlink" title="HTTP 响应报文"></a>HTTP 响应报文</h2><ol>
+<li><h3 id="响应状态行"><a href="#响应状态行" class="headerlink" title="响应状态行"></a>响应状态行</h3><p>格式：<strong>协议版本 响应状态码 响应状态字符串</strong></p>
+<p>HTTP&#x2F;1.1 200 OK</p>
+</li>
+<li><h3 id="多个响应头"><a href="#多个响应头" class="headerlink" title="多个响应头"></a>多个响应头</h3><p>格式：<strong>名字: 值</strong></p>
+<p><code>Content-Type: text/html;charset=utf-8</code></p>
+<p><code>Content-length: 2048</code></p>
+<p><code>Content-encoding: gzip</code></p>
+<p><code>Set-Cookie: BD_CK_SAM=1;path=/</code></p>
+</li>
+<li><h3 id="空行-1"><a href="#空行-1" class="headerlink" title="空行"></a>空行</h3></li>
+<li><h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><p>html 文本 &#x2F; json 文本 &#x2F; js&#x2F;css&#x2F;图片…</p>
+</li>
+</ol>
+<h2 id="post-请求体参数格式"><a href="#post-请求体参数格式" class="headerlink" title="post 请求体参数格式"></a>post 请求体参数格式</h2><ol>
+<li><p><code>Content-Type: application/x-www-form-urlencoded;charset=utf-8</code></p>
+<p>用于键值对参数，参数的键值用&#x3D;连接, 参数之间用&amp;连接</p>
+<p>例如: <code>name=%E5%B0%8F%E6%98%8E&amp;age=12</code></p>
+</li>
+<li><p><code>Content-Type: application/json;charset=utf-8</code></p>
+<p>用于 json 字符串参数</p>
+<p>例如: <code>&#123;&quot;name&quot;: &quot;%E5%B0%8F%E6%98%8E&quot;, &quot;age&quot;: 12&#125;</code></p>
+</li>
+<li><p><code>Content-Type: multipart/form-data</code></p>
+<p>用于文件上传请求</p>
+</li>
+</ol>
+<h2 id="常见的响应状态码"><a href="#常见的响应状态码" class="headerlink" title="常见的响应状态码"></a>常见的响应状态码</h2><ul>
+<li><code>200 OK</code> 请求成功。一般用于GET 与POST 请求</li>
+<li><code>201 Created</code> 已创建。成功请求并创建了新的资源</li>
+<li><code>401 Unauthorized</code> 未授权&#x2F;请求要求用户的身份认证</li>
+<li><code>404 Not Found</code> 服务器无法根据客户端的请求找到资源</li>
+<li><code>500 Internal Server Error</code> 服务器内部错误，无法完成请求</li>
+</ul>
+<h2 id="不同类型的请求及其作用"><a href="#不同类型的请求及其作用" class="headerlink" title="不同类型的请求及其作用"></a>不同类型的请求及其作用</h2><ol>
+<li><code>GET</code>: 从服务器端<strong>读取</strong>数据（查）</li>
+<li><code>POST</code>: 向服务器端<strong>添加</strong>新数据 （增）</li>
+<li><code>PUT</code>: <strong>更新</strong>服务器端已经数据 （改）</li>
+<li><code>DELETE</code>: <strong>删除</strong>服务器端数据 （删）</li>
+</ol>
+<h2 id="API-的分类"><a href="#API-的分类" class="headerlink" title="API 的分类"></a>API 的分类</h2><ol>
+<li><p>REST API: restful （Representational State Transfer (资源)表现层状态转化）</p>
+<p>(1) 发送请求进行CRUD 哪个操作由请求方式来决定</p>
+<p>(2) 同一个请求路径可以进行多个操作</p>
+<p>(3) 请求方式会用到GET&#x2F;POST&#x2F;PUT&#x2F;DELETE</p>
+</li>
+<li><p>非REST API: restless</p>
+<p>(1) 请求方式不决定请求的CRUD 操作</p>
+<p>(2) 一个请求路径只对应一个操作</p>
+<p>(3) 一般只有GET&#x2F;POST</p>
+</li>
+</ol>
+<h2 id="区别-一般http请求-与-ajax请求"><a href="#区别-一般http请求-与-ajax请求" class="headerlink" title="区别 一般http请求 与 ajax请求"></a>区别 一般http请求 与 ajax请求</h2><ul>
+<li>ajax请求 是一种特别的 http请求</li>
+<li>对服务器端来说, 没有任何区别, 区别在<strong>浏览器端</strong></li>
+<li>浏览器端发请求: 只有<code>XHR</code> 或<code>fetch</code> 发出的才是ajax 请求, 其它所有的都是非ajax 请求</li>
+<li>浏览器端接收到响应<ul>
+<li>一般请求: 浏览器一般会直接显示响应体数据, 也就是我们常说的刷新&#x2F;跳转页面</li>
+<li>ajax请求: 浏览器不会对界面进行任何更新操作, 只是调用监视的回调函数并传入响应相关数据</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Ajax（二）：HTTP</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-04-20 10:32:25</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/04/20/Ajax（二）：HTTP/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/HTTP/">#HTTP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/04/20/Ajax%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8E%9F%E7%94%9FAjax/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Ajax（三）：原生Ajax</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/20/Ajax%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E8%BF%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Ajax（一）：概述</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http"><span class="nav-number">1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MDN-%E6%96%87%E6%A1%A3"><span class="nav-number">1.1.</span> <span class="nav-text">MDN 文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E8%AF%B7%E6%B1%82%E4%BA%A4%E4%BA%92%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP 请求交互的基本过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP 请求报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="nav-number">1.3.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="nav-number">1.3.2.</span> <span class="nav-text">多个请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E8%A1%8C"><span class="nav-number">1.3.3.</span> <span class="nav-text">空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E4%BD%93"><span class="nav-number">1.3.4.</span> <span class="nav-text">请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP 响应报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E8%A1%8C"><span class="nav-number">1.4.1.</span> <span class="nav-text">响应状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="nav-number">1.4.2.</span> <span class="nav-text">多个响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E8%A1%8C-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E4%BD%93"><span class="nav-number">1.4.4.</span> <span class="nav-text">响应体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#post-%E8%AF%B7%E6%B1%82%E4%BD%93%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">post 请求体参数格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">常见的响应状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%AF%B7%E6%B1%82%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="nav-number">1.7.</span> <span class="nav-text">不同类型的请求及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.8.</span> <span class="nav-text">API 的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB-%E4%B8%80%E8%88%AChttp%E8%AF%B7%E6%B1%82-%E4%B8%8E-ajax%E8%AF%B7%E6%B1%82"><span class="nav-number">1.9.</span> <span class="nav-text">区别 一般http请求 与 ajax请求</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

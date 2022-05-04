@@ -22,7 +22,119 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.0.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -183,36 +295,29 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/09/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Athis%E5%92%8Carguments/">
-                        JS基础（三）：this和arguments
+                    <a href="/2022/04/01/Vue%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">
+                        Vue（八）：列表渲染
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-在调用函数时，浏览器每次都会传递进两个隐含的参数：
-
-函数的上下文对象this
-封装实参的对象arguments
-
-
-this
-解析器在调用函数每次都会向函数内部传递进一个隐含的参数，
-这个隐含的参数就是this，this指向的是一个对象，这个对象...
+                        基本列表v-for指令
+用于展示列表数据
+语法：&lt;li v-for=&quot;(item,index) of items&quot; :key=&quot;index&quot;&gt;,这里key可以是index，更好的是遍历对象的唯一标识...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Mar 09 2022 10:06:26 GMT+0800">2022-03-09</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 17:29:07 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -226,17 +331,7 @@ this
                     
                         <li>
                             
-                            <a href="/tags/JS/">JS</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/this/">this</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/arguments/">arguments</a>&nbsp;
+                            <a href="/tags/%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">列表渲染</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -244,7 +339,7 @@ this
         
     </div>
 
-    <a href="/2022/03/09/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Athis%E5%92%8Carguments/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -254,32 +349,33 @@ this
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/08/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/">
-                        JS基础（二）：对象和函数
+                    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E7%BB%91%E5%AE%9A%E6%A0%B7%E5%BC%8F%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/">
+                        Vue（七）：绑定样式和条件渲染
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        对象的分类内建对象
-由ES标准定义的对象，在任何的ES的实现中都可以使用
-比如Date、Math、String、Number、Boolean、Function、Object……
+                        绑定样式
+class样式
 
-宿主对象
-由JS的运行环境提供的对象，目前来说主要指由浏览器提供的对象...
+写法：:class=&quot;xxx&quot;，xxx 可以是字符串、数组、对象
+字符串写法适用于：类名不确定，要动态获取
+数组写法适用于：要绑定多个样式，个数不确定，名字也不确定
+对象写法适用于：要绑定多个样式，个数...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 08 2022 11:13:28 GMT+0800">2022-03-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 16:41:46 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -293,17 +389,12 @@ this
                     
                         <li>
                             
-                            <a href="/tags/JS/">JS</a>&nbsp;
+                            <a href="/tags/%E7%BB%91%E5%AE%9A%E6%A0%B7%E5%BC%8F/">绑定样式</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%AF%B9%E8%B1%A1/">对象</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%87%BD%E6%95%B0/">函数</a>&nbsp;
+                            <a href="/tags/%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/">条件渲染</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -311,7 +402,7 @@ this
         
     </div>
 
-    <a href="/2022/03/08/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E7%BB%91%E5%AE%9A%E6%A0%B7%E5%BC%8F%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -321,32 +412,28 @@ this
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/08/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-                        JS基础（一）：基本语法
+                    <a href="/2022/04/01/Vue%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/">
+                        Vue（六）：计算属性与监视属性
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        编写位置
-onclick属性中
-1&lt;button onclick=&quot;alert(&#x27;xxxxxxxxx&#x27;);&quot;&gt;&lt;/button&gt;
-
-href属性中
-1&lt;a href=&quot;j...
+                        计算属性：computed姓名案例
+插值语法实现12345678910111213141516&lt;div id=&quot;root&quot;&gt;  姓：&lt;input type=&quot;text&quot; v-model=&qu...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 08 2022 09:50:27 GMT+0800">2022-03-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 14:45:38 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -360,7 +447,12 @@ href属性中
                     
                         <li>
                             
-                            <a href="/tags/JS/">JS</a>&nbsp;
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">计算属性</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/">监视属性</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -368,7 +460,7 @@ href属性中
         
     </div>
 
-    <a href="/2022/03/08/JS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -378,38 +470,31 @@ href属性中
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
-                        CSS提升（七）：响应式布局
+                    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">
+                        Vue（五）：事件处理
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-响应式布局：网页可根据不同的设备或窗口大小呈现出不同的效果
-关键：媒体查询
-​    通过媒体查询，可以为不同的设备，或设备不同状态来分别设置样式
-
-媒体查询语法：@media 查询规则{}
-媒体类型
-all 所有设备
-
-print 打印设备
-
-s...
+                        事件的基本用法
+使用v-on:xxx或@xxx绑定事件，其中 xxx 是事件名
+事件的回调需要配置在methods对象中，最终会在vm上
+methods中配置的函数，不要用箭头函数，否则 this 就不是vm了
+methods中配置的函数，都是被 V...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Mar 07 2022 22:26:56 GMT+0800">2022-03-07</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:51:05 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -423,17 +508,7 @@ s...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">响应式布局</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>&nbsp;
+                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">事件处理</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -441,7 +516,7 @@ s...
         
     </div>
 
-    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -451,36 +526,36 @@ s...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%BC%B9%E6%80%A7%E7%9B%92flex/">
-                        CSS提升（六）：弹性盒flex
+                    <a href="/2022/04/01/Vue%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AMVVM%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">
+                        Vue（四）：MVVM模型与数据代理
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-flex(弹性盒、伸缩盒)
-是css中又一种布局手段，它主要用来代替浮动过来完成页面的布局
-flex可以使元素具有弹性，让元素可以跟随页面大小的改变而改变
-
-弹性容器
-要使用弹性盒，必须将一个元素设置为弹性容器
+                        MVVM模型
+MVVM模型
+M：模型 Model，data中的数据
+V：视图 View，模板代码
+VM：视图模型 ViewModel，Vue实例（相当于一个链接纽带——
 
 
-display：flex 设置为...
+观察发现
+data中所有的属性，最后都出现在了vm身上
+vm身上所有的属性 ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Mar 07 2022 10:53:24 GMT+0800">2022-03-07</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:18:05 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -494,17 +569,12 @@ display：flex 设置为...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="/tags/MVVM%E6%A8%A1%E5%9E%8B/">MVVM模型</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%BC%B9%E6%80%A7%E7%9B%92/">弹性盒</a>&nbsp;
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">数据代理</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -512,7 +582,7 @@ display：flex 设置为...
         
     </div>
 
-    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%BC%B9%E6%80%A7%E7%9B%92flex/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AMVVM%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -522,33 +592,34 @@ display：flex 设置为...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9Aless/">
-                        CSS提升（五）:less
+                    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Ael%E5%92%8Cdata%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95/">
+                        Vue（三）：el和data的两种写法
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        less简介
-less是一门css的预处理语言
-less是css的增强版，可通过它编写更少的代码实现更强大的样式
-less语法大体上和css语法一致，但增添了许多对css的扩展
-浏览器无法直接执行，需通过编译把less转化成css
+                        el有2种写法
+创建Vue实例对象的时候配置el属性
+先创建Vue实例，随后再通过vm.$mount(&#39;#root&#39;)指定el的值
 
-css原生变量、...
+data有2种写法
+对象式：data： { }
+
+函数式：data() { return { } }...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Mar 07 2022 09:33:21 GMT+0800">2022-03-07</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:11:29 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -562,17 +633,12 @@ css原生变量、...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="/tags/el/">el</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/less/">less</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%8F%98%E9%87%8F/">变量</a>&nbsp;
+                            <a href="/tags/data/">data</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -580,7 +646,7 @@ css原生变量、...
         
     </div>
 
-    <a href="/2022/03/07/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9Aless/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Ael%E5%92%8Cdata%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -590,36 +656,33 @@ css原生变量、...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/06/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E7%94%BB/">
-                        CSS提升（四）：动画
+                    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+                        Vue（二）：模板语法与数据绑定
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        过渡
-transition-property：指定要执行过渡的属性
+                        模板语法插值语法
+功能：用于解析标签体内容
+写法：，xxx 是 js 表达式，可以直接读取到 data 中的所有区域
 
-例：transition-property：width
-
-多个属性间使用，隔开
-
-如果所有属性都需要过渡，则使用all关键字
-
-大部分属性都支持过渡效果（只要是数值可以计算，px，...
+指令语法
+功能：用于解析标签（包括：标签属性、标签体内容、绑定事件…）
+举例：&lt;a v-bind:href=&quot;xx...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Mar 06 2022 16:43:38 GMT+0800">2022-03-06</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 10:47:31 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -633,22 +696,12 @@ transition-property：指定要执行过渡的属性
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="/tags/%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/">模板语法</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BF%87%E6%B8%A1/">过渡</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%8F%98%E5%BD%A2/">变形</a>&nbsp;
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">数据绑定</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -656,7 +709,7 @@ transition-property：指定要执行过渡的属性
         
     </div>
 
-    <a href="/2022/03/06/CSS%E6%8F%90%E5%8D%87%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -666,112 +719,41 @@ transition-property：指定要执行过渡的属性
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/05/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3Tips/">
-                        项目搭建相关Tips
+                    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AVue%E7%AE%80%E4%BB%8B/">
+                        Vue（一）：Vue简介
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        CSS文件分类
-index.css：当前页面样式
+                        什么是Vue？
+Vue官网
 
-reset.css：重置样式
+Vue：动态构建用户界面的渐进式 JavaScript 框架
 
-base.css：公共样式
-123456789101112131415161718.clearfix::before,.clearfix::after&#123;  ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Mar 05 2022 20:43:09 GMT+0800">2022-03-05</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/HTML/">HTML</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/">实战演练</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/03/05/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E7%9B%B8%E5%85%B3Tips/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/03/05/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E8%A1%A8%E5%8D%95/">
-                        HTML基础（四）：表单
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-表单用于将本地的数据提交给服务器
+构建用户界面：把数据通过某种办法变成用户界面
+渐进式：Vue可以自底向上逐层的应用，简单应用只需要一个轻量小巧的核心
 
 
-form 创建表单
-
-属性：
-
-action 提交的服务器地址
+作者：尤雨溪
 
 
-表单项：
 
-input （自结束标签）
-
-type&#x3D;”text” 文本框
-数据要提交服务器，必须为元素指定name值（相当于变量）
+Vue的特点
 ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Mar 05 2022 16:20:07 GMT+0800">2022-03-05</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 09:12:50 GMT+0800">2022-04-01</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/HTML/">HTML</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -785,12 +767,7 @@ type&#x3D;”text” 文本框
                     
                         <li>
                             
-                            <a href="/tags/HTML/">HTML</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%A1%A8%E5%8D%95/">表单</a>&nbsp;
+                            <a href="/tags/Vue/">Vue</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -798,7 +775,7 @@ type&#x3D;”text” 文本框
         
     </div>
 
-    <a href="/2022/03/05/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E8%A1%A8%E5%8D%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AVue%E7%AE%80%E4%BB%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -808,29 +785,31 @@ type&#x3D;”text” 文本框
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/05/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%A1%A8%E6%A0%BC/">
-                        HTML基础（三）：表格
+                    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F/">
+                        数据结构与算法（九）：排序
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-基本格式：
-1234567891011121314151617&lt;!--创建表格--&gt;&lt;table&gt;     &lt;!--行--&gt;    &lt;tr&gt;        &lt;!--列（单元格）--&gt;   ...
+                        大O表示法
+
+排序算法：冒泡排序、选择排序、插入排序、归并排序、计数排序（counting sort)、基数排序(radix sort)、希尔排序、堆排序、桶排序
+
+简单排序123456789101112// 封装ArrayListfunction ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Mar 05 2022 15:48:21 GMT+0800">2022-03-05</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 31 2022 14:55:57 GMT+0800">2022-03-31</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/HTML/">HTML</a>&nbsp;
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
                         </li>
                     
                     
@@ -844,12 +823,7 @@ type&#x3D;”text” 文本框
                     
                         <li>
                             
-                            <a href="/tags/HTML/">HTML</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%A1%A8%E6%A0%BC/">表格</a>&nbsp;
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -857,7 +831,78 @@ type&#x3D;”text” 文本框
         
     </div>
 
-    <a href="/2022/03/05/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E8%A1%A8%E6%A0%BC/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9B%BE%E8%AE%BA/">
+                        数据结构与算法（八）：图论
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        相关概念
+
+
+图的表示邻接矩阵
+二维数组
+邻接矩阵让每个节点和一个整数相关联，该整数作为数组的下标值
+
+
+
+优点：
+方便表示有向图、带权图
+
+
+缺点：
+如果图是一个稀疏图，则矩阵中会存在大量的0，浪费存储空间
+
+
+
+邻接表
+邻接表由图中每个顶点以及和...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 31 2022 10:50:10 GMT+0800">2022-03-31</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%9B%BE/">图</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9B%BE%E8%AE%BA/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

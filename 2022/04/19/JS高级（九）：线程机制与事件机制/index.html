@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            JS高级（九）：线程机制与事件机制 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">JS高级（九）：线程机制与事件机制</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-04-19 15:39:44</span>
+        <span class="mobile">2022-04-19 15:39</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程（process）"><a href="#进程（process）" class="headerlink" title="进程（process）"></a>进程（process）</h2><ul>
+<li>程序的一次执行，它占有一片独有的内存空间</li>
+<li>可通过winodws任务管理器查看进程</li>
+</ul>
+<h2 id="线程（thread）"><a href="#线程（thread）" class="headerlink" title="线程（thread）"></a>线程（thread）</h2><ul>
+<li>是进程内的一个独立执行单元</li>
+<li>是程序执行的一个完整流程</li>
+<li>是CPU的最小调度单元</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.1kva2nj6yg00.webp"
+                     
+                ></p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ul>
+<li>应用程序必须运行在某个进程的某个线程上</li>
+<li>一个进程中至少有一个运行的线程：主线程，进程启动过后自动创建</li>
+<li>一个进程中也可以同时运行多个线程，称该程序是多线程运行的</li>
+<li>一个进程内的数据可以供其中的多个线程直接共享</li>
+<li>多个进程之间的数据是不能直接共享的</li>
+<li>线程池（thread pool）：保存多个线程对象的容器，实现线程对象的反复利用</li>
+</ul>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><ul>
+<li>何为多进程与多线程？<ul>
+<li>多进程：一个应用程序可以同时开启多个实例运行，比如chrome浏览器可以开很多个</li>
+<li>多线程：在一个进程内，同时有多个线程运行</li>
+</ul>
+</li>
+<li>单线程与多线程的区别？<ul>
+<li>多线程<ul>
+<li>优点<ul>
+<li>有效提升CPU的利用率</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>创建多线程开销</li>
+<li>线程间切换开销</li>
+<li>死锁与状态同步问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单线程<ul>
+<li>优点：顺序编程简单易懂</li>
+<li>缺点：效率低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JS是单线程的还是多线程的？<ul>
+<li>js是<strong>单线程</strong>运行的</li>
+<li>但使用H5中的Web Workers可以多线程运行</li>
+</ul>
+</li>
+<li>浏览器运行时单线程还是多线程？<ul>
+<li>多线程</li>
+</ul>
+</li>
+<li>浏览器运行时单进程还是多进程？<ul>
+<li>有的是多进程：chrome、新版IE</li>
+<li>有的是单进程：老版IE</li>
+</ul>
+</li>
+</ul>
+<h1 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h1><ul>
+<li>支撑浏览器运行的最核心的程序</li>
+<li>不同浏览器的内核不同<ul>
+<li>Chrome，Safari：webkit</li>
+<li>firefox：Gecko</li>
+<li>IE：Trident</li>
+<li>360，搜狗等国内浏览器：Trident+webkit</li>
+</ul>
+</li>
+<li>内核由很多模块组成<ul>
+<li>主线程：<ul>
+<li>js引擎模块：负责js程序的编译与运行</li>
+<li>html，css文档解析模块：负责页面文本的解析</li>
+<li>DOM&#x2F;CSS模块：负责dom&#x2F;css在内存中的相关处理</li>
+<li>布局和渲染模块：负责页面的布局和效果的绘制（内存中的对象）</li>
+</ul>
+</li>
+<li>分线程：<ul>
+<li>定时器模块：负责定时器的管理</li>
+<li>事件响应模块：负责事件的管理</li>
+<li>网络请求模块：负责ajax请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="定时器引发的思考"><a href="#定时器引发的思考" class="headerlink" title="定时器引发的思考"></a>定时器引发的思考</h1><ul>
+<li><p>定时器真的是定时执行的吗？</p>
+<ul>
+<li><p>定时器并不能保证真正定时执行</p>
+</li>
+<li><p>一般会延迟一丁点（可以接受），也可能延迟很长时间（不能接受）</p>
+</li>
+</ul>
+</li>
+<li><p>定时器回调函数实在分线程执行的吗？</p>
+<ul>
+<li>在主线程执行的，因为js是单线程的</li>
+</ul>
+</li>
+<li><p>定时器是如何实现的</p>
+<ul>
+<li>事件循环模型</li>
+</ul>
+</li>
+</ul>
+<h1 id="js是单线程执行的"><a href="#js是单线程执行的" class="headerlink" title="js是单线程执行的"></a>js是单线程执行的</h1><ul>
+<li>如何证明js是单线程的？<ul>
+<li>setTimeout()的回调函数是在主线程执行的</li>
+<li>定时器回调函数只有在运行栈中的代码全部执行完后才有可能执行</li>
+</ul>
+</li>
+<li>为什么js要用单线程模式，而不用多线程模式？<ul>
+<li>JavaScript的单线程，与它的用途有关</li>
+<li>作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM</li>
+<li>这决定了它只能是单线程（只能有1个线程去更新操作界面），否则会带来很复杂的同步问题</li>
+</ul>
+</li>
+<li>代码的分类：<ul>
+<li>初始化代码</li>
+<li>回调代码</li>
+</ul>
+</li>
+<li>js引擎执行代码的基本流程<ul>
+<li>先执行初始化代码：包含一些特别的代码 <ul>
+<li>设置定时器（回调函数不执行）</li>
+<li>绑定事件监听（回调函数不执行）</li>
+<li>发送ajax请求</li>
+</ul>
+</li>
+<li>后面再某个时刻才会执行回调代码：回调函数（异步执行）</li>
+</ul>
+</li>
+</ul>
+<h1 id="浏览器的事件循环（轮询）模型"><a href="#浏览器的事件循环（轮询）模型" class="headerlink" title="浏览器的事件循环（轮询）模型"></a>浏览器的事件循环（轮询）模型</h1><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.641xr9pl0co0.webp"
+                     
+                ></p>
+<ul>
+<li>所有代码分类<ul>
+<li>初始化执行代码（同步代码）：包含绑定dom事件监听，设置定时器，发送ajax请求的代码</li>
+<li>回调执行代码（异步代码）：处理回调函数</li>
+</ul>
+</li>
+<li>js引擎执行代码的基本流程：<ul>
+<li>初始化代码&#x3D;&#x3D;》回调代码</li>
+</ul>
+</li>
+<li>模型的2个重要组成部分：<ul>
+<li>事件（定时器&#x2F;DOM&#x2F;ajax）管理模块</li>
+<li>回调队列</li>
+</ul>
+</li>
+<li>模型的运转流程<ul>
+<li>执行初始化代码，将事件回调函数交给对应模块管理</li>
+<li>当事件发生时，管理模块会将回调函数及其数据添加到回调队列中</li>
+<li>只有当初始化代码执行完后（可能要一定时间），才会遍历读取回调队列中的回调函数执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li>执行栈（execution stack）：所有代码都是再此空间中执行的</li>
+<li>浏览器内核（browser core）：<ul>
+<li>js引擎模块（在主线程处理）</li>
+<li>其它模块（在主&#x2F;分线程处理），这里的分线程指的是浏览器的分线程</li>
+</ul>
+</li>
+<li>任务队列&#x2F;消息队列&#x2F;事件队列（callback queue）</li>
+<li>事件轮询（event loop）：从任务队列中循环取出回调函数放入执行栈中处理（一个接一个）</li>
+<li>事件驱动模型（event-driven interaction model）：如上图</li>
+<li>请求响应模型（request-response model）</li>
+</ul>
+<h1 id="H5-Web-Workers-多线程"><a href="#H5-Web-Workers-多线程" class="headerlink" title="H5 Web Workers(多线程)"></a>H5 Web Workers(多线程)</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>HTML5规范提供了js分线程的实现，取名为：Web Workers</li>
+<li>可以将一些大计算量的代码交由web Worker运行而不冻结用户界面</li>
+<li>但是子线程完全受主线程控制，且不得操作DOM，所以这个新标准并没有改变JavaScript单线程的本质。</li>
+<li>相关API<ul>
+<li><code>Worker</code>：构造函数，加载分线程执行的js文件</li>
+<li><code>Worker.prototype.onmessage</code>：</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li><p>创建在分线程执行的js文件</p>
+<p><code>worker.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fibonacci</span>(<span class="params">n</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> n&lt;=<span class="number">2</span> ? <span class="number">1</span> : <span class="title function_">fibonacci</span>(n-<span class="number">1</span>)+<span class="title function_">fibonacci</span>(n-<span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> onmessage = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> number = event.<span class="property">data</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;分线程接收到主线程发送的数据：&#x27;</span>+number)</span><br><span class="line">    <span class="comment">//计算</span></span><br><span class="line">    <span class="keyword">var</span> result  = <span class="title function_">fibonacci</span>(number)</span><br><span class="line">    <span class="title function_">postMessage</span>(result)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;分线程向主线程返回数据：&#x27;</span>+result)</span><br><span class="line">    <span class="comment">//alert(result)   //报错，alert是window的方法，在分线程不能调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分线程中的全局对象不再是window，所以在分线程中不能操作DOM</p>
+</li>
+<li><p>在主线程中的js中发消息并设置回调</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> input = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;number&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>).<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> number = input.<span class="property">value</span></span><br><span class="line">    <span class="comment">//创建一个Worker对象</span></span><br><span class="line">    <span class="keyword">var</span> worker = <span class="keyword">new</span> <span class="title class_">Worker</span>(<span class="string">&#x27;worker.js&#x27;</span>)</span><br><span class="line">    <span class="comment">// 绑定接收消息的监听</span></span><br><span class="line">    worker.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;主线程接收分线程返回的数据：&#x27;</span>+event.<span class="property">data</span>)</span><br><span class="line">        <span class="title function_">alert</span>(event.<span class="property">data</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//向分线程发送消息</span></span><br><span class="line">    worker.<span class="title function_">postMessage</span>(number)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;主线程向分线程发送数据：&#x27;</span>+number)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><ul>
+<li>慢</li>
+<li>不能跨域加载JS</li>
+<li>worker内代码不能访问DOM（更新UI）</li>
+<li>不是每个浏览器都支持这个新特性</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：JS高级（九）：线程机制与事件机制</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2022-04-19 15:39:44</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2022/04/19/JS高级（九）：线程机制与事件机制/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%BA%8B%E4%BB%B6/">#事件</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%BA%BF%E7%A8%8B/">#线程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/04/20/Ajax%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E8%BF%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Ajax（一）：概述</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF%E6%A8%A1%E5%BC%8F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JS高级（八）：继承模式</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%EF%BC%88process%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">进程（process）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%EF%BC%88thread%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">线程（thread）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">相关知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">相关问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8"><span class="nav-number">2.</span> <span class="nav-text">浏览器内核</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">定时器引发的思考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">js是单线程执行的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%EF%BC%88%E8%BD%AE%E8%AF%A2%EF%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">浏览器的事件循环（轮询）模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.</span> <span class="nav-text">相关概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#H5-Web-Workers-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">H5 Web Workers(多线程)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">6.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.3.</span> <span class="nav-text">不足</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
