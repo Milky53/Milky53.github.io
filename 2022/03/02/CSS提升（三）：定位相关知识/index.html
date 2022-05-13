@@ -239,12 +239,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
         </span>
     
     
@@ -278,8 +278,11 @@
 <blockquote>
 <p>注：实际开发中，定位并不会大面积使用，整体上不用定位，定位通常用在细节上的微调</p>
 </blockquote>
+<p><code>relative</code>、<code>absolute</code>、<code>fixed</code>这三个属性值有一个共同点，都是相对于某个基点的定位，不同之处仅仅在于基点不同。所以，只要理解了它们的基点是什么，就很容易掌握这三个属性值。</p>
+<p>这三种定位都不会对其他元素的位置产生影响，因此元素之间可能产生重叠。</p>
 <h1 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h1><blockquote>
 <p>position：relative</p>
+<p><code>relative</code>表示，相对于默认位置（即<code>static</code>时的位置）进行偏移，即定位基点是<strong>元素的默认位置</strong>。</p>
 </blockquote>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
 <li>相对定位 若不设置偏移量，元素不发生任何变化</li>
@@ -299,8 +302,27 @@
 <blockquote>
 <p>形象理解：灵魂出窍，元素肉体（偏移前）还占据页面位置，元素灵魂（偏移后）挪动了</p>
 </blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.6yksnmm0w6c0.webp"
+                     
+                ></p>
+<p>它必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，用来指定偏移的方向和距离。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/bg2019111723.jpg"
+                      alt="img"
+                ></p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，<code>div</code>元素从默认位置向下偏移<code>20px</code>（即距离顶部<code>20px</code>）。</p>
 <h1 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h1><blockquote>
 <p>position：absolute</p>
+<p><code>absolute</code>表示，相对于上级元素（一般是父元素）进行偏移，即定位基点是<strong>父元素</strong>。</p>
+<p>它有一个重要的限制条件：定位基点（一般是父元素）不能是<code>static</code>定位，否则定位基点就会变成整个网页的根元素<code>html</code>。另外，<code>absolute</code>定位也必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用。</p>
 </blockquote>
 <h2 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h2><ul>
 <li><p>绝对定位 若不设置偏移量，元素的<strong>位置</strong>不发生任何变化</p>
@@ -318,6 +340,17 @@
 <li>绝对定位 会使元素脱离文档流（不占据页面位置）</li>
 <li>绝对定位 会改变元素的性质（行内变成块，块的宽高被内容撑开）</li>
 </ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.1yi7yvzukts0.webp"
+                     
+                ></p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line">  <span class="selector-tag">HTML</span> 代码如下</span><br><span class="line">  &lt;<span class="selector-tag">div</span> id=&quot;father&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> id=&quot;son&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#father</span> &#123;</span><br><span class="line">  positon: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#son</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，父元素是<code>relative</code>定位，子元素是<code>absolute</code>定位，所以子元素的定位基点是父元素，相对于父元素的顶部向下偏移<code>20px</code>。如果父元素是<code>static</code>定位，上例的子元素就是距离网页的顶部向下偏移<code>20px</code>。</p>
+<p>注意，<code>absolute</code>定位的元素会被”正常页面流”忽略，即在”正常页面流”中，该元素所占空间为零，周边元素不受影响。</p>
 <h2 id="绝对定位元素布局"><a href="#绝对定位元素布局" class="headerlink" title="绝对定位元素布局"></a>绝对定位元素布局</h2><h3 id="水平方向布局"><a href="#水平方向布局" class="headerlink" title="水平方向布局"></a>水平方向布局</h3><p>当开启绝对定位后，水平方向的布局等式需要添加left和right</p>
 <blockquote>
 <p><strong>left</strong> + margin-left + border-left + padding-left + width + padding-right + border-right + margin-right + <strong>right</strong>&#x3D; 其<strong>包含块</strong>内容区的宽度</p>
@@ -348,17 +381,54 @@
 <p>eg. 轮播图（父元素）中的原点（子元素）</p>
 <h1 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h1><blockquote>
 <p>position：fixed</p>
+<p><code>fixed</code>表示，相对于视口（viewport，浏览器窗口）进行偏移，即定位基点是浏览器窗口。这会导致元素的位置不随页面滚动而变化，好像固定在网页上一样。</p>
 </blockquote>
 <h2 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>固定定位 是特殊的绝对定位，大部分特点和绝对定位相同</li>
-<li>唯一与绝对定位不同的地方：<ul>
+<li><p>固定定位 是特殊的绝对定位，大部分特点和绝对定位相同</p>
+</li>
+<li><p>唯一与绝对定位不同的地方：</p>
+<ul>
 <li>固定定位 元素是参考于<strong>浏览器的视口</strong>进行定位（不会随网页的滚动条移动，eg广告）</li>
 </ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/image.4g88fzkczaq0.webp"
+                     
+                ></p>
+<p>它如果搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，表示元素的初始位置是基于视口计算的，否则初始位置就是元素的默认位置。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，<code>div</code>元素始终在视口顶部，不随网页滚动而变化。</p>
 </li>
 </ul>
 <h1 id="粘滞定位"><a href="#粘滞定位" class="headerlink" title="粘滞定位"></a>粘滞定位</h1><blockquote>
 <p>position：sticky </p>
+<p><code>sticky</code>跟前面四个属性值都不一样，它会产生动态效果，很像<code>relative</code>和<code>fixed</code>的结合：一些时候是<code>relative</code>定位（定位基点是自身默认位置），另一些时候自动变成<code>fixed</code>定位（定位基点是视口）。</p>
 </blockquote>
+<p>因此，它能够形成”动态固定”的效果。比如，网页的搜索工具栏，初始加载时在自己的默认位置（<code>relative</code>定位）。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.wangbase.com/blogimg/asset/201911/bg2019111604.jpg"
+                     
+                ></p>
+<p>页面向下滚动时，工具栏变成固定位置，始终停留在页面头部（<code>fixed</code>定位）。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.wangbase.com/blogimg/asset/201911/bg2019111605.jpg"
+                     
+                ></p>
+<p>等到页面重新向上滚动回到原位，工具栏也会回到默认位置。</p>
+<p><code>sticky</code>生效的前提是，必须搭配<code>top</code>、<code>bottom</code>、<code>left</code>、<code>right</code>这四个属性一起使用，不能省略，否则等同于<code>relative</code>定位，不产生”动态固定”的效果。原因是这四个属性用来定义”偏移距离”，浏览器把它当作<code>sticky</code>的生效门槛。</p>
+<p>它的具体规则是，当页面滚动，父元素开始脱离视口时（即部分不可见），只要与<code>sticky</code>元素的距离达到生效门槛，<code>relative</code>定位自动切换为<code>fixed</code>定位；等到父元素完全脱离视口时（即完全不可见），<code>fixed</code>定位自动切换回<code>relative</code>定位。</p>
+<p>请看下面的示例代码。（注意，除了已被淘汰的 IE 以外，其他浏览器目前都支持<code>sticky</code>。但是，Safari 浏览器需要加上浏览器前缀<code>-webkit-</code>。）</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#toolbar</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: -webkit-sticky; <span class="comment">/* safari 浏览器 */</span></span><br><span class="line">  <span class="attribute">position</span>: sticky; <span class="comment">/* 其他浏览器 */</span></span><br><span class="line">  <span class="attribute">top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，页面向下滚动时，<code>#toolbar</code>的父元素开始脱离视口，一旦视口的顶部与<code>#toolbar</code>的距离小于<code>20px</code>（门槛值），<code>#toolbar</code>就自动变为<code>fixed</code>定位，保持与视口顶部<code>20px</code>的距离。页面继续向下滚动，父元素彻底离开视口（即整个父元素完全不可见），<code>#toolbar</code>恢复成<code>relative</code>定位。</p>
 <h2 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h2><ul>
 <li>粘滞定位 兼容性不太好（一般不采用，通常使用js来实现）</li>
 <li>粘滞定位 和相对定位特点基本一致</li>

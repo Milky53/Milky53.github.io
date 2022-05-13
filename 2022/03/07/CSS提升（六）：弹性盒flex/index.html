@@ -239,7 +239,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>834 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>960 字</span>
         </span>
     
     
@@ -374,9 +374,14 @@
 <ul>
 <li>顺序：增长系数 缩减系数 基础长度；</li>
 <li>可选值：<ul>
-<li>initial：相当于flex：0 1 auto （默认值，不可伸展可收缩））</li>
+<li>initial：相当于flex：0 1 auto （默认值，不可伸展可收缩）</li>
 <li>auto：相当于flex：1 1 auto （可伸展可收缩）</li>
 <li>none：相当于flex：0 0 auto （弹性元素没有弹性）</li>
+<li>取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0%</li>
+<li>取值为 0 时，对应的三个值分别为 0 1 0%</li>
+<li>取值为一个长度或百分比，则视为 flex-basis 值，flex-grow 取 1，flex-shrink 取 1</li>
+<li>取值为两个非负数字，则分别视为 flex-grow 和 flex-shrink 的值，flex-basis 取 0%</li>
+<li>取值为一个非负数字和一个长度或百分比，则分别视为 flex-grow 和 flex-basis 的值，flex-shrink 取 1</li>
 </ul>
 </li>
 </ul>
