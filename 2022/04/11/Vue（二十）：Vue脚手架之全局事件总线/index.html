@@ -316,7 +316,7 @@
                 ></p>
 <h1 id="使用全局事件总线优化Todo-List案例"><a href="#使用全局事件总线优化Todo-List案例" class="headerlink" title="使用全局事件总线优化Todo-List案例"></a>使用全局事件总线优化Todo-List案例</h1><blockquote>
 <p>并非所有通信都需要改成全局事件总线：</p>
-<p>父传子直接用<code>props</code>；子传父用<code>props</code>、自定义组件；</p>
+<p>父传子直接用<code>props</code>；子传父用<code>props</code>、$emit自定义事件；</p>
 <p>兄弟之间通信、或者跨级通信用全局事件总线</p>
 </blockquote>
 <p>此案例中，MyItem和App之间适用全局事件总线</p>
@@ -502,7 +502,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -235,12 +235,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
         </span>
     
     
@@ -392,7 +392,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emaiReg = <span class="regexp">/^\w&#123;3,&#125;(\\.\w+)*@[A-z0-9]+ (\\.[A-z]&#123;2,5&#125;)&#123;1,2&#125;$/</span></span><br></pre></td></tr></table></figure>
 
 
-
+</li>
+<li><p>补充：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43639512/article/details/84785585" >(16条消息) 正则表达式中\1 \2是什么意思_空城雀的博客-CSDN博客_two是什么意思<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>单独斜杠的 \1 ， \2 就是反向引用了。<br>‘\1’ 匹配的是 所获取的第1个()匹配的引用。例如，’(\d)\1’ 匹配两个连续数字字符。如33aa 中的33<br>‘\2’ 匹配的是 所获取的第2个()匹配的引用。<br>例如，’(\d)(a)\1’ 匹配第一是数字第二是字符a,第三\1必须匹配第一个一样的数字重复一次，也就是被引用一次。如9a9 被匹配，但9a8不会被匹配，因为第三位的\1必须是9才可以，</p>
+<p>‘(\d)(a)\2’ 匹配第一个是一个数字，第二个是a，第三个\2必须是第二组（）中匹配一样的，如，8aa被匹配，但8ab，7a7不会被匹配，第三位必须是第二组字符的复制版，也是就引用第二组正则的匹配内容。<br>————————————————<br>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/liangf05/article/details/79361191" >https://blog.csdn.net/liangf05/article/details/79361191<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
 <h1 id="字符串和正则表达式"><a href="#字符串和正则表达式" class="headerlink" title="字符串和正则表达式"></a>字符串和正则表达式</h1></li>
 </ul>
 <blockquote>
@@ -595,7 +600,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

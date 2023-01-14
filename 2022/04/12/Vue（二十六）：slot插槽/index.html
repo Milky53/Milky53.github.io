@@ -231,7 +231,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>542 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>544 字</span>
         </span>
     
     
@@ -267,7 +267,7 @@
 </li>
 <li><p>作用域插槽</p>
 <p><code>scope</code>用于父组件往子组件插槽放的html结构<strong>接收子组件的数据</strong></p>
-<p>理解：数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定<br>（<code>games</code>数据在<code>Category</code>组件中，但使用数据所遍历出来的结构由App组件决定）</p>
+<p>理解：数据在子组件的自身，但根据数据生成的结构需要组件的使用者来决定<br>（<code>games</code>数据在<code>Category</code>组件中，但使用数据所遍历出来的结构由App（父）组件决定）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">父组件中：</span><br><span class="line">        &lt;Category&gt;</span><br><span class="line">            &lt;template scope=&quot;scopeData&quot;&gt;</span><br><span class="line">                &lt;!-- 生成的是ul列表 --&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                  &lt;li v-for=&quot;g in scopeData.games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">        &lt;/Category&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Category&gt;</span><br><span class="line">            &lt;template slot-scope=&quot;scopeData&quot;&gt;</span><br><span class="line">                &lt;!-- 生成的是h4标题 --&gt;</span><br><span class="line">                &lt;h4 v-for=&quot;g in scopeData.games&quot; :key=&quot;g&quot;&gt;&#123;&#123;g&#125;&#125;&lt;/h4&gt;</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">        &lt;/Category&gt;</span><br><span class="line">子组件中：</span><br><span class="line">        &lt;template&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;slot :games=&quot;games&quot;&gt;&lt;/slot&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/template&gt;</span><br><span class="line">		</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            export default &#123;</span><br><span class="line">                name:&#x27;Category&#x27;,</span><br><span class="line">                props:[&#x27;title&#x27;],</span><br><span class="line">                //数据在子组件自身</span><br><span class="line">                data() &#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        games:[&#x27;红色警戒&#x27;,&#x27;穿越火线&#x27;,&#x27;劲舞团&#x27;,&#x27;超级玛丽&#x27;]</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
@@ -436,7 +436,7 @@
         <div class="copyright-info info-item">
             &copy;
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
