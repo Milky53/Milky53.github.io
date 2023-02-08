@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            Java基础（十二）：新特性 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Java基础（十二）：新特性</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-06 20:49:00</span>
+        <span class="mobile">2023-02-06 20:49</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">新特性</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h1><h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><ul>
+<li>举例：<code>(o1,o2) -&gt; Integer.compare(o1,o2);</code></li>
+<li>格式：<ul>
+<li><code>-&gt;</code>：lambda操作符 或 箭头操作符</li>
+<li><code>-&gt;左边</code>：lambda形参列表（其实就是接口中的抽象方法的形参列表）</li>
+<li><code>-&gt;右边</code>：lambda体（其实就是重写的抽象方法的方法体）</li>
+</ul>
+</li>
+<li>Lambda表达式的本质：作为函数式接口的实例</li>
+<li>函数式接口：如果一个接口中只声明了一个抽象方法，则此接口就称为函数式接口（@FunctionalInterface）</li>
+</ul>
+<h2 id="Stream-API"><a href="#Stream-API" class="headerlink" title="Stream API"></a>Stream API</h2><ul>
+<li>使用Stream API可以对集合数据进行操作，类似于使用SQL执行的数据库查询</li>
+<li>Stream不存储元素</li>
+<li>Stream不改变源对象，会返回一个持有结果的新Stream</li>
+<li>Stream操作时延迟执行的，意味着等到需要结果的时候才执行</li>
+<li>Stream的操作三个步骤<ul>
+<li>创建Stream</li>
+<li>中间操作：操作链</li>
+<li>终止操作：一旦执行终止操作，就执行中间操作链，并产生结果，之后不会再被使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="创建Stream"><a href="#创建Stream" class="headerlink" title="创建Stream"></a>创建Stream</h3><ul>
+<li><p>方式一：通过集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employees = EmployeeData.getEmployees();</span><br><span class="line"><span class="comment">//defalut Stream&lt;E&gt; stream():返回一个顺序流</span></span><br><span class="line">Stream&lt;Employee&gt; stream = employees.stream();</span><br><span class="line"><span class="comment">//defalut Stream&lt;E&gt; parallelStream():返回一个并行流</span></span><br><span class="line">Stream&lt;Employee&gt; parallelStream = employees.parallelStream();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二：通过数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">IntStream</span> <span class="variable">stream</span> <span class="operator">=</span> Arrays.stream(arr);</span><br><span class="line">Employee[] arr1 = <span class="keyword">new</span> <span class="title class_">Employee</span>[]&#123;e1,e2&#125;;</span><br><span class="line">Stream&lt;Employee&gt; stream1 = Arrays.stream(arr1);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式三：通过Stream的of()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;Integer&gt; stream = Stream.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="中间操作"><a href="#中间操作" class="headerlink" title="中间操作"></a>中间操作</h3><ol>
+<li><p>筛选与切片</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employees = EmployeeData.getEmployees();</span><br><span class="line">Stream&lt;Employee&gt; stream = employees.stream();</span><br><span class="line"><span class="comment">//过滤：查询员工表中薪资大于7000的员工信息</span></span><br><span class="line">stream.filter(e -&gt; e.getSalary() &gt; <span class="number">7000</span>).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//截断：返回前n个元素</span></span><br><span class="line">employees.stream().limit(<span class="number">3</span>).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳过: 返回扔掉了前n个元素的流，如果流中元素不足n个，则返回空流</span></span><br><span class="line">employees.stream().skip(<span class="number">3</span>).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//筛选：通过流所生成元素的hashCode()和equals()去除重复元素</span></span><br><span class="line">employees.stream().distinct().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>映射</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;bb&quot;</span>,<span class="string">&quot;cc&quot;</span>,<span class="string">&quot;dd&quot;</span>);</span><br><span class="line">list.stream().map(str -&gt; str.toUpperCase()).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">List&lt;Employee&gt; employees = EmployeeData.getEmployees();</span><br><span class="line">employees.stream().map(Employee :: getName).filter(name -&gt; name.length()&gt; <span class="number">3</span>).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//flatMap(Function f):接受一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list= Arrays.asList(<span class="number">12</span>,<span class="number">34</span>,<span class="number">54</span>,<span class="number">13</span>,<span class="number">7</span>,<span class="number">0</span>,-<span class="number">93</span>,<span class="number">3</span>);</span><br><span class="line">list.stream().sorted().forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">//sorted(Comparator com)</span></span><br><span class="line">List&lt;Employee&gt; employees = EmployeeData.getEmployees();</span><br><span class="line">employees.stream().sorted((e1,<span class="number">21</span>)-&gt; Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="终止操作"><a href="#终止操作" class="headerlink" title="终止操作"></a>终止操作</h3><ol>
+<li><p>匹配与查找</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//allMatch(Predicate p)：检查是否匹配所有元素</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">allMatch</span> <span class="operator">=</span> employees.stream().allMatch(e -&gt; e.getAge()&gt;<span class="number">18</span>);</span><br><span class="line"><span class="comment">//anyMatch(Predicate p):检查是否至少匹配一个元素</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">anyMatch</span> <span class="operator">=</span> employees.stream().allMatch(e -&gt; e.getSalary()&gt;<span class="number">10000</span>);</span><br><span class="line"><span class="comment">//noneMatch(Predicate p):检查是否没有匹配的元素</span></span><br><span class="line"><span class="comment">//findFirst:返回第一个元素</span></span><br><span class="line">Optional&lt;Employee&gt; employee = employees.stream().findFirst();</span><br><span class="line"><span class="comment">//findAny:返回当前流中的任意元素</span></span><br><span class="line"><span class="comment">//count:返回流中元素的总个数</span></span><br><span class="line"><span class="comment">//max(Comparator c)：返回流中最大值</span></span><br><span class="line">Optional&lt;Double&gt; maxSalary = employees.stream().map(e -&gt; e.getSalary()).max(Double :: compare);</span><br><span class="line"><span class="comment">//min(Comparator c)：返回流中最小值</span></span><br><span class="line">Optional&lt;Employee&gt; employee = employees.stream().mix((e1,e2)-&gt;Double.compare(e1.getSalary(),e2.getSalary()));</span><br><span class="line"><span class="comment">//forEach(Consumer c)：内部迭代</span></span><br><span class="line">employees.stream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规约</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reduce(T identity,BinaryOperator):可以将流中元素反复结合起来，得到一个值。返回T</span></span><br><span class="line"><span class="comment">//计算1-10的自然数的和</span></span><br><span class="line">List&lt;Integer&gt; list= Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">sum</span> <span class="operator">=</span> list.stream().reduce(<span class="number">0</span>,Integer::sum);</span><br><span class="line"></span><br><span class="line"><span class="comment">//reduce(BinaryOperator):可以将流中元素反复结合起来，得到一个值。返回Optional&lt;T&gt;</span></span><br><span class="line"><span class="comment">//计算公司用所有员工工资的总和</span></span><br><span class="line">List&lt;Employee&gt; employees = EmployeeData.getEmployees();</span><br><span class="line">Optional&lt;Double&gt; sumMoney = employees.stream().map(e -&gt; e.getSalary()).reduce((d1,d2)-&gt;d1+d2);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>收集</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//collect(Collector c):将流转换为其他形式</span></span><br><span class="line">List&lt;Employee&gt; employeeList = employees.stream().filter(e -&gt; e.getSalary() &gt; <span class="number">6000</span>).collect(Collectors.toList());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h2><ul>
+<li><code>Optional&lt;T&gt;</code>类是一个容器类，它可以保存类型T的值，代表这个值存在，或者仅仅保存null。可以避免空指针异常。</li>
+</ul>
+<h1 id="Java9新特性"><a href="#Java9新特性" class="headerlink" title="Java9新特性"></a>Java9新特性</h1><h2 id="模块化系统"><a href="#模块化系统" class="headerlink" title="模块化系统"></a>模块化系统</h2><ul>
+<li>用模块来管理各个package，通过声明某个package暴露。模块（module）的概念，其实就是package外再裹一层。不声明默认就是隐藏。因此模块化使得代码组织上更安全。</li>
+</ul>
+<h2 id="接口中可以声明私有方法"><a href="#接口中可以声明私有方法" class="headerlink" title="接口中可以声明私有方法"></a>接口中可以声明私有方法</h2><h2 id="try语句的改进"><a href="#try语句的改进" class="headerlink" title="try语句的改进"></a>try语句的改进</h2><h2 id="String存储结构的变更"><a href="#String存储结构的变更" class="headerlink" title="String存储结构的变更"></a>String存储结构的变更</h2><p>由char[]改成byte[]加上编码标记，节约了一些空间</p>
+<h2 id="InputStream中的transferTo"><a href="#InputStream中的transferTo" class="headerlink" title="InputStream中的transferTo()"></a>InputStream中的transferTo()</h2><p>直接将输入流中的方法复制到输出流中</p>
+<h2 id="增强的Stream-API"><a href="#增强的Stream-API" class="headerlink" title="增强的Stream API"></a>增强的Stream API</h2><ul>
+<li>takeWhile：返回从开头开始的按照制定规则尽量多的元素</li>
+<li>dropWhile：与takeWhile相反，返回剩余的元素</li>
+<li>ofNullable：形参变量是可以为null值的单个元素</li>
+</ul>
+<h2 id="Optional的新方法stream"><a href="#Optional的新方法stream" class="headerlink" title="Optional的新方法stream()"></a>Optional的新方法stream()</h2><h1 id="Java10新特性"><a href="#Java10新特性" class="headerlink" title="Java10新特性"></a>Java10新特性</h1><h2 id="局部变量类型推断"><a href="#局部变量类型推断" class="headerlink" title="局部变量类型推断"></a>局部变量类型推断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.声明变量时，根据所附的值，推断变量的类型</span></span><br><span class="line"><span class="type">var</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">var</span> <span class="variable">list</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line"><span class="comment">//2.遍历操作</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i:list)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">var</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//局部变量不赋值不可以</span></span><br><span class="line"><span class="comment">//var num</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda表达式这种，左边的函数式接口不能声明为var</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法引用中，左边的函数式接口不能声明为var</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数组的静态初始化中,如下情况不可以</span></span><br><span class="line"><span class="comment">//var arr = &#123;1,2,3,4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>var不是一个关键字</li>
+<li>不是Javascript</li>
+</ul>
+<h1 id="java11新特性"><a href="#java11新特性" class="headerlink" title="java11新特性"></a>java11新特性</h1><h2 id="String中新增方法"><a href="#String中新增方法" class="headerlink" title="String中新增方法"></a>String中新增方法</h2><ul>
+<li><code>isBlank()</code></li>
+<li><code>strip()</code></li>
+<li><code>stripTrailing()</code></li>
+<li><code>stripLeading()</code></li>
+<li><code>repeat(int count)</code></li>
+<li><code>lines().count()</code></li>
+</ul>
+<h2 id="Optional中新增方法"><a href="#Optional中新增方法" class="headerlink" title="Optional中新增方法"></a>Optional中新增方法</h2><h2 id="局部变量类型推断的升级"><a href="#局部变量类型推断的升级" class="headerlink" title="局部变量类型推断的升级"></a>局部变量类型推断的升级</h2><h2 id="全新的HTTP客户端的API"><a href="#全新的HTTP客户端的API" class="headerlink" title="全新的HTTP客户端的API"></a>全新的HTTP客户端的API</h2><ul>
+<li>使用HTTP Client替换原有的HttpUrlConnection</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Java基础（十二）：新特性</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-06 20:49:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/06/Java基础（十二）：新特性/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%96%B0%E7%89%B9%E6%80%A7/">#新特性</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/06/Java%E5%9F%BA%E7%A1%80%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9A%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java基础（十一）：反射机制</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java8%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">Java8新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">Lambda表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream-API"><span class="nav-number">1.2.</span> <span class="nav-text">Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAStream"><span class="nav-number">1.2.1.</span> <span class="nav-text">创建Stream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">中间操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%88%E6%AD%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">终止操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional%E7%B1%BB"><span class="nav-number">1.3.</span> <span class="nav-text">Optional类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java9%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">Java9新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.</span> <span class="nav-text">模块化系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%A3%B0%E6%98%8E%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">接口中可以声明私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">2.3.</span> <span class="nav-text">try语句的改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%98%E6%9B%B4"><span class="nav-number">2.4.</span> <span class="nav-text">String存储结构的变更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InputStream%E4%B8%AD%E7%9A%84transferTo"><span class="nav-number">2.5.</span> <span class="nav-text">InputStream中的transferTo()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BA%E7%9A%84Stream-API"><span class="nav-number">2.6.</span> <span class="nav-text">增强的Stream API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional%E7%9A%84%E6%96%B0%E6%96%B9%E6%B3%95stream"><span class="nav-number">2.7.</span> <span class="nav-text">Optional的新方法stream()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java10%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">Java10新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="nav-number">3.1.</span> <span class="nav-text">局部变量类型推断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java11%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">java11新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">String中新增方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">Optional中新增方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD%E7%9A%84%E5%8D%87%E7%BA%A7"><span class="nav-number">4.3.</span> <span class="nav-text">局部变量类型推断的升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E7%9A%84HTTP%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84API"><span class="nav-number">4.4.</span> <span class="nav-text">全新的HTTP客户端的API</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

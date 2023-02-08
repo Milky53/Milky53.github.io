@@ -183,294 +183,24 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">
-                        Vue（二十二）：Vue脚手架之nextTick
+                    <a href="/2022/04/18/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88/">
+                        JS高级（四）：执行上下文与执行上下文栈
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        $nextTick
-这是一个生命周期钩子
+                        变量提升与函数提升变量(声明)提升
+通过var定义（声明）的变量，在定义语句之前就可以访问到
+值：undefined
 
-
-语法：this.$nextTick(回调函数)
-作用：在下一次DOM更新结束后执行其指定的回调
-什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行
-...
+123456console.log(b) //输出undefinedvar b = 3//相当于以下代码var bconsole....
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 15:38:09 GMT+0800">2022-04-11</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/nextTick/">nextTick</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">
-                        Vue（二十一）：Vue脚手架之消息的订阅与发布
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        消息订阅与发布(pubsub)消息订阅与发布（pubsub）消息订阅与发布是一种组件间通信的方式，适用于任意组件间通信（类似全局事件总线，用得不多）
-使用步骤
-安装pubsub：npm i pubsub-js
-
-引入：import pubsub fr...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 14:33:29 GMT+0800">2022-04-11</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">订阅与发布</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">
-                        Vue（二十）：Vue脚手架之全局事件总线
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        全局事件总线（GlobalEvenBus）一种可以在任意组件间通信的方式，本质上就是一个对象，它必须满足以下条件：
-
-所有的组件对象都必须能看见他
-这个对象必须能够使用$on $emit $off方法去绑定、触发和解绑事件
-
-
-利用一个重要的内置关系...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 10:40:25 GMT+0800">2022-04-11</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">全局事件总线</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">
-                        Vue（十九）：Vue脚手架之组件的自定义事件
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        组件的自定义事件
-一种组件间通信的方式，适用于：子组件 &#x3D;&#x3D;&#x3D;&gt; 父组件
-
-使用场景
-A是父组件，B是子组件，子组件想给父组件传数据，那么就要在父组件中给子组件绑定自定义事件（事件的回调在A中)
-
-绑定自定义事件
-...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 16:02:40 GMT+0800">2022-04-08</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">自定义事件</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">
-                        JS提升（一）：浏览器本地存储（WebStorage）
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        WebStorage(js 本地存储)
-存储内容大小一般支持5MB左右（不同浏览器可能还不一样)
-
-浏览器端通过window.sessionStorage和 window.localstorage属性来实现本地存储机制
-
-相关API：
-
-xxxSto...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 15:40:56 GMT+0800">2022-04-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 18 2022 15:30:49 GMT+0800">2022-04-18</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -491,7 +221,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/WebStorage/">WebStorage</a>&nbsp;
+                            <a href="/tags/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">执行上下文</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -499,7 +229,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/18/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -509,27 +239,234 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">
-                        Vue（十八）：Vue脚手架之Todo-List案例
+                    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+                        JS高级（三）：原型与原型链
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        组件化编码流程
-拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突
-实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件再用
-一个组件在用：放在组件自身即可
-一些组件在用：放在他们共同的父组件上**(状态提升)**
-
-
-实...
+                        原型(prototype)函数的prototype属性
+每个函数都有一个prototype属性，它默认指向一个Object空对象（即成为：原型对象）
+12345678console.log(Date.prototype,type Date.proto...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 10:21:58 GMT+0800">2022-04-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Apr 17 2022 21:04:47 GMT+0800">2022-04-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%8E%9F%E5%9E%8B/">原型</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%95%B0%E6%8D%AE%E3%80%81%E5%8F%98%E9%87%8F%E3%80%81%E5%86%85%E5%AD%98/">
+                        JS高级（二）：数据、变量、内存
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        数据
+数据：存储再内存中代表特定信息的东西，本质上是010101……
+
+
+数据的特点：
+可传递
+可运算
+
+
+内存中所有操作的目标：数据
+算数运算
+逻辑运算
+赋值运算
+运行函数
+
+
+
+内存
+内存：内存条通电以后产生的可存储数据的空间（临时的）
+
+
+内存...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Apr 17 2022 15:59:24 GMT+0800">2022-04-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%8F%98%E9%87%8F/">变量</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%B0%E6%8D%AE/">数据</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%86%85%E5%AD%98/">内存</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%95%B0%E6%8D%AE%E3%80%81%E5%8F%98%E9%87%8F%E3%80%81%E5%86%85%E5%AD%98/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                        JS高级（一）：数据类型
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        数据类型分类
+基本（值）类型
+
+String：任意字符串
+Number：任意的数字
+boolean：true&#x2F;false
+undefined：undefined
+null：null
+
+
+对象（引用）类型:
+
+Object：任意对象(无序)
+...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Apr 17 2022 10:30:32 GMT+0800">2022-04-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/17/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/13/Vue%EF%BC%88%E4%B8%89%E5%8D%81%EF%BC%89%EF%BC%9AVue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+                        Vue（三十）：Vue3快速上手
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Vue3快速上手
+
+
+
+1.Vue3简介
+2020年9月18日，Vue.js发布3.0版本，代号：One Piece（海贼王）
+耗时2年多、2600+次提交、30+个RFC、600+次PR、99位贡献者 
+github上的tags地址：https:/...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 13 2022 11:45:09 GMT+0800">2022-04-13</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -550,17 +487,196 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/Vue3/">Vue3</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/13/Vue%EF%BC%88%E4%B8%89%E5%8D%81%EF%BC%89%EF%BC%9AVue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/13/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVueUI%E7%BB%84%E4%BB%B6%E5%BA%93/">
+                        Vue（二十九）：VueUI组件库
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        移动端常用UI组件库
+Vant
+Cube UI
+Mint UI
+nutui（京东）
+
+PC端常用UI组件库
+Element UI（饿了么）
+IView UI
+
+element-ui基本使用
+安装 element-ui：npm i element-ui...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 13 2022 11:21:07 GMT+0800">2022-04-13</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/UI/">UI</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/13/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVueUI%E7%BB%84%E4%BB%B6%E5%BA%93/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%B7%AF%E7%94%B1Router/">
+                        Vue（二十八）：Vue路由Router
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        相关理解vue-router 的理解
+vue的一个插件库，专门用来实现SPA应用
+
+对SPA应用的理解
+单页Web应用（single page web application，SPA）
+整个应用只有一个完整的页面
+点击页面中的导航链接不会刷新页面，只...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 12 2022 16:27:10 GMT+0800">2022-04-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Vue-Router/">Vue Router</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
+                            <a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%B7%AF%E7%94%B1Router/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVuex/">
+                        Vue（二十七）：Vuex
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        理解VuexVuex是什么
+概念：专门在Vue中实现集中式状态（即数据）管理的一个Vue插件，对Vue应用中多个组件的共享状态进行集中式的管理（读&#x2F;写），也是一种组件间通信的方式，且适用于任意组件间通信
+Vuex Github地址
+
+
+
+什...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 12 2022 11:01:10 GMT+0800">2022-04-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
                             <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E6%A1%88%E4%BE%8B/">案例</a>&nbsp;
+                            <a href="/tags/Vuex/">Vuex</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -568,7 +684,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVuex/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -578,24 +694,87 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">
-                        Vue（十七）：Vue脚手架之ref、props、mixin、plugin、scoped
+                    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9Aslot%E6%8F%92%E6%A7%BD/">
+                        Vue（二十六）：slot插槽
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        ref属性ref被用来给元素或子组件注册引用信息（id的替代者）
+                        slot插槽&lt;slot&gt;插槽：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 父组件 &#x3D;&#x3D;&#x3D;&gt; 子组件
 
-应用在html标签上获取的是真实DOM元素，应用在组件标签上获取的是组件实例对象vc
+分类：默认插槽、具名插槽、作用域插槽
+
 使用方式
-打标识：&lt;h1 ref=&quot;xxx&quot;&gt;&lt;/h1&g...
+
+默认插槽
+1...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 20:31:51 GMT+0800">2022-04-07</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 12 2022 10:30:41 GMT+0800">2022-04-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%8F%92%E6%A7%BD/">插槽</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9Aslot%E6%8F%92%E6%A7%BD/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">
+                        Vue（二十五）：Vue中的ajax
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        解决开发环境Ajax跨域问题
+使用代理服务器
+Vue（二十四）：Vue脚手架之配置代理
+
+vue项目中常用的Ajax库：axios
+
+
+github用户搜索案例public/index.html
+123456789101112131415161718...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 17:04:43 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -621,22 +800,7 @@ xxxSto...
                     
                         <li>
                             | 
-                            <a href="/tags/ref/">ref</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/props/">props</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/mixin/">mixin</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/plugin/">plugin</a>&nbsp;
+                            <a href="/tags/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -644,196 +808,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/">
-                        Vue（十六）：Vue脚手架之初始化
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        说明
-Vue CLI (Command Line Interface)
-
-
-Vue脚手架是Vue官方提供的标准化开发工具（开发平台）
-最新的版本是 4.x
-文档 Vue CLI
-
-具体步骤
-如果下载缓慢请配置npm淘宝镜像：npm config se...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 15:30:14 GMT+0800">2022-04-07</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%84%9A%E6%89%8B%E6%9E%B6/">脚手架</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9A%E7%BB%84%E4%BB%B6%E5%8C%96%E7%BC%96%E7%A8%8B/">
-                        Vue（十五）：组件化编程
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        模块与组件、模块化与组件化
-
-
-模块
-理解：向外提供特定功能的 js 程序，一般就是一个 js 文件
-为什么：js 文件很多很复杂
-作用：复用、简化 js 的编写，提高 js 运行效率
-
-
-组件
-定义：用来实现局部（特定）功能的代码和资源的集合（ht...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 11:20:55 GMT+0800">2022-04-07</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%BB%84%E4%BB%B6/">组件</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9A%E7%BB%84%E4%BB%B6%E5%8C%96%E7%BC%96%E7%A8%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-                        Vue（十四）：生命周期
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        引出生命周期
-生命周期
-
-又名生命周期回调函数、生命周期函数、生命周期钩子
-
-是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数
-
-生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的
-
-生命周期函数中的 this 指向是vm或组件...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 10:23:49 GMT+0800">2022-04-07</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
