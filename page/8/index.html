@@ -22,119 +22,7 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 6.0.0"><style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 
 <body>
@@ -295,24 +183,27 @@ mjx-container[display="true"] + br {
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">
-                        Vue（五）：事件处理
+                    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9Aslot%E6%8F%92%E6%A7%BD/">
+                        Vue（二十六）：slot插槽
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        事件的基本用法
-使用v-on:xxx或@xxx绑定事件，其中 xxx 是事件名
-事件的回调需要配置在methods对象中，最终会在vm上
-methods中配置的函数，不要用箭头函数，否则 this 就不是vm了
-methods中配置的函数，都是被 V...
+                        slot插槽&lt;slot&gt;插槽：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 父组件 &#x3D;&#x3D;&#x3D;&gt; 子组件
+
+分类：默认插槽、具名插槽、作用域插槽
+
+使用方式
+
+默认插槽
+1...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:51:05 GMT+0800">2022-04-01</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 12 2022 10:30:41 GMT+0800">2022-04-12</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -333,7 +224,7 @@ methods中配置的函数，都是被 V...
                     
                         <li>
                             
-                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">事件处理</a>&nbsp;
+                            <a href="/tags/%E6%8F%92%E6%A7%BD/">插槽</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -341,7 +232,7 @@ methods中配置的函数，都是被 V...
         
     </div>
 
-    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/12/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9Aslot%E6%8F%92%E6%A7%BD/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -351,29 +242,28 @@ methods中配置的函数，都是被 V...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/01/Vue%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AMVVM%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">
-                        Vue（四）：MVVM模型与数据代理
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">
+                        Vue（二十五）：Vue中的ajax
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        MVVM模型
-MVVM模型
-M：模型 Model，data中的数据
-V：视图 View，模板代码
-VM：视图模型 ViewModel，Vue实例（相当于一个链接纽带——
+                        解决开发环境Ajax跨域问题
+使用代理服务器
+Vue（二十四）：Vue脚手架之配置代理
+
+vue项目中常用的Ajax库：axios
 
 
-观察发现
-data中所有的属性，最后都出现在了vm身上
-vm身上所有的属性 ...
+github用户搜索案例public/index.html
+123456789101112131415161718...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:18:05 GMT+0800">2022-04-01</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 17:04:43 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -394,12 +284,12 @@ vm身上所有的属性 ...
                     
                         <li>
                             
-                            <a href="/tags/MVVM%E6%A8%A1%E5%9E%8B/">MVVM模型</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">数据代理</a>&nbsp;
+                            <a href="/tags/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -407,7 +297,7 @@ vm身上所有的属性 ...
         
     </div>
 
-    <a href="/2022/04/01/Vue%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AMVVM%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -417,27 +307,22 @@ vm身上所有的属性 ...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Ael%E5%92%8Cdata%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95/">
-                        Vue（三）：el和data的两种写法
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
+                        Vue（二十四）：Vue脚手架之配置代理
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        el有2种写法
-创建Vue实例对象的时候配置el属性
-先创建Vue实例，随后再通过vm.$mount(&#39;#root&#39;)指定el的值
-
-data有2种写法
-对象式：data： { }
-
-函数式：data() { return { } }...
+                        Vue脚手架配置代理本案例需要下载axios库npm install axios
+配置参考文档 Vue-Cli devServer.proxy
+vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json 同级的) 根...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 11:11:29 GMT+0800">2022-04-01</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 16:53:10 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -458,12 +343,12 @@ data有2种写法
                     
                         <li>
                             
-                            <a href="/tags/el/">el</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/data/">data</a>&nbsp;
+                            <a href="/tags/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">配置代理</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -471,7 +356,7 @@ data有2种写法
         
     </div>
 
-    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9Ael%E5%92%8Cdata%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -481,26 +366,33 @@ data有2种写法
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
-                        Vue（二）：模板语法与数据绑定
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">
+                        Vue（二十三）：Vue脚手架之过渡与动画
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        模板语法插值语法
-功能：用于解析标签体内容
-写法：，xxx 是 js 表达式，可以直接读取到 data 中的所有区域
+                        Vue封装的过渡与动画
+作用：在插入、更新或移除DOM元素时，在合适的时候给元素添加样式类名
 
-指令语法
-功能：用于解析标签（包括：标签属性、标签体内容、绑定事件…）
-举例：&lt;a v-bind:href=&quot;xx...
+图示：
+
+
+写法：
+
+准备好样式：
+
+元素进入的样式
+v-enter 进入的起点 （过渡需要，动画不需要）
+v-enter-active 进入过程中
+v-...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 10:47:31 GMT+0800">2022-04-01</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 15:43:10 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -521,12 +413,12 @@ data有2种写法
                     
                         <li>
                             
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/">模板语法</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">数据绑定</a>&nbsp;
+                            <a href="/tags/%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">过渡与动画</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -534,7 +426,7 @@ data有2种写法
         
     </div>
 
-    <a href="/2022/04/01/Vue%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -544,34 +436,27 @@ data有2种写法
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AVue%E7%AE%80%E4%BB%8B/">
-                        Vue（一）：Vue简介
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">
+                        Vue（二十二）：Vue脚手架之nextTick
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        什么是Vue？
-Vue官网
-
-Vue：动态构建用户界面的渐进式 JavaScript 框架
-
-构建用户界面：把数据通过某种办法变成用户界面
-渐进式：Vue可以自底向上逐层的应用，简单应用只需要一个轻量小巧的核心
+                        $nextTick
+这是一个生命周期钩子
 
 
-作者：尤雨溪
-
-
-
-Vue的特点
+语法：this.$nextTick(回调函数)
+作用：在下一次DOM更新结束后执行其指定的回调
+什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行
 ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 01 2022 09:12:50 GMT+0800">2022-04-01</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 15:38:09 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -592,7 +477,12 @@ Vue的特点
                     
                         <li>
                             
-                            <a href="/tags/Vue/">Vue</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/nextTick/">nextTick</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -600,7 +490,7 @@ Vue的特点
         
     </div>
 
-    <a href="/2022/04/01/Vue%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AVue%E7%AE%80%E4%BB%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -610,31 +500,31 @@ Vue的特点
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F/">
-                        数据结构与算法（九）：排序
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">
+                        Vue（二十一）：Vue脚手架之消息的订阅与发布
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        大O表示法
+                        消息订阅与发布(pubsub)消息订阅与发布（pubsub）消息订阅与发布是一种组件间通信的方式，适用于任意组件间通信（类似全局事件总线，用得不多）
+使用步骤
+安装pubsub：npm i pubsub-js
 
-排序算法：冒泡排序、选择排序、插入排序、归并排序、计数排序（counting sort)、基数排序(radix sort)、希尔排序、堆排序、桶排序
-
-简单排序123456789101112// 封装ArrayListfunction ...
+引入：import pubsub fr...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 31 2022 14:55:57 GMT+0800">2022-03-31</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 14:33:29 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -648,7 +538,17 @@ Vue的特点
                     
                         <li>
                             
-                            <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">订阅与发布</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -656,7 +556,7 @@ Vue的特点
         
     </div>
 
-    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -666,46 +566,33 @@ Vue的特点
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9B%BE%E8%AE%BA/">
-                        数据结构与算法（八）：图论
+                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">
+                        Vue（二十）：Vue脚手架之全局事件总线
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        相关概念
+                        全局事件总线（GlobalEvenBus）一种可以在任意组件间通信的方式，本质上就是一个对象，它必须满足以下条件：
+
+所有的组件对象都必须能看见他
+这个对象必须能够使用$on $emit $off方法去绑定、触发和解绑事件
 
 
-图的表示邻接矩阵
-二维数组
-邻接矩阵让每个节点和一个整数相关联，该整数作为数组的下标值
-
-
-
-优点：
-方便表示有向图、带权图
-
-
-缺点：
-如果图是一个稀疏图，则矩阵中会存在大量的0，浪费存储空间
-
-
-
-邻接表
-邻接表由图中每个顶点以及和...
+利用一个重要的内置关系...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 31 2022 10:50:10 GMT+0800">2022-03-31</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 10:40:25 GMT+0800">2022-04-11</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -719,7 +606,17 @@ Vue的特点
                     
                         <li>
                             
-                            <a href="/tags/%E5%9B%BE/">图</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">全局事件总线</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -727,7 +624,7 @@ Vue的特点
         
     </div>
 
-    <a href="/2022/03/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E5%9B%BE%E8%AE%BA/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -737,35 +634,34 @@ Vue的特点
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E6%A0%91/">
-                        数据结构与算法（七）：树
+                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">
+                        Vue（十九）：Vue脚手架之组件的自定义事件
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        相关概念
+                        组件的自定义事件
+一种组件间通信的方式，适用于：子组件 &#x3D;&#x3D;&#x3D;&gt; 父组件
 
-所有的树本质上够可以使用二叉树模拟出来（儿子-兄弟表示法旋转）
+使用场景
+A是父组件，B是子组件，子组件想给父组件传数据，那么就要在父组件中给子组件绑定自定义事件（事件的回调在A中)
 
-二叉树二叉树的特性
-一个二叉树第i层的最大节点数为：
-深度为k的二叉树的最大节点总数为：
-对任何非空二叉树T，若表示叶节点的个数、是度为2的非叶节点个数，那么两者满足关系
+绑定自定义事件
 ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 29 2022 20:30:32 GMT+0800">2022-03-29</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 16:02:40 GMT+0800">2022-04-08</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -779,12 +675,17 @@ Vue的特点
                     
                         <li>
                             
-                            <a href="/tags/%E6%A0%91/">树</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/">红黑树</a>&nbsp;
+                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">自定义事件</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -792,7 +693,7 @@ Vue的特点
         
     </div>
 
-    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E6%A0%91/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -802,40 +703,34 @@ Vue的特点
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8/">
-                        数据结构与算法（六）：哈希表
+                    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">
+                        JS提升（一）：浏览器本地存储（WebStorage）
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-数组进行插入、删除、修改操作，效率较低
-数组查找操作：
+                        WebStorage(js 本地存储)
+存储内容大小一般支持5MB左右（不同浏览器可能还不一样)
 
-基于索引查找，效率高
-基于内容查找，效率低
+浏览器端通过window.sessionStorage和 window.localstorage属性来实现本地存储机制
 
-哈希表是基于数组实现的，但是它相对于数组有很多优势：
+相关API：
 
-非常快速插入、删除、查找
-速度比树还要快，瞬间查找
-相对于树来说更容易编码
-
-哈希表缺点...
+xxxSto...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 29 2022 15:20:29 GMT+0800">2022-03-29</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 15:40:56 GMT+0800">2022-04-08</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
                         </li>
                     
                     
@@ -849,7 +744,7 @@ Vue的特点
                     
                         <li>
                             
-                            <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>&nbsp;
+                            <a href="/tags/WebStorage/">WebStorage</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -857,7 +752,7 @@ Vue的特点
         
     </div>
 
-    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -867,32 +762,34 @@ Vue的特点
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%AD%97%E5%85%B8/">
-                        数据结构与算法（五）：字典
+                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">
+                        Vue（十八）：Vue脚手架之Todo-List案例
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-字典中的ke不可以重复，value可以重复
-key是无序的
-ES6中包含了字典，可以直接使用
+                        组件化编码流程
+拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突
+实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件再用
+一个组件在用：放在组件自身即可
+一些组件在用：放在他们共同的父组件上**(状态提升)**
 
-字典的实现（基于对象）12345678910111213141516171819202122232425262728293031323334353637...
+
+实...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 29 2022 15:15:08 GMT+0800">2022-03-29</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 10:21:58 GMT+0800">2022-04-08</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>&nbsp;
+                            <a href="/categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -906,7 +803,17 @@ ES6中包含了字典，可以直接使用
                     
                         <li>
                             
-                            <a href="/tags/%E5%AD%97%E5%85%B8/">字典</a>&nbsp;
+                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%A1%88%E4%BE%8B/">案例</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -914,7 +821,7 @@ ES6中包含了字典，可以直接使用
         
     </div>
 
-    <a href="/2022/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%AD%97%E5%85%B8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

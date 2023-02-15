@@ -183,29 +183,33 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
-                        Vue（二十四）：Vue脚手架之配置代理
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E8%B7%A8%E5%9F%9F/">
+                        Ajax（七）：跨域
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Vue脚手架配置代理本案例需要下载axios库npm install axios
-配置参考文档 Vue-Cli devServer.proxy
-vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json 同级的) 根...
+                        同源策略
+同源策略(Same-Origin Policy)最早由Netscape 公司提出，是浏览器的一种安全策略
+
+同源： 当前网页的url和Ajax请求的目标资源的url，两者的协议、域名、端口号必须完全相同
+
+跨域： 违背同源策略就是跨域，
+项...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 16:53:10 GMT+0800">2022-04-11</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 20:55:10 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -219,12 +223,22 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/%E8%B7%A8%E5%9F%9F/">跨域</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">配置代理</a>&nbsp;
+                            <a href="/tags/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">同源策略</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/JSONP/">JSONP</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/CORS/">CORS</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -232,7 +246,7 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E8%B7%A8%E5%9F%9F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -242,40 +256,33 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">
-                        Vue（二十三）：Vue脚手架之过渡与动画
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8fetch%E5%87%BD%E6%95%B0%E5%8F%91%E9%80%81Ajax%E8%AF%B7%E6%B1%82/">
+                        Ajax（六）：使用fetch函数发送Ajax请求
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Vue封装的过渡与动画
-作用：在插入、更新或移除DOM元素时，在合适的时候给元素添加样式类名
-
-图示：
+                        语法1Promise&lt;Response&gt; fetch(input[,init]);
 
 
-写法：
+input：url
+init：配置项
 
-准备好样式：
-
-元素进入的样式
-v-enter 进入的起点 （过渡需要，动画不需要）
-v-enter-active 进入过程中
-v-...
+123456789101112131415fetch(&#x27;http://127.0.0.1:8000/...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 15:43:10 GMT+0800">2022-04-11</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 20:50:13 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -289,12 +296,12 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">过渡与动画</a>&nbsp;
+                            <a href="/tags/fetch/">fetch</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -302,7 +309,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8fetch%E5%87%BD%E6%95%B0%E5%8F%91%E9%80%81Ajax%E8%AF%B7%E6%B1%82/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -312,34 +319,30 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">
-                        Vue（二十二）：Vue脚手架之nextTick
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9AAxios%E5%8F%91%E9%80%81Ajax%E8%AF%B7%E6%B1%82/">
+                        Ajax（五）：Axios发送Ajax请求
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        $nextTick
-这是一个生命周期钩子
+                        axios介绍axios不是一种新的技术。
+axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，有以下特点：
 
-
-语法：this.$nextTick(回调函数)
-作用：在下一次DOM更新结束后执行其指定的回调
-什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行
-...
+从浏览器中创建 ...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 15:38:09 GMT+0800">2022-04-11</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 20:14:48 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -353,12 +356,12 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/nextTick/">nextTick</a>&nbsp;
+                            <a href="/tags/Axios/">Axios</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -366,7 +369,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9AAxios%E5%8F%91%E9%80%81Ajax%E8%AF%B7%E6%B1%82/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -376,31 +379,33 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">
-                        Vue（二十一）：Vue脚手架之消息的订阅与发布
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AjQuery%E4%B8%AD%E7%9A%84Ajax/">
+                        Ajax（四）：jQuery中的Ajax
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        消息订阅与发布(pubsub)消息订阅与发布（pubsub）消息订阅与发布是一种组件间通信的方式，适用于任意组件间通信（类似全局事件总线，用得不多）
-使用步骤
-安装pubsub：npm i pubsub-js
+                        get请求1$.get(url, [data], [callback], [type])
 
-引入：import pubsub fr...
+
+url:请求的URL 地址
+data:请求携带的参数
+callback:载入成功时回调函数
+type:设置返回内容格式，xml, html, script,...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 14:33:29 GMT+0800">2022-04-11</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 19:49:50 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -414,17 +419,12 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">订阅与发布</a>&nbsp;
+                            <a href="/tags/jQuery/">jQuery</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -432,7 +432,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AjQuery%E4%B8%AD%E7%9A%84Ajax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -442,33 +442,35 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">
-                        Vue（二十）：Vue脚手架之全局事件总线
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8E%9F%E7%94%9FAjax/">
+                        Ajax（三）：原生Ajax
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        全局事件总线（GlobalEvenBus）一种可以在任意组件间通信的方式，本质上就是一个对象，它必须满足以下条件：
+                        理解
+使用XMLHttpRequest (XHR)对象可以与服务器交互, 也就是发送ajax 请求
 
-所有的组件对象都必须能看见他
-这个对象必须能够使用$on $emit $off方法去绑定、触发和解绑事件
+前端可以获取到数据，而无需让整个的页面刷新。
+
+这使得Web 页面可以只更新页面的局部，而不影响用户的操作。
 
 
-利用一个重要的内置关系...
+https://developer...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 11 2022 10:40:25 GMT+0800">2022-04-11</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 11:23:46 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -482,17 +484,7 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">全局事件总线</a>&nbsp;
+                            <a href="/tags/%E5%8E%9F%E7%94%9FAjax/">原生Ajax</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -500,7 +492,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%8E%9F%E7%94%9FAjax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -510,34 +502,31 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">
-                        Vue（十九）：Vue脚手架之组件的自定义事件
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP/">
+                        Ajax（二）：HTTP
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        组件的自定义事件
-一种组件间通信的方式，适用于：子组件 &#x3D;&#x3D;&#x3D;&gt; 父组件
+                        http
+HTTP（hypertext transport protocol）超文本传输协议，协议详细规定了浏览器和万维网服务器之间相互通信的规则
+约定、规则
 
-使用场景
-A是父组件，B是子组件，子组件想给父组件传数据，那么就要在父组件中给子组件绑定自定义事件（事件的回调在A中)
-
-绑定自定义事件
-...
+MDN 文档https://developer.mozilla.org/zh-CN/do...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 16:02:40 GMT+0800">2022-04-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 10:32:25 GMT+0800">2022-04-20</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
                         </li>
                     
                     
@@ -551,17 +540,7 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">自定义事件</a>&nbsp;
+                            <a href="/tags/HTTP/">HTTP</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -569,7 +548,7 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
         
     </div>
 
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/20/Ajax%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -579,27 +558,85 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">
-                        JS提升（一）：浏览器本地存储（WebStorage）
+                    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E8%BF%B0/">
+                        Ajax（一）：概述
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        WebStorage(js 本地存储)
-存储内容大小一般支持5MB左右（不同浏览器可能还不一样)
-
-浏览器端通过window.sessionStorage和 window.localstorage属性来实现本地存储机制
-
-相关API：
-
-xxxSto...
+                        Ajax概述AJAX 简介AJAX 全称为Asynchronous JavaScript And XML，就是异步的JS 和XML
+通过AJAX 可以在浏览器中向服务器发送异步请求，最大的优势：无刷新获取数据
+AJAX 不是新的编程语言，而是一种将现...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 15:40:56 GMT+0800">2022-04-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Apr 20 2022 10:24:46 GMT+0800">2022-04-20</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Ajax/">Ajax</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Ajax/">Ajax</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/04/20/Ajax%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E8%BF%B0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%9C%BA%E5%88%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">
+                        JS高级（九）：线程机制与事件机制
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        进程与线程进程（process）
+程序的一次执行，它占有一片独有的内存空间
+可通过winodws任务管理器查看进程
+
+线程（thread）
+是进程内的一个独立执行单元
+是程序执行的一个完整流程
+是CPU的最小调度单元
+
+
+相关知识
+应用程序必须运行在...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 19 2022 15:39:44 GMT+0800">2022-04-19</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
@@ -620,7 +657,12 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/WebStorage/">WebStorage</a>&nbsp;
+                            <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -628,7 +670,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%9C%BA%E5%88%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -638,34 +680,39 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">
-                        Vue（十八）：Vue脚手架之Todo-List案例
+                    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF%E6%A8%A1%E5%BC%8F/">
+                        JS高级（八）：继承模式
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        组件化编码流程
-拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突
-实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件再用
-一个组件在用：放在组件自身即可
-一些组件在用：放在他们共同的父组件上**(状态提升)**
+                        原型链继承
+套路：
+定义父类型构造函数
+给父类型的原型添加方法
+定义子类型的构造函数
+创建父类型的对象赋值给子类型的原型
+将子类型原型的构造属性设置为子类型
+给子类型原型添加方法
+创建子类型的对象：可以调用父类型的方法
 
 
-实...
+关键：
+子类型的原型为父类...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 08 2022 10:21:58 GMT+0800">2022-04-08</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 19 2022 14:45:36 GMT+0800">2022-04-19</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
                         </li>
                     
                     
@@ -679,17 +726,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%A1%88%E4%BE%8B/">案例</a>&nbsp;
+                            <a href="/tags/%E7%BB%A7%E6%89%BF/">继承</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -697,7 +734,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF%E6%A8%A1%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -707,31 +744,39 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">
-                        Vue（十七）：Vue脚手架之ref、props、mixin、plugin、scoped
+                    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/">
+                        JS高级（七）：内存溢出与内存泄露
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        ref属性ref被用来给元素或子组件注册引用信息（id的替代者）
+                        内存溢出
+一种程序运行出现的错误
+当程序运行需要的内存超过了剩余的内存时，就抛出内存溢出的错误
 
-应用在html标签上获取的是真实DOM元素，应用在组件标签上获取的是组件实例对象vc
-使用方式
-打标识：&lt;h1 ref=&quot;xxx&quot;&gt;&lt;/h1&g...
+内存泄漏
+占用的内存没有及时释放，不会报错
+
+内存泄漏积累多了就容易导致内存溢出
+
+常见的内存泄漏：
+
+意外的全局变量
+12345function fn...
                     
                 </div>
 
                 <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 20:31:51 GMT+0800">2022-04-07</span></span>
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Apr 19 2022 10:11:07 GMT+0800">2022-04-19</span></span>
         
             <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
                 <ul>
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
                         </li>
                     
                     
@@ -745,27 +790,12 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="/tags/%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">内存溢出</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/ref/">ref</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/props/">props</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/mixin/">mixin</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/plugin/">plugin</a>&nbsp;
+                            <a href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -773,73 +803,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/">
-                        Vue（十六）：Vue脚手架之初始化
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        说明
-Vue CLI (Command Line Interface)
-
-
-Vue脚手架是Vue官方提供的标准化开发工具（开发平台）
-最新的版本是 4.x
-文档 Vue CLI
-
-具体步骤
-如果下载缓慢请配置npm淘宝镜像：npm config se...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 15:30:14 GMT+0800">2022-04-07</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%84%9A%E6%89%8B%E6%9E%B6/">脚手架</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%88%9D%E5%A7%8B%E5%8C%96/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2022/04/19/JS%E9%AB%98%E7%BA%A7%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

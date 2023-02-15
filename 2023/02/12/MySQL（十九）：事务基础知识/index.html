@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            MySQL（十九）：事务基础知识 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MySQL（十九）：事务基础知识</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-12 10:52:00</span>
+        <span class="mobile">2023-02-12 10:52</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E4%BA%8B%E5%8A%A1/">事务</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="数据库事务概述"><a href="#数据库事务概述" class="headerlink" title="数据库事务概述"></a>数据库事务概述</h1><ul>
+<li>事务是数据库区别于文件系统的重要特征之一，有了事务就会让数据库始终保持<strong>一致性</strong>，同时还能通过事务的机制<strong>恢复到某个时间点</strong>，这样可以保证已提交到数据库的修改不会因为系统崩溃而丢失。</li>
+<li>在MySQL中，只有InnoDB是支持事务的</li>
+</ul>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>事务：一组逻辑操作单元，使数据从一种状态变换到另一种状态</p>
+<p>事务处理的原则：保证所有事务都作为一个工作单元来执行，即使出现了故障，都不能改变这种执行方式。当在一个事务中执行多个操作时，要么所有事务都被提交（commit），那么这些修改就永久地保存下来；要么数据库管理系统将放弃所作的所有修改，整个事务回滚（rollback)到最初状态。</p>
+<h2 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h2><h3 id="原子性（atomicity）："><a href="#原子性（atomicity）：" class="headerlink" title="原子性（atomicity）："></a>原子性（atomicity）：</h3><p>原子性是指事务是一个不可分割的工作单位，要么全部提交，要么全部失败回滚。</p>
+<h3 id="一致性（consistency）："><a href="#一致性（consistency）：" class="headerlink" title="一致性（consistency）："></a>一致性（consistency）：</h3><p>一致性是指事物执行前后，数据从一个<strong>合法性状态</strong>变换到另一个<strong>合法性状态</strong>。这种状态是语义上的，而不是语义上的，跟具体的业务有关。</p>
+<ul>
+<li>合法的数据状态：满足预定的约束的状态就叫做合法的状态。这种状态是由自己来定义的（比如满足现实世界中的约束）。满足这个状态，数据就是一致的，不满足这个状态，数据就是不一致的。</li>
+<li>数据不一致举例：<ul>
+<li>A账户有200元，转账300元出去，此时A账户余额-100元。此时数据不一致，因为你定义了一个状态：余额这列必须&gt;&#x3D;0。</li>
+<li>A账户200元，转账50元给B账户，A账户的钱扣了，但B账户因为各种意外，余额并没有增加。此时数据不一致，因为你定义了一个状态：A+B的总余额必须不变。</li>
+<li>在数据表中我们将姓名字段唯一性约束，这时当事务进行提交或者事务发生回滚的适合，如果数据表中姓名不唯一，就破坏了事务的一致性要求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="隔离性（isolation）："><a href="#隔离性（isolation）：" class="headerlink" title="隔离性（isolation）："></a>隔离性（isolation）：</h3><p>隔离性是指一个事务的执行<strong>不能被其它事务干扰</strong>，即一个事务内部的操作及使用的数据对<strong>并发</strong>的其它事务是隔离的，并发执行的各个事务之间不能相互干扰。</p>
+<h3 id="持久性（durability）："><a href="#持久性（durability）：" class="headerlink" title="持久性（durability）："></a>持久性（durability）：</h3><p>持久性是指一个事务一旦被提交，它对数据库中数据的改变是<strong>永久性的</strong>，接下来的其它操作和<strong>数据故障</strong>不应该对其有任何影响。</p>
+<p>【即内存—&gt;磁盘】</p>
+<p>持久性是通过<strong>事务日志</strong>来保证的。</p>
+<blockquote>
+<p>总结</p>
+<p>ACID是事务的四大特性，原子性是基础、隔离性是手段、一致性是约束条件、持久性是目的。</p>
+</blockquote>
+<h2 id="事务的状态"><a href="#事务的状态" class="headerlink" title="事务的状态"></a>事务的状态</h2><h3 id="活动的（active）"><a href="#活动的（active）" class="headerlink" title="活动的（active）"></a>活动的（active）</h3><p>事务对于的数据库操作正在执行过程中时</p>
+<h3 id="部分提交的（partially-committed）"><a href="#部分提交的（partially-committed）" class="headerlink" title="部分提交的（partially committed）"></a>部分提交的（partially committed）</h3><p>当事务的最后一个操作执行完成，但由于操作都在内存中执行，所造成的影响并没有刷新到磁盘中时</p>
+<h3 id="失败的（failed）"><a href="#失败的（failed）" class="headerlink" title="失败的（failed）"></a>失败的（failed）</h3><p>当事务处在活动的或者部分提交的状态时，可能遇到了某些错误（数据库自身的错误、操作系统错误或者直接断电等）而无法继续执行，或者人为的停止当前事务的执行。就说该事务处在失败的状态。</p>
+<h3 id="中止的（aborted）"><a href="#中止的（aborted）" class="headerlink" title="中止的（aborted）"></a>中止的（aborted）</h3><p>如果事务执行了一部分而变为失败的状态，那么就需要把已经修改的事务中的操作还原到事务执行前的状态（回滚）。当回滚操作执行完毕时，也就是数据库恢复到了执行事务之前的状态，就说该事务处在了中止的状态。</p>
+<h3 id="提交的（committed）"><a href="#提交的（committed）" class="headerlink" title="提交的（committed）"></a>提交的（committed）</h3><p>当一个处在部分提交的状态的事务将修改过的数据都同步到磁盘上之后</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.dcir0j807c8.webp"
+                     
+                ></p>
+<h1 id="使用事务"><a href="#使用事务" class="headerlink" title="使用事务"></a>使用事务</h1><h2 id="显式事务"><a href="#显式事务" class="headerlink" title="显式事务"></a>显式事务</h2><p>如何开启？使用关键字：START TRANSACTION 或 BEGIN</p>
+<p>START TRANSACTION 后面可以跟：READ ONLY &#x2F; READ WRITE(默认) &#x2F; WITH CONSISTENT SNAPSHOT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BEGIN;</span><br><span class="line">INSERT INTO user3 VALUE(&#x27;张三&#x27;);</span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">BEGIN;</span><br><span class="line">INSERT INTO user3 VALUE(&#x27;李四&#x27;);</span><br><span class="line">INSERT INTO user3 VALUE(&#x27;李四&#x27;); # 受主键影响，不能添加成功</span><br><span class="line">ROLLBACK;  # 回滚后表中只有张三</span><br><span class="line"></span><br><span class="line">TRUNCATE TABLE user3; #DDL操作回自动提交数据，不受autocommit变量的影响。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="隐式事务"><a href="#隐式事务" class="headerlink" title="隐式事务"></a>隐式事务</h2><p>关键字：autocommit</p>
+<p><code>SHOW VARIABLES LIKE &#39;autocommit&#39;；</code> 默认是ON，此时每一条DML操作都是一个独立的事务。</p>
+<p>关闭自动提交：</p>
+<ul>
+<li>方式1：<code>SET autocommit  = FALSE;</code>针对于DML操作有效，对DDL操作无效。</li>
+<li>方式2：在autocommit为true的情况下，使用START TRANSACTION 或 BEGIN开启事务，那么DML操作及不会自动提交数据。</li>
+</ul>
+<h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><h2 id="数据并发问题"><a href="#数据并发问题" class="headerlink" title="数据并发问题"></a>数据并发问题</h2><h3 id="脏写（Dirty-Write）"><a href="#脏写（Dirty-Write）" class="headerlink" title="脏写（Dirty Write）"></a>脏写（Dirty Write）</h3><p>对于两个事务Session A、Session B，如果事务Session A修改了另一个未提交事务Session B修改过的数据，那就意味着发生了脏写。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.3bvoz6bvdl40.webp"
+                     
+                ></p>
+<h3 id="脏读（Dirty-Read）"><a href="#脏读（Dirty-Read）" class="headerlink" title="脏读（Dirty Read）"></a>脏读（Dirty Read）</h3><p>对于两个事务Session A、Session B，Session A读取了已经被Session B 更新但还没有被提交的字段。之后若Session B 回滚，Session A读取的内容就是临时且无效的。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.3asb3fp4f8k0.webp"
+                     
+                ></p>
+<h3 id="不可重复读（Non-Repeatable-Read"><a href="#不可重复读（Non-Repeatable-Read" class="headerlink" title="不可重复读（Non-Repeatable Read)"></a>不可重复读（Non-Repeatable Read)</h3><p>对于两个事务Session A、Session B，Session A读取了一个字段，然后Session B更新了该字段。之后Session A再次读取同一个字段，值就不同了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.2126qbyc7m00.webp"
+                     
+                ></p>
+<h3 id="幻读（Phantom）"><a href="#幻读（Phantom）" class="headerlink" title="幻读（Phantom）"></a>幻读（Phantom）</h3><p>对于两个事务Session A、Session B，Session A从一个表中读取了一个字段，然后Session B在该表中插入了一些新的行。之后，如果Session A再次读取同一个表，就会多出几行。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.4mwhj40gta80.webp"
+                     
+                ></p>
+<h2 id="SQL中的四种隔离级别"><a href="#SQL中的四种隔离级别" class="headerlink" title="SQL中的四种隔离级别"></a>SQL中的四种隔离级别</h2><p>上述问题有轻重缓急之分：脏写 &gt; 脏读 &gt; 不可重复度 &gt; 幻读</p>
+<p>我们愿意舍弃一部分隔离性来换取一部分性能，体现在：设立一些隔离级别，隔离级别越低，并发问题发生的就越多。</p>
+<p>SQL标准中设立了4个隔离级别：</p>
+<ul>
+<li><code>READ UNCOMMITTED</code>：读未提交</li>
+<li><code>READ COMMITTED</code>：读已提交</li>
+<li><code>REPEATABLE READ</code>：可重复读（MySQL默认级别）</li>
+<li><code>SERIALIZABLE</code>：可串行化</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.27rf98kpf2sk.webp"
+                     
+                ></p>
+<p>脏写的问题太严重，不论是那种隔离级别，都不允许脏写的情况发生。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.6bx4c36c0w00.webp"
+                     
+                ></p>
+<h2 id="MySQL支持的4种隔离级别"><a href="#MySQL支持的4种隔离级别" class="headerlink" title="MySQL支持的4种隔离级别"></a>MySQL支持的4种隔离级别</h2><p><code>SHOW VARIABLES LIKE &#39;transaction_isolation&#39;</code>  —-&gt; REPEATABLE READ。 MySQL默认隔离级别为可重复读 </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.6aowrhngmdg0.webp"
+                     
+                ></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：MySQL（十九）：事务基础知识</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-12 10:52:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/12/MySQL（十九）：事务基础知识/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%BA%8B%E5%8A%A1/">#事务</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/02/12/MySQL%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AMySQL%E4%BA%8B%E5%8A%A1%E6%97%A5%E5%BF%97/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（二十）：MySQL事务日志</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/11/MySQL%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（十七）：索引的创建与设计原则</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">数据库事务概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84ACID%E7%89%B9%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">事务的ACID特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%88atomicity%EF%BC%89%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">原子性（atomicity）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88consistency%EF%BC%89%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">一致性（consistency）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7%EF%BC%88isolation%EF%BC%89%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">隔离性（isolation）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7%EF%BC%88durability%EF%BC%89%EF%BC%9A"><span class="nav-number">1.2.4.</span> <span class="nav-text">持久性（durability）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">事务的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%BB%E5%8A%A8%E7%9A%84%EF%BC%88active%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">活动的（active）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E6%8F%90%E4%BA%A4%E7%9A%84%EF%BC%88partially-committed%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">部分提交的（partially committed）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%E7%9A%84%EF%BC%88failed%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">失败的（failed）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%AD%A2%E7%9A%84%EF%BC%88aborted%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">中止的（aborted）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E7%9A%84%EF%BC%88committed%EF%BC%89"><span class="nav-number">1.3.5.</span> <span class="nav-text">提交的（committed）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">使用事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.1.</span> <span class="nav-text">显式事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">隐式事务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">事务的隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">数据并发问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%8F%E5%86%99%EF%BC%88Dirty-Write%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">脏写（Dirty Write）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%8F%E8%AF%BB%EF%BC%88Dirty-Read%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">脏读（Dirty Read）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%EF%BC%88Non-Repeatable-Read"><span class="nav-number">3.1.3.</span> <span class="nav-text">不可重复读（Non-Repeatable Read)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BB%E8%AF%BB%EF%BC%88Phantom%EF%BC%89"><span class="nav-number">3.1.4.</span> <span class="nav-text">幻读（Phantom）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">3.2.</span> <span class="nav-text">SQL中的四种隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E6%94%AF%E6%8C%81%E7%9A%844%E7%A7%8D%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">3.3.</span> <span class="nav-text">MySQL支持的4种隔离级别</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            MySQL（七）：约束 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MySQL（七）：约束</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-09 19:09:00</span>
+        <span class="mobile">2023-02-09 19:09</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BA%A6%E6%9D%9F/">约束</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="数据完整性与约束的分类"><a href="#数据完整性与约束的分类" class="headerlink" title="数据完整性与约束的分类"></a>数据完整性与约束的分类</h1><ul>
+<li><p>为什么需要约束？</p>
+<p>为了保证数据的完整性</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.1a0yvioekmio.webp"
+                     
+                ></p>
+<ul>
+<li><p>约束：对表中字段的限制</p>
+</li>
+<li><p>约束的分类：</p>
+<ul>
+<li>角度一：约束字段的个数<ul>
+<li>单列约束 vs 多列约束</li>
+</ul>
+</li>
+<li>角度二：约束的作用范围<ul>
+<li>列级约束：将此约束声明在对应字段的后面</li>
+<li>表级约束：在表中所有字段都声明完，在所有字段的后面声明的约束</li>
+</ul>
+</li>
+<li>角度三：约束的作用（功能）<ul>
+<li>not null (非空约束)</li>
+<li>unique （唯一性约束）</li>
+<li>primary key (主键约束)</li>
+<li>foreign key (外键约束)</li>
+<li>check （检查约束）</li>
+<li>defualt (默认值约束)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何添加&#x2F;删除约束？</p>
+<ul>
+<li>CREATE TABLE</li>
+<li>ALTER TABLE</li>
+</ul>
+</li>
+<li><p>如何查看表中的约束？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM information_schema,table_constraints</span><br><span class="line">WHERE table_name = &#x27;employees&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="非空约束（not-null）"><a href="#非空约束（not-null）" class="headerlink" title="非空约束（not null）"></a>非空约束（not null）</h1><ul>
+<li>作用：限定某个字段&#x2F;某列的值不允许为空</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test1(</span><br><span class="line">    id INT NOT NULL,</span><br><span class="line">    last_name VARCHAR(15) NOT NULL,</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ALTER TABLE test1</span><br><span class="line">MODIFY email VARCHAR(25) NOT NULL;</span><br><span class="line"></span><br><span class="line"># 删除</span><br><span class="line">ALTER TABLE test1</span><br><span class="line">MODIFY email VARCHAR(25) NULL;</span><br></pre></td></tr></table></figure>
+
+<h1 id="唯一性约束（unique）"><a href="#唯一性约束（unique）" class="headerlink" title="唯一性约束（unique）"></a>唯一性约束（unique）</h1><ul>
+<li>作用：限制某个字段&#x2F;某列的值不能重复</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test2(</span><br><span class="line">    id INT UNIQUE, #列级约束</span><br><span class="line">    last_name VARCHAR(15) NOT NULL,</span><br><span class="line">    email VARCHAR(25) UNIQUE,</span><br><span class="line">    salary DECIMAL(10,2),</span><br><span class="line">    #表级约束</span><br><span class="line">    CONSTRAINT uk_test2_email UNIQUE(email)</span><br><span class="line">);</span><br><span class="line">#复合的唯一性约束（组合列）</span><br><span class="line">CREATE TABLE USER(</span><br><span class="line">    id INT,</span><br><span class="line">    name VARCHAR(15),</span><br><span class="line">    password VARCHAR(25),</span><br><span class="line">    </span><br><span class="line">    CONSTRAINT uk_user_name_pwd UNIQUE(name,password)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ALTER TABLE test2</span><br><span class="line">ADD CONSTRAINT uk_test2_sal UNIQUE(salary);</span><br><span class="line"></span><br><span class="line">ALTER TABLE test2</span><br><span class="line">MODIFY last_name VARCHAR(25) UNIQUE;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除唯一性约束<ul>
+<li>添加唯一性约束上的列也会自动创建唯一索引</li>
+<li>删除唯一约束只能通过删除唯一索引的方式删除</li>
+<li>删除时需要指定唯一索引名，唯一索引名就和唯一约束名一样</li>
+<li>如果创建唯一约束时未指定名称，如果是单列，就默认和列名相同；如果是组合列，那么默认和（）中排在第一个的列名相同。也可以自定义唯一性约束名。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE test2</span><br><span class="line">DROP INDEX last_name;</span><br></pre></td></tr></table></figure>
+
+<h1 id="主键约束（primary-key）"><a href="#主键约束（primary-key）" class="headerlink" title="主键约束（primary key）"></a>主键约束（primary key）</h1><ul>
+<li>作用：用来唯一标识表中的一行记录</li>
+<li>特点：主键约束相当于“唯一约束+非空约束的组合”，不允许重复、也不允许出现空置。</li>
+<li>一个表中最多只能有一个主键约束</li>
+<li>MySQL的主键名总是 PRIMARY </li>
+<li>当创建主键约束时，系统默认会在所在的列或列组合上建立对应的主键索引（能够根据主键查询的，就根据主键查询，效率更高）。如果删除主键约束了，主键约束对应的索引就自动删除了。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test3(</span><br><span class="line">    id INT PRIMARY KEY,</span><br><span class="line">    last_name VARCHAR(15),</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE test3(</span><br><span class="line">    id INT,</span><br><span class="line">    last_name VARCHAR(15),</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2),</span><br><span class="line">    CONSTRAINT pk_test3_id  PRIMARY KEY(id) #没有必要起名字</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">#复合的主键约束（组合列）</span><br><span class="line">CREATE TABLE USER(</span><br><span class="line">    id INT,</span><br><span class="line">    name VARCHAR(15),</span><br><span class="line">    password VARCHAR(25),</span><br><span class="line">    </span><br><span class="line">    PRIMARY KEY (name,password)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ALTER TABLE test6</span><br><span class="line">ADD PRIMARY KEY(id);</span><br><span class="line"></span><br><span class="line"># 删除主键约束（实际开发中，不会去删除主键约束）</span><br><span class="line">ALTER TABLE test2</span><br><span class="line">DROP PRIMARY KEY;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自增长列：AUTO-INCREMENT"><a href="#自增长列：AUTO-INCREMENT" class="headerlink" title="自增长列：AUTO_INCREMENT"></a>自增长列：AUTO_INCREMENT</h2><ul>
+<li>作用：某个字段的值自增</li>
+<li>一个表最多只能由一个自增列</li>
+<li>自增长列约束的列必须是键列（主键列，唯一链）</li>
+<li>自增约束的列数据类型必须时整数类型</li>
+<li>当向主键（含AUTO_INCREMENT）的字段上添加0或null，实际上会自动的往上添加</li>
+<li>开发中，一旦主键字段上声明有AUTO_INCREMENT，则添加数据时就不要给主键赋值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test3(</span><br><span class="line">    id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">    last_name VARCHAR(15),</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ALTER TABLE test3</span><br><span class="line">MODIFY id INT AUTO_INCREMENT;</span><br><span class="line"></span><br><span class="line">ALTER TABLE test3</span><br><span class="line">MODIFY id INT;</span><br></pre></td></tr></table></figure>
+
+<h1 id="外键（foreign-key）约束"><a href="#外键（foreign-key）约束" class="headerlink" title="外键（foreign key）约束"></a>外键（foreign key）约束</h1><ul>
+<li>作用：限定某个表的某个字段的引用完整性</li>
+<li>特点：<ul>
+<li>一个表中可以有多个外键约束</li>
+<li>从表（子表）的外键列，必须引用&#x2F;参考主表（父表）的主键或唯一约束的列。</li>
+<li>在创建外键约束时，如果不给外键约束命名，默认名不是列明，而是自动产生一个外键名，也可以自定义名。</li>
+<li>创建表时，先创建主表再创建从表</li>
+<li>删除表时，先删从表再删主表</li>
+<li>当创建外键约束时，系统默认会在所在的列上建立对应的普通索引。</li>
+<li>删除外键约束后，必须手动删除对应的索引。</li>
+<li>外键约束有成本，需要消耗系统资源，对于大并发的SQL不合适，可能会因为外键约束的系统开销而变得非常慢。（实际开发中，建议在应用层面解决外键概念）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE dept1(</span><br><span class="line">	dept_id INT PRIMARY KEY,</span><br><span class="line">    dept_name VARCHAR(15)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE empl(</span><br><span class="line">    emp_id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">    emp_name VACHAR(15),</span><br><span class="line">    department_id INT,</span><br><span class="line">    </span><br><span class="line">    CONSTRAINT fk_emp1_dept_id FOREIGN KEY(department_id) REFERENCES dept1 (dept_id) ON UPDATE CASCADE ON DELETE SET NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ALTER TABLE emp2</span><br><span class="line">ADD ONSTRAINT fk_emp2_dept_id FOREIGN KEY(department_id) REFERENCES dept1 (dept_id)</span><br><span class="line"></span><br><span class="line"># 删除外键约束</span><br><span class="line">ALTER TABLE emp1</span><br><span class="line">DROP FOREIGN KEY fk_emp1_dept_id;</span><br><span class="line"># 再手动的删除外键约束对应的普通索引</span><br><span class="line">SHOW INDEX FROM emp1;</span><br><span class="line">ALTER TABLE emp1</span><br><span class="line">DROP INDEX fk_emp1_dept_id;</span><br></pre></td></tr></table></figure>
+
+<h2 id="约束等级"><a href="#约束等级" class="headerlink" title="约束等级"></a>约束等级</h2><ul>
+<li>Cascade方式：在父表上update&#x2F;delete记录时，同步update&#x2F;delete掉子表的匹配记录</li>
+<li>Set null方式：在父表上update&#x2F;delete记录时，将子表的匹配记录的列设为null，但是要注意子表的外键列不能未not null</li>
+<li>No action方式：如果子表中有匹配的记录，则不允许对附表对应候选键进行update&#x2F;delete操作</li>
+<li>Restrict方式：同 No action</li>
+<li>Set default方式：父表有变更时，子表将外键列设置成一个默认的值，但Innodb不能识别</li>
+</ul>
+<p>对于外键约束，最好采用<code>ON UPDATE CASCADE ON DELETE SET NULL</code></p>
+<h1 id="检查约束（check）"><a href="#检查约束（check）" class="headerlink" title="检查约束（check）"></a>检查约束（check）</h1><ul>
+<li>作用：检查某个字段的值是否符合xx要求，一般值的是值的范围</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test3(</span><br><span class="line">    id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">    last_name VARCHAR(15),</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2) CHECK(salary &gt; 2000)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="默认值约束（defualt"><a href="#默认值约束（defualt" class="headerlink" title="默认值约束（defualt)"></a>默认值约束（defualt)</h1><ul>
+<li>作用：给某个字段指定默认值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test3(</span><br><span class="line">    id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">    last_name VARCHAR(15),</span><br><span class="line">    email VARCHAR(25),</span><br><span class="line">    salary DECIMAL(10,2) DEFAULT 2000</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ALTER TABLE test3</span><br><span class="line">MODIFY salary DECIMAL(10,2) DEFAULT 2500;</span><br><span class="line"></span><br><span class="line">ALTER TABLE test3</span><br><span class="line">MODIFY salary DECIMAL(10,2);</span><br></pre></td></tr></table></figure>
+
+<p>面试题：</p>
+<ul>
+<li>为什么不想要null值？<ul>
+<li>不好比较。null碰到运算符通常返回null</li>
+<li>效率不高。影响提高索引效果，因此建表时通常not null default ‘’ 或 default 0</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：MySQL（七）：约束</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-09 19:09:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/09/MySQL（七）：约束/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%BA%A6%E6%9D%9F/">#约束</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/02/09/MySQL%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E8%A7%86%E5%9B%BE/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（八）：视图</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/09/MySQL%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86%E8%A1%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（六）：创建和管理表</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E4%B8%8E%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">数据完整性与约束的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F%EF%BC%88not-null%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">非空约束（not null）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E7%BA%A6%E6%9D%9F%EF%BC%88unique%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">唯一性约束（unique）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9F%EF%BC%88primary-key%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">主键约束（primary key）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%A2%9E%E9%95%BF%E5%88%97%EF%BC%9AAUTO-INCREMENT"><span class="nav-number">4.1.</span> <span class="nav-text">自增长列：AUTO_INCREMENT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%96%E9%94%AE%EF%BC%88foreign-key%EF%BC%89%E7%BA%A6%E6%9D%9F"><span class="nav-number">5.</span> <span class="nav-text">外键（foreign key）约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E7%AD%89%E7%BA%A7"><span class="nav-number">5.1.</span> <span class="nav-text">约束等级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%BA%A6%E6%9D%9F%EF%BC%88check%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">检查约束（check）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC%E7%BA%A6%E6%9D%9F%EF%BC%88defualt"><span class="nav-number">7.</span> <span class="nav-text">默认值约束（defualt)</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

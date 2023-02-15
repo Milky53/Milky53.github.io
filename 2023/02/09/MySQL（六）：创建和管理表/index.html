@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            MySQL（六）：创建和管理表 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MySQL（六）：创建和管理表</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-09 10:01:00</span>
+        <span class="mobile">2023-02-09 10:01</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86%E8%A1%A8%E3%80%81%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">创建和管理表、数据处理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>856 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 方式1</span><br><span class="line">CREATE DATABASE mytest1;</span><br><span class="line"></span><br><span class="line"># 方式2</span><br><span class="line">CREATE DATABASE mytest2 CHARACTER SET &#x27;gbk&#x27;;</span><br><span class="line"></span><br><span class="line"># 方式3</span><br><span class="line">CREATE DATABASE IF NOT EXISTS mytest2 CHARACTER SET &#x27;utf8&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="管理数据库"><a href="#管理数据库" class="headerlink" title="管理数据库"></a>管理数据库</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前连接中的数据库有哪些</span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line"># 切换数据库</span><br><span class="line">USE mytest2;</span><br><span class="line"></span><br><span class="line"># 查看当前数据库中保存的数据表</span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line"># 查看当前时使用的数据库</span><br><span class="line">SELECT DATABASE() FROM DUAL;</span><br><span class="line"></span><br><span class="line"># 查看指定数据库下保存的数据表</span><br><span class="line">SHOW TABLES FROM mysql;</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE mytest CHARACTER SET &#x27;utf8&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 方式1：</span><br><span class="line">DROP DATABASE mytest1;</span><br><span class="line"></span><br><span class="line"># 方式2：推荐。</span><br><span class="line">DROP DATABASE IF EXISTS mytest1;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">USE atguigudb;</span><br><span class="line">SHOW CREATE DATABASE atguigudb;</span><br><span class="line"># 方式1</span><br><span class="line">CREATE TABLE IF NOT EXISTS myempl( </span><br><span class="line">    id INT,</span><br><span class="line">    emp_name VARCHAR(15),</span><br><span class="line">    hire_date DATE</span><br><span class="line">);</span><br><span class="line"># 查看表结构</span><br><span class="line">DESC myempl;</span><br><span class="line"></span><br><span class="line"># 方式2：基于现有的表,同时导入数据</span><br><span class="line">CREATE TABLE myemp2</span><br><span class="line">AS </span><br><span class="line">SELECT employee_id,last_name,salary</span><br><span class="line">FROM employees;</span><br><span class="line"># 不导入数据</span><br><span class="line">CREATE TABLE myemp2</span><br><span class="line">AS </span><br><span class="line">SELECT employee_id,last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE 1=2;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL中的数据类型"><a href="#MySQL中的数据类型" class="headerlink" title="MySQL中的数据类型"></a>MySQL中的数据类型</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.6hhsfxsqf140.webp"
+                     
+                ></p>
+<h1 id="管理表"><a href="#管理表" class="headerlink" title="管理表"></a>管理表</h1><h2 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 添加一个字段</span><br><span class="line">ALTER TABEL myempl</span><br><span class="line">ADD salary DOUBLE(10,2);</span><br><span class="line"></span><br><span class="line">ALTER TABEL myempl</span><br><span class="line">ADD salary DOUBLE(10,2) FIRST;</span><br><span class="line"></span><br><span class="line">ALTER TABEL myempl</span><br><span class="line">ADD salary DOUBLE(10,2) AFTER emp_name;</span><br><span class="line"></span><br><span class="line">#修改一个字段：数据类型、长度、默认值（略）</span><br><span class="line">ALTER TABLE myempl</span><br><span class="line">MODIFY emp_name VARCHAR(25);</span><br><span class="line"></span><br><span class="line">ALTER TABLE myempl</span><br><span class="line">MODIFY emp_name VARCHAR(25) DEFAULT &#x27;aaa&#x27;;</span><br><span class="line"></span><br><span class="line"># 重命名一个字段</span><br><span class="line">ALTER TABLE myempl</span><br><span class="line">CHANGE salary monthly_salary DOUBLE(10,2);</span><br><span class="line"></span><br><span class="line"># 删除一个字段</span><br><span class="line">ALTER TABLE myempl</span><br><span class="line">DROP COLUMN email;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RENAME TABLE myemp1</span><br><span class="line">TO myemp11;</span><br><span class="line"></span><br><span class="line">ALTER TABLE myemp1</span><br><span class="line">RENAME TO myemp11;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS myemp1;</span><br></pre></td></tr></table></figure>
+
+<h2 id="清空表"><a href="#清空表" class="headerlink" title="清空表"></a>清空表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE employees;</span><br></pre></td></tr></table></figure>
+
+<h1 id="DCL中的COMMIT和ROLLBACK"><a href="#DCL中的COMMIT和ROLLBACK" class="headerlink" title="DCL中的COMMIT和ROLLBACK"></a>DCL中的COMMIT和ROLLBACK</h1><ul>
+<li>COMMIT：提交数据。一旦执行COMMIT，则数据就被永久保存在了数据库中，意味着数据不可以回滚。</li>
+<li>ROLLBACK：回滚数据。一旦执行ROLLBACK，则可以实现数据的回滚，回滚到最近的一次COMMIT之后。</li>
+</ul>
+<h1 id="对比TRUNCATE-TABLE和-DELETE-FROM"><a href="#对比TRUNCATE-TABLE和-DELETE-FROM" class="headerlink" title="对比TRUNCATE TABLE和 DELETE FROM"></a>对比TRUNCATE TABLE和 DELETE FROM</h1><ul>
+<li>相同点：都可以实现对表中所有数据的删除，同时保留表结构。</li>
+<li>不同点：<ul>
+<li>TRUNCATE TABLE：一旦执行此操作，表数据全部清除，同时数据时不可以回滚的。</li>
+<li>DELETE FROM：一旦执行此操作，表数据可以全部清除（不带WHERE），同时，数据是可以实现回滚的。</li>
+</ul>
+</li>
+<li>面试题：如何选择TRUNCATE TABLE和 DELETE FROM？<ul>
+<li>TRUNCATE TABLE 比 DELETE FROM速度块，且使用的系统和事物日志资源少。但TRUNCATE 无事物且不触发TRIGGER，有可以能造成事故，故不建议在开发代码中使用此语句</li>
+</ul>
+</li>
+</ul>
+<h2 id="DDL和DML的说明"><a href="#DDL和DML的说明" class="headerlink" title="DDL和DML的说明"></a>DDL和DML的说明</h2><ul>
+<li><p><em>DDL的操作一旦执行，就不可回滚。不受<code>SET autocommit = FALSE</code>影响</em></p>
+</li>
+<li><p><em>DML的操作默认清空，一旦执行，也是不可回滚的；但是如果在执行DML之前，执行了<code>SET autocommit = FALSE</code>,则执行的DML操作就可以实现回滚</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM myemp3;</span><br><span class="line"></span><br><span class="line">SET autocommit = FALSE;</span><br><span class="line"></span><br><span class="line">DELETE FROM myemp3;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM myemp3;</span><br><span class="line"></span><br><span class="line">ROLLBACK;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM myemp3;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="数据处理之增删改"><a href="#数据处理之增删改" class="headerlink" title="数据处理之增删改"></a>数据处理之增删改</h1><ul>
+<li>属于DML</li>
+</ul>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 方式1：一条一条添加</span><br><span class="line">INSERT INTO empl</span><br><span class="line">VALUES(1,&#x27;Tom&#x27;,&#x27;2000-12-21&#x27;,3400);</span><br><span class="line"></span><br><span class="line">INSERT INTO empl(id,hire_date,salary,name) # 推荐</span><br><span class="line">VALUES(1,&#x27;2000-12-21&#x27;,3400,&#x27;Tom&#x27;);</span><br><span class="line"></span><br><span class="line">INSERT INTO empl(id,hire_date,salary,name)</span><br><span class="line">VALUES</span><br><span class="line">(1,&#x27;2000-12-21&#x27;,3400,&#x27;Tom&#x27;),</span><br><span class="line">(2,&#x27;1999-12-02&#x27;,4500,&#x27;Jerry&#x27;);</span><br><span class="line"></span><br><span class="line"># 方式2：将查询结果插入到表中</span><br><span class="line">INSERT INTO empl(id,hire_date,salary,name)</span><br><span class="line">SELECT employee_id,hire_date,salary,last_name</span><br><span class="line">FROM employees</span><br><span class="line">WHERE department_id IN (50,60);</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新（修改）数据"><a href="#更新（修改）数据" class="headerlink" title="更新（修改）数据"></a>更新（修改）数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UPDATE empl</span><br><span class="line">SET hire_date = CURDATE()</span><br><span class="line">WHERE id = 5;</span><br><span class="line"></span><br><span class="line">UPDATE empl</span><br><span class="line">SET hire_date = CURDATE(),salary = 6000</span><br><span class="line">WHERE id = 4;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM empl</span><br><span class="line">WHERE department_id = 50;</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL8新特性：计算列"><a href="#MySQL8新特性：计算列" class="headerlink" title="MySQL8新特性：计算列"></a>MySQL8新特性：计算列</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE test1(</span><br><span class="line">    a INT,</span><br><span class="line">    b INT,</span><br><span class="line">    c INT GENERATED ALWAYS AS (a+b)VIRTUAL  #字段c即为计算列</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">INSERT INTO test1(a,b)</span><br><span class="line">VALUES(10,20);</span><br><span class="line"></span><br><span class="line">UPDATE test1</span><br><span class="line">SET a = 100;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：MySQL（六）：创建和管理表</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-09 10:01:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/09/MySQL（六）：创建和管理表/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86%E8%A1%A8%E3%80%81%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">#创建和管理表、数据处理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/02/09/MySQL%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E7%BA%A6%E6%9D%9F/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（七）：约束</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/08/MySQL%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%AD%90%E6%9F%A5%E8%AF%A2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（五）：子查询</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">管理数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">修改数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">5.</span> <span class="nav-text">创建表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text">MySQL中的数据类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">管理表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="nav-number">6.1.</span> <span class="nav-text">修改表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E8%A1%A8"><span class="nav-number">6.2.</span> <span class="nav-text">重命名表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-number">6.3.</span> <span class="nav-text">删除表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%A9%BA%E8%A1%A8"><span class="nav-number">6.4.</span> <span class="nav-text">清空表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DCL%E4%B8%AD%E7%9A%84COMMIT%E5%92%8CROLLBACK"><span class="nav-number">7.</span> <span class="nav-text">DCL中的COMMIT和ROLLBACK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94TRUNCATE-TABLE%E5%92%8C-DELETE-FROM"><span class="nav-number">8.</span> <span class="nav-text">对比TRUNCATE TABLE和 DELETE FROM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DDL%E5%92%8CDML%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">8.1.</span> <span class="nav-text">DDL和DML的说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B9%8B%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="nav-number">9.</span> <span class="nav-text">数据处理之增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">9.1.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%EF%BC%88%E4%BF%AE%E6%94%B9%EF%BC%89%E6%95%B0%E6%8D%AE"><span class="nav-number">9.2.</span> <span class="nav-text">更新（修改）数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">9.3.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL8%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%88%97"><span class="nav-number">10.</span> <span class="nav-text">MySQL8新特性：计算列</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

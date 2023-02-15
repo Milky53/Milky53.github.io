@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            MySQL（二）：SQL语句基础 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MySQL（二）：SQL语句基础</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-08 10:27:00</span>
+        <span class="mobile">2023-02-08 10:27</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/">SQL语句基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="SQL的分类"><a href="#SQL的分类" class="headerlink" title="SQL的分类"></a>SQL的分类</h1><ul>
+<li>DDL：数据定义语言。（对结构）<ul>
+<li>CREATE、ALTER、DROP、RENAME、TRUNCATE</li>
+<li><em>补充：DDL的操作一旦执行，就不可回滚。</em></li>
+</ul>
+</li>
+<li>DML：数据操作语言。（对数据）<ul>
+<li>增删改查：INSERT、DELETE、UPDATE、SELECT</li>
+<li><em>补充：DML的操作默认清空，一旦执行，也是不可回滚的；但是如果在执行DML之前，执行了<code>SET autocommit = FALSE</code>,则执行的DML操作就可以实现回滚</em></li>
+</ul>
+</li>
+<li>DCL：数据控制语言。<ul>
+<li>COMMIT、ROLLBACK、SAVEPOINT、GRANT、REVOKE</li>
+</ul>
+</li>
+</ul>
+<h1 id="导入现有的数据表、表的数据"><a href="#导入现有的数据表、表的数据" class="headerlink" title="导入现有的数据表、表的数据"></a>导入现有的数据表、表的数据</h1><ul>
+<li><p>方式1：命令行：source 文件的全路径名‘</p>
+<p><code>source d:\atguigudb.sql</code></p>
+</li>
+<li><p>方式2：基于具体的图形化界面的工具可以导入数据</p>
+</li>
+</ul>
+<h1 id="基本的SELECT语句"><a href="#基本的SELECT语句" class="headerlink" title="基本的SELECT语句"></a>基本的SELECT语句</h1><ul>
+<li>格式：<code>SELECT 字段1,字段2,... From 表名</code></li>
+<li><code>*</code>：表中所有的字段（列）</li>
+</ul>
+<h2 id="列的别名"><a href="#列的别名" class="headerlink" title="列的别名"></a>列的别名</h2><ul>
+<li><code>AS</code>：alias别名，可以省略</li>
+<li>格式：<code>SELECT 字段1 别名1,字段2 AS 别名2,字段3 &quot;别名3&quot;... From 表名</code></li>
+</ul>
+<h2 id="去除重复行"><a href="#去除重复行" class="headerlink" title="去除重复行"></a>去除重复行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#未去重</span><br><span class="line">SELECT department_id </span><br><span class="line">FROM employees;</span><br><span class="line">#去重</span><br><span class="line">SELECT DISTINCT department_id </span><br><span class="line">FROM employees;</span><br><span class="line"></span><br><span class="line">#错误的</span><br><span class="line">SELECT salary,DISTINCT department_id </span><br><span class="line">FROM employees;</span><br><span class="line">#仅仅没有报错，但是没有实际意义</span><br><span class="line">SELECT DISTINCT salary, department_id </span><br><span class="line">FROM employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="空值参与运算"><a href="#空值参与运算" class="headerlink" title="空值参与运算"></a>空值参与运算</h2><ul>
+<li>空值：null</li>
+<li>null并不等同于0，’’，’null’</li>
+<li>空值参与运算：结果一定也为空NULL</li>
+</ul>
+<h2 id="着重号"><a href="#着重号" class="headerlink" title="着重号"></a>着重号</h2><ul>
+<li>着重号 &#96;&#96;</li>
+<li>表名和关键词重合时用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `ORDER`</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询常数"><a href="#查询常数" class="headerlink" title="查询常数"></a>查询常数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT &quot;尚硅谷&quot;, employe_id, department_id </span><br><span class="line">FROM employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示表结构"><a href="#显示表结构" class="headerlink" title="显示表结构"></a>显示表结构</h2><p>显示了表中字段的详细信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE employees;</span><br><span class="line">DESC employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="WHERE过滤数据"><a href="#WHERE过滤数据" class="headerlink" title="WHERE过滤数据"></a>WHERE过滤数据</h2><p>声明在FROM结构的后面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM employees</span><br><span class="line">WHERE department_id = 90;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT *FROM employees</span><br><span class="line">WHERE last_name = &#x27;King&#x27;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>SQL在windows下，对于关键字不区分大小写，对于’’包裹的字符串大小写敏感。但MySQL不严谨，都不区分大小写；Oracle严谨。</p>
+</li>
+<li><p>类的别名只能在order by中使用，不但能在where中使用。</p>
+<p>因为先执行from…where……再执行select，此时还没有别名</p>
+</li>
+</ul>
+<h1 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h1><h2 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h2><ul>
+<li><p><code>+ - * / div % mod</code>（&#x2F;和div为除，%和mod为取模）</p>
+</li>
+<li><p>&#96;&#96;&#96;mysql<br>#在sql中，+没有连接作用，就表示加法运算。<br>SELECT 100 + ‘1’<br>FROM DUAL; #101</p>
+<p>SELECT 100 + ‘a’ #此时将a看作0处理<br>FROM DUAL; </p>
+<p>SELECT 100 + NULL #null值参与运算，结果位null<br>FROM DUAL;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 比较运算符</span><br><span class="line"></span><br><span class="line">1.  `= &lt;=&gt; &lt;&gt; != &lt; &lt;= &gt; &gt;=`</span><br><span class="line"></span><br><span class="line">   - `&lt;=&gt;`：安全等于，可以对NULL进行判断</span><br><span class="line"></span><br><span class="line">     在两个操作数均为NULL时，返回1，而不为NULL；当一个操作数为NULL时，返回0，而不为NULL。</span><br><span class="line"></span><br><span class="line">     ```mysql</span><br><span class="line">     #查询不出</span><br><span class="line">     SELECT last_name,salary</span><br><span class="line">     FROM employees</span><br><span class="line">     WHERE commission_pct = NULL;</span><br><span class="line">     #查询得出</span><br><span class="line">     SELECT last_name,salary</span><br><span class="line">     FROM employees</span><br><span class="line">     WHERE commission_pct &lt;=&gt; NULL;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;&gt; !=</code>：不等于</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.70r9sl3cihs0.webp"
+                     
+                ></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE commission_pct IS NULL;</span><br><span class="line"></span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE commission_pct IS NOT NULL;</span><br><span class="line"></span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE ISNULL(commission_pct);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT LEAST(&#x27;g&#x27;,&#x27;b&#x27;,&#x27;t&#x27;,&#x27;m&#x27;),GREATEST(&#x27;g&#x27;,&#x27;b&#x27;,&#x27;t&#x27;,&#x27;m&#x27;)</span><br><span class="line">FROM DUAL;</span><br><span class="line"></span><br><span class="line">SELECT LEAST(first_name,last_name)</span><br><span class="line">FROM employees;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># BETWEEN 条件1 AND 条件2 (包含边界)</span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE salary BETWEEN 6000 AND 8000;</span><br><span class="line"></span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE salary NOT BETWEEN 6000 AND 8000;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE department_id IN (10,20,30);</span><br><span class="line"></span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE department_id NOT IN (10,20,30);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#LIKE:模糊查询</span><br><span class="line"># % :代表不确定个数的字符</span><br><span class="line">SELECT last_name</span><br><span class="line">FROM employees</span><br><span class="line">WHERE last_name LIKE &#x27;%a%&#x27;;</span><br><span class="line"></span><br><span class="line">SELECT last_name</span><br><span class="line">FROM employees</span><br><span class="line">WHERE last_name LIKE &#x27;%a%e%&#x27; OR last_name LIKE &#x27;%e%a%&#x27;;</span><br><span class="line"></span><br><span class="line"># _ :代表一个不确定的字符</span><br><span class="line"># 查询第二个字符是a的</span><br><span class="line">SELECT last_name</span><br><span class="line">FROM employees</span><br><span class="line">WHERE last_name LIKE &#x27;_a%&#x27;;</span><br><span class="line"># 查询第二个字符是_且第三个字符是a的</span><br><span class="line"># 转义字符</span><br><span class="line">SELECT last_name</span><br><span class="line">FROM employees</span><br><span class="line">WHERE last_name LIKE &#x27;_\_a%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.65im6lh63bc0.webp"
+                     
+                ></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT &#x27;shstart&#x27; REGEXP &#x27;^shk&#x27;,&#x27;shstart&#x27; REGEXP &#x27;t$&#x27;,&#x27;shstart&#x27; REGEXP &#x27;hk&#x27;</span><br><span class="line">FROM DUAL;</span><br><span class="line"></span><br><span class="line">SELECT &#x27;atguigu&#x27; REGEXP &#x27;gu.gu&#x27;,&#x27;atguigu&#x27; REGEXP &#x27;[ab]&#x27;</span><br><span class="line">FROM DUAL;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.1348yatxlpwg.webp"
+                     
+                ></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># XOR: 追求&quot;异&quot;</span><br><span class="line">SELECT last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">WHERE department_id = 50 XOR salary &gt; 6000;</span><br></pre></td></tr></table></figure>
+
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.1mtz6hp7a9og.webp"
+                     
+                ></p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><ul>
+<li>如果没有使用排序操作，默认情况下查询返回的数据是按照添加数据的顺序显示</li>
+<li>升序：ASC（ascend）</li>
+<li>降序：DESC(descend)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">SELECT employee_id,last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">ORDER BY salary;  #默认升序排列</span><br><span class="line"></span><br><span class="line">SELECT employee_id,last_name,salary</span><br><span class="line">FROM employees</span><br><span class="line">ORDER BY salary DESC;</span><br><span class="line"></span><br><span class="line">#使用类的别名进行排序</span><br><span class="line">SELECT employee_id,salary,salary * 12 aunnual_sal</span><br><span class="line">FROM employees</span><br><span class="line">ORDER BY aunnual_sal;</span><br><span class="line"></span><br><span class="line">#二级排序</span><br><span class="line">SELECT employee_id,salary,department_id</span><br><span class="line">FROM employees</span><br><span class="line">ORDER BY department_id DESC,salary ASC;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h1><ul>
+<li>使用limit实现数据的分页显示</li>
+<li>需求：每页显示pageSize条记录，此时显示第pageNo页<br><code>LIMIT (pageNo-1)*pageSize,pageSize</code></li>
+<li>LIMIT语句必须放在最后</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#需求：每页显示20条记录，此时显示第1页</span><br><span class="line">SELECT employee_id,salary,department_id</span><br><span class="line">FROM employees</span><br><span class="line">LIMIT 0,20;</span><br><span class="line"></span><br><span class="line">#需求：每页显示20条记录，此时显示第2页</span><br><span class="line">SELECT employee_id,salary,department_id</span><br><span class="line">FROM employees</span><br><span class="line">LIMIT 20,20;</span><br><span class="line"></span><br><span class="line"># WHERE ORDER BY LIMIT的顺序</span><br><span class="line">SELECT employee_id,salary,department_id</span><br><span class="line">FROM employees</span><br><span class="line">WHERE salary &gt; 6000</span><br><span class="line">ORDER BY salary DESC</span><br><span class="line">LIMIT 10;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：MySQL（二）：SQL语句基础</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-08 10:27:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/08/MySQL（二）：SQL语句基础/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/">#SQL语句基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/02/08/MySQL%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（三）：多表查询</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/08/MySQL%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（一）：数据库概述</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">SQL的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E7%8E%B0%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A1%A8%E3%80%81%E8%A1%A8%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">导入现有的数据表、表的数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84SELECT%E8%AF%AD%E5%8F%A5"><span class="nav-number">3.</span> <span class="nav-text">基本的SELECT语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E7%9A%84%E5%88%AB%E5%90%8D"><span class="nav-number">3.1.</span> <span class="nav-text">列的别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E9%87%8D%E5%A4%8D%E8%A1%8C"><span class="nav-number">3.2.</span> <span class="nav-text">去除重复行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%80%BC%E5%8F%82%E4%B8%8E%E8%BF%90%E7%AE%97"><span class="nav-number">3.3.</span> <span class="nav-text">空值参与运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9D%80%E9%87%8D%E5%8F%B7"><span class="nav-number">3.4.</span> <span class="nav-text">着重号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B8%B8%E6%95%B0"><span class="nav-number">3.5.</span> <span class="nav-text">查询常数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-number">3.6.</span> <span class="nav-text">显示表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE%E8%BF%87%E6%BB%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">3.7.</span> <span class="nav-text">WHERE过滤数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.1.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.2.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.3.</span> <span class="nav-text">位运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E9%A1%B5"><span class="nav-number">6.</span> <span class="nav-text">分页</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

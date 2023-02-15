@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            MySQL（十五）：索引与数据库调优 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">MySQL（十五）：索引与数据库调优</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-02-10 11:38:00</span>
+        <span class="mobile">2023-02-10 11:38</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%B4%A2%E5%BC%95/">索引</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/">数据库优化</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h1><blockquote>
+<p>进行数据查找时，首先查看查询条件是否命中某条索引，符合则通过索引查找相关数据，如果不符合则需要全表扫描（即一条一条地查找记录）</p>
+<p>建立索引的目的是为了减少磁盘I&#x2F;O的次数，加快查询速率</p>
+</blockquote>
+<ul>
+<li>索引：索引（Index）是帮助MySQL高效获取数据的<strong>数据结构</strong></li>
+<li>索引是再存储引擎中实现的，因此每种存储引擎的所以不一定完全相同，并且每一种存储引擎不一定支持所有索引类型。</li>
+<li>优点：<ul>
+<li>降低数据库IO成本</li>
+<li>保证数据唯一性</li>
+<li>加速表和表之间的连接</li>
+<li>减少查询中分组和排序的时间</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>创建索引和维护索引要耗费时间</li>
+<li>索引占用磁盘空间</li>
+<li>降低了更新表的速度</li>
+</ul>
+</li>
+</ul>
+<h1 id="InnoDB中索引的推演"><a href="#InnoDB中索引的推演" class="headerlink" title="InnoDB中索引的推演"></a>InnoDB中索引的推演</h1><h2 id="设计索引"><a href="#设计索引" class="headerlink" title="设计索引"></a>设计索引</h2><h3 id="一个简单的索引设计方案"><a href="#一个简单的索引设计方案" class="headerlink" title="一个简单的索引设计方案"></a>一个简单的索引设计方案</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.2r2oeuor1vq0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.pdyjdab60o0.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.7db0wa7ire80.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.7aui7h81v480.webp"
+                     
+                ></p>
+<h3 id="InnoDB中的索引设计方案"><a href="#InnoDB中的索引设计方案" class="headerlink" title="InnoDB中的索引设计方案"></a>InnoDB中的索引设计方案</h3><h4 id="迭代1次：目录项记录的页"><a href="#迭代1次：目录项记录的页" class="headerlink" title="迭代1次：目录项记录的页"></a>迭代1次：目录项记录的页</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.33cdye6okn60.webp"
+                     
+                ></p>
+<h4 id="迭代2次：多个目录项记录的页"><a href="#迭代2次：多个目录项记录的页" class="headerlink" title="迭代2次：多个目录项记录的页"></a>迭代2次：多个目录项记录的页</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.1isn73e7hxds.webp"
+                     
+                ></p>
+<h4 id="迭代3次：目录项记录页的目录页"><a href="#迭代3次：目录项记录页的目录页" class="headerlink" title="迭代3次：目录项记录页的目录页"></a>迭代3次：目录项记录页的目录页</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.229au4s2j60.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.6zfbiu2dhn00.webp"
+                     
+                ></p>
+<h4 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B+ Tree"></a>B+ Tree</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.5y5ndu86jy00.webp"
+                     
+                ></p>
+<h1 id="常见索引概念"><a href="#常见索引概念" class="headerlink" title="常见索引概念"></a>常见索引概念</h1><p>索引按照物理实现方式，可以分为2种：聚簇（聚集）和非聚簇（非聚集）索引，也把非聚集索引称为耳机索引或者辅助索引。</p>
+<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2><p>聚簇索引并不是一种单独的索引类型，而是一种数据存储方式（<strong>所有的用户记录都存储在了叶子节点</strong>），也就是所谓的“索引即数据，数据即索引”。上述例子就是聚簇索引。</p>
+<ul>
+<li>特点：<ul>
+<li>使用记录主键值的大小进行记录和页的排序：<ul>
+<li>页内的记录按照主键的大小顺序排成一个<strong>单向链表</strong></li>
+<li>各个存放用户记录的页也是根据用户记录的大小顺序排成一个<strong>双向链表</strong></li>
+<li>存放目录项记录的页分为不同的层次，再同一层次中的页也是根据页中目录项记录的主键大小顺序形成一个<strong>双向链表</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>这种聚簇索引并不需要人工再MySQL语句中显式的使用INDEX语句去创建，InnoDB存储索引会自动的创建聚簇索引。</li>
+<li>优点：<ul>
+<li>数据访问更快</li>
+<li>对于主键的排序查找和范围查找速度非常快</li>
+<li>节省大量IO操作</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>插入速度严重更依赖于插入顺序。按主键的顺序插入是最快的方式，否则将会出现页分裂，因此一般定义一个自增的ID列为主键</li>
+<li>更新主键代价很高，因此一般定义主键不可更新</li>
+<li>二级索引访问需要两次索引查找：第一次找到主键值，第二次根据主键值找到行数据。</li>
+</ul>
+</li>
+<li>限制：<ul>
+<li>对于MySQL数据库目前只有InnoDB数据引擎支持聚簇索引，MyISAM并不支持聚簇索引</li>
+<li><strong>每个表只能有一个聚簇索引</strong>，一般情况下由主键构建</li>
+<li>如果没有定义主键，InnoDB会选择非空唯一索引代替，如果没有这样的索引，会隐式的定义一个主键</li>
+<li>为了充分利用聚簇索引的聚簇特性，所以innodb表的主键列尽量选用有序的顺序id，而不建议用无序的id，比如UUID、MDS、HASH、字符串列作为主键无法保证数据的顺序增长。</li>
+</ul>
+</li>
+</ul>
+<h2 id="二级索引（辅助索引、非聚簇索引）"><a href="#二级索引（辅助索引、非聚簇索引）" class="headerlink" title="二级索引（辅助索引、非聚簇索引）"></a>二级索引（辅助索引、非聚簇索引）</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.2it7v0af0lg0.webp"
+                     
+                ></p>
+<ul>
+<li>此B+树的叶子节点存储的不是完整的用户记录，而只是c2列+主键这两个列的值</li>
+<li>目录项记录中不再是主键+页号的搭配，而是c2列+页号的搭配</li>
+</ul>
+<p>回表：若想根据c2列的值找到完整的记录，仍然需要到聚簇索引中再查一遍，这个过程称为回表。也就是根据c2列的值查询一条完整的记录需要使用到2棵B+树</p>
+<ul>
+<li>非聚簇索引的存在不影响数据再聚簇索引中的组织，所以<strong>一张表可以有多个非聚簇索引</strong>。</li>
+</ul>
+<h3 id="聚簇索引和非聚簇索引的区别"><a href="#聚簇索引和非聚簇索引的区别" class="headerlink" title="聚簇索引和非聚簇索引的区别"></a>聚簇索引和非聚簇索引的区别</h3><ol>
+<li>聚簇索引的叶子节点存储的是数据记录，非聚簇索引的叶子节点存储的是数据位置。非聚簇索引不会影响数据表的物理存储顺序。</li>
+<li>一个表只能有一个聚簇索引，因为只能有一种排序存储的方式。但可以有多个非聚簇索引，也就是多个索引目录提供数据检索。</li>
+<li>使用聚簇索引时，数据的查询效率高。但如果对数据进行插入、删除、更新等操作，效率会比非聚簇索引低。</li>
+</ol>
+<h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><p>联合索引实际上属于非聚簇索引。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.q4qp41oagf4.webp"
+                     
+                ></p>
+<h1 id="InnoDB的B-树索引注意事项"><a href="#InnoDB的B-树索引注意事项" class="headerlink" title="InnoDB的B+树索引注意事项"></a>InnoDB的B+树索引注意事项</h1><h2 id="根页面位置万年不动"><a href="#根页面位置万年不动" class="headerlink" title="根页面位置万年不动"></a>根页面位置万年不动</h2><p>实际是从上往下生成的，先生成根节点</p>
+<h2 id="内节点（非叶子节点）中目录项记录的唯一性"><a href="#内节点（非叶子节点）中目录项记录的唯一性" class="headerlink" title="内节点（非叶子节点）中目录项记录的唯一性"></a>内节点（非叶子节点）中目录项记录的唯一性</h2><p>把主键值页添加到二级索引内节点中的目录项记录</p>
+<h2 id="一个页面最少存储2条记录"><a href="#一个页面最少存储2条记录" class="headerlink" title="一个页面最少存储2条记录"></a>一个页面最少存储2条记录</h2><h1 id="MyISAM中索引方案"><a href="#MyISAM中索引方案" class="headerlink" title="MyISAM中索引方案"></a>MyISAM中索引方案</h1><p>MyISAM引擎使用B+Tree作为索引结构，叶子节点的data域存放的是<strong>数据记录的地址</strong>（即MyISAM中没有聚簇索引，全部都是二级索引），MyISAM中数据和索引是分离的。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/image-hosting@master/image.67a828meyf00.webp"
+                     
+                ></p>
+<h2 id="MyISAM与InnoDB对比"><a href="#MyISAM与InnoDB对比" class="headerlink" title="MyISAM与InnoDB对比"></a>MyISAM与InnoDB对比</h2><ul>
+<li><p>MyISAM的索引方式都是非聚簇的，InnoDB包含1个聚簇索引。</p>
+</li>
+<li><p>InnoDB中根据主键值对聚簇索引进行一次查找，在MyISAM中却还需要进行一次回表操作</p>
+</li>
+<li><p>InnoDB的数据文件本身就是索引文件，而MyISAM索引文件和数据文件是分离的，引文件仅保存数据记录的地址</p>
+</li>
+<li><p>InnoDB的非聚簇索引的data域存储相应记录主键的值，而MyISAM索引记录的是地址。</p>
+</li>
+<li><p>MyISAM的回表操作十分快速，因为是拿着地址偏移量直接到文件中取数据，而InnoDB是通过获取主键值之后再去聚簇索引里找记录，虽然也不慢，但还是比不上直接用地址去访问。</p>
+</li>
+<li><p>InnoDB要求表必须有主键，MyISAM可以没有。</p>
+</li>
+</ul>
+<h1 id="索引的代价"><a href="#索引的代价" class="headerlink" title="索引的代价"></a>索引的代价</h1><h2 id="空间上的代价"><a href="#空间上的代价" class="headerlink" title="空间上的代价"></a>空间上的代价</h2><p>每建立一个索引都要为它建立一颗B+树，每一颗B+树的每一个节点都是一个数据页，一个页默认会占用16KB的存储空间，一颗很大的B+树由许多数据页组成，那就是很大一片存储空间。</p>
+<h2 id="时间上的代价"><a href="#时间上的代价" class="headerlink" title="时间上的代价"></a>时间上的代价</h2><p>每次对表中数据进行增、删、改下操作时，都需要去修改各个B+树索引，需要额外时间进行<strong>记录移位、页面分裂、页面回收</strong>等操作来维护好节点和记录的排序。</p>
+<h1 id="MySQL数据结构的合理性"><a href="#MySQL数据结构的合理性" class="headerlink" title="MySQL数据结构的合理性"></a>MySQL数据结构的合理性</h1><ul>
+<li><p>Hash结构效率高，那为什么索引结构要设计成树型呢？</p>
+<ul>
+<li>原因1：Hash索引仅能满足（&#x3D;）（&lt;&gt;）和IN<strong>等值查询</strong>，如果进行范围查询，Hash索引时间复杂度会退化为O(n)；而树形的有序特性，依然能保持O(log2N)的高效率</li>
+<li>原因2：Hash索引数据的存储没有顺序，在ORDER BY情况下，还需要对数据重新排列。</li>
+<li>原因3：对于联合索引的情况，Hash值是将联合索引键合并后一起计算的，无法区分（4，’a’) 和 （3，’b’）的情况</li>
+<li>原因4：对于等值查询来说，通常Hash索引的效率更高，不过页存在一种情况，就是索引列的重复值如果很多，效率就会降低，因为遇到Hash冲突时，需要遍历桶中的行指针来比较。所以Hash所以通常不会用到重复值多的列上，比如性别、年龄的情况。</li>
+</ul>
+</li>
+<li><p>B-Tree 和 B+Tree的区别</p>
+<ul>
+<li>B-Tree中，关键字集合分布在整棵树中，即叶子节点和非叶子节点都存放数据。搜索有可能在非叶子节点结束。</li>
+<li>B+Tree非叶子节点的关键字也会同时存在子节点中，非叶子节点仅用于索引，不保存数据记录，跟记录有关的信息都在叶子节点中。</li>
+<li>B+Tree的查询效率更高，同样的磁盘页大小，B+树比B树更矮胖。</li>
+<li>在范围查找上，B+树效率比B树高</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：MySQL（十五）：索引与数据库调优</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-02-10 11:38:00</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/02/10/MySQL（十五）：索引/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%B4%A2%E5%BC%95/">#索引</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/">#数据库优化</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/02/10/MySQL%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AMySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（十三）：MySQL逻辑架构</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/02/10/MySQL%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%EF%BC%9AInnoDB%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MySQL（十六）：InnoDB数据存储结构</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">索引的数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB%E4%B8%AD%E7%B4%A2%E5%BC%95%E7%9A%84%E6%8E%A8%E6%BC%94"><span class="nav-number">2.</span> <span class="nav-text">InnoDB中索引的推演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">设计索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个简单的索引设计方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-number">2.1.2.</span> <span class="nav-text">InnoDB中的索引设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A31%E6%AC%A1%EF%BC%9A%E7%9B%AE%E5%BD%95%E9%A1%B9%E8%AE%B0%E5%BD%95%E7%9A%84%E9%A1%B5"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">迭代1次：目录项记录的页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A32%E6%AC%A1%EF%BC%9A%E5%A4%9A%E4%B8%AA%E7%9B%AE%E5%BD%95%E9%A1%B9%E8%AE%B0%E5%BD%95%E7%9A%84%E9%A1%B5"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">迭代2次：多个目录项记录的页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A33%E6%AC%A1%EF%BC%9A%E7%9B%AE%E5%BD%95%E9%A1%B9%E8%AE%B0%E5%BD%95%E9%A1%B5%E7%9A%84%E7%9B%AE%E5%BD%95%E9%A1%B5"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">迭代3次：目录项记录页的目录页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-Tree"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">B+ Tree</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%B4%A2%E5%BC%95%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">常见索引概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95"><span class="nav-number">3.1.</span> <span class="nav-text">聚簇索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%EF%BC%88%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95%E3%80%81%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">二级索引（辅助索引、非聚簇索引）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.2.1.</span> <span class="nav-text">聚簇索引和非聚簇索引的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95"><span class="nav-number">3.3.</span> <span class="nav-text">联合索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InnoDB%E7%9A%84B-%E6%A0%91%E7%B4%A2%E5%BC%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">InnoDB的B+树索引注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E9%A1%B5%E9%9D%A2%E4%BD%8D%E7%BD%AE%E4%B8%87%E5%B9%B4%E4%B8%8D%E5%8A%A8"><span class="nav-number">4.1.</span> <span class="nav-text">根页面位置万年不动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%8A%82%E7%82%B9%EF%BC%88%E9%9D%9E%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%EF%BC%89%E4%B8%AD%E7%9B%AE%E5%BD%95%E9%A1%B9%E8%AE%B0%E5%BD%95%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">内节点（非叶子节点）中目录项记录的唯一性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E6%9C%80%E5%B0%91%E5%AD%98%E5%82%A82%E6%9D%A1%E8%AE%B0%E5%BD%95"><span class="nav-number">4.3.</span> <span class="nav-text">一个页面最少存储2条记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyISAM%E4%B8%AD%E7%B4%A2%E5%BC%95%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">MyISAM中索引方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyISAM%E4%B8%8EInnoDB%E5%AF%B9%E6%AF%94"><span class="nav-number">5.1.</span> <span class="nav-text">MyISAM与InnoDB对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">6.</span> <span class="nav-text">索引的代价</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">6.1.</span> <span class="nav-text">空间上的代价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E4%B8%8A%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">6.2.</span> <span class="nav-text">时间上的代价</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%90%88%E7%90%86%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">MySQL数据结构的合理性</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
