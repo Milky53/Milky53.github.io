@@ -12,9 +12,9 @@
         Wu Shihan&#39;Blog
     </title>
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
-    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="shortcut icon" href="../../images/photo.JPG">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
@@ -47,126 +47,313 @@
     <div class="page-main-content">
 
         <div class="page-main-content-top">
-            <header class="header-wrapper">
+            $logo-title-font-size = 2rem;
+$pc-search-icon-font-size = 1.5rem;
+$menu-bar-line-height = 2.5px;
+$logo-image-box-width = 46px;
 
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Wu Shihan&#39;Blog
-            </a>
-        </div>
+.header-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  padding-top: $scroll-progress-bar-height;
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/links"
-                            >
-                                友链
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+  hover-style(false, 0, 0);
 
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/links">友链</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
+  .header-content {
+    position: relative;
+    height: 100%;
+    width: $main-content-width;
+    max-width: $content-max-width;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: $z-index-5;
 
-    <div class="window-mask"></div>
 
-</header>
+    &.has-first-screen {
+      max-width: $content-max-width * 1.2;
+    }
 
+    +keep-tablet() {
+      width: $main-content-width-tablet;
+    }
+
+    +keep-mobile() {
+      width: $main-content-width-mobile;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      transition-t("transform", "0", "0.2", "linear");
+
+      .header-shrink & {
+        transform: scale(0.72);
+        transform-origin: left;
+      }
+
+
+      if (hexo-config('base_info.logo_img') && hexo-config('base_info.logo_img') != '') {
+        .logo-image {
+          width: $logo-image-box-width;
+          height: $logo-image-box-width;
+          margin-right: 8px;
+
+
+          +keep-tablet() {
+            width: $logo-image-box-width * 0.9;
+            height: $logo-image-box-width * 0.9;
+          }
+
+          +keep-mobile() {
+            width: $logo-image-box-width * 0.8;
+            height: $logo-image-box-width * 0.8;
+          }
+
+          img {
+            border-radius: 6px;
+            width: 100%;
+          }
+        }
+
+      }
+
+      .logo-title {
+        font-size: $logo-title-font-size;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: var(--first-text-color);
+
+        +keep-tablet() {
+          font-size: $logo-title-font-size * 0.9;
+        }
+
+        +keep-mobile() {
+          font-size: $logo-title-font-size * 0.8;
+        }
+      }
+
+    }
+
+
+    .right {
+
+      .pc {
+
+        .menu-list {
+          display: flex;
+          align-items: center;
+
+          +keep-tablet() {
+            display: none;
+          }
+
+
+          .menu-item {
+            float: left;
+            position: relative;
+            margin-left: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--default-text-color);
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+
+            a:hover, .active {
+
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                transform: translateX(-50%);
+                background: var(--primary-color);
+                transition-t("transform, bottom", "0, 0", "0.2, 0.2", "linear, linear");
+
+                .header-shrink & {
+                  bottom: -($header-shrink-height / 2 - 12);
+                }
+              }
+            }
+
+            &.search {
+              font-size: $pc-search-icon-font-size;
+              margin-left: 26px;
+
+              i {
+                color: var(--default-text-color);
+              }
+
+            }
+          }
+
+
+        }
+
+      }
+
+
+      .mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon-item {
+          display: none;
+          position: relative;
+          cursor: pointer;
+          font-size: 18px;
+          margin-left: 12px;
+          width: 20px;
+          height: 20px;
+          color: var(--default-text-color);
+
+          i {
+            color: var(--default-text-color);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          +keep-tablet() {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .menu-bar {
+
+          .menu-bar-middle {
+            width: 18px;
+            height: $menu-bar-line-height;
+            position: relative;
+            background: var(--default-text-color);
+
+            .header-drawer-show & {
+              background: transparent;
+            }
+
+
+            &::before, &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              width: 100%;
+              height: $menu-bar-line-height;
+              background: var(--default-text-color);
+              transition-t("transform", "0", "0.38", "ease");
+            }
+
+
+            &::before {
+              top: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(6px) rotate(45deg);
+              }
+            }
+
+
+            &::after {
+              bottom: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(-6px) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .header-drawer {
+    width: 100%;
+    padding: $header-height 0 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    z-index: $z-index-2;
+    background: var(--background-color);
+    transition-t("transform", "0", "0.38", "ease");
+
+    .header-drawer-show & {
+      transform: scaleY(1);
+    }
+
+    .drawer-menu-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .drawer-menu-item {
+        font-size: 1rem;
+        margin: 6px 0;
+        height: 38px;
+
+        a {
+          padding: 6px 20px;
+          border-radius: 20px;
+          color: var(--default-text-color);
+
+          &:hover {
+            color: var(--second-text-color);
+            border: 1px solid var(--default-text-color);
+          }
+
+
+          &.active {
+            border: 1px solid var(--default-text-color);
+            color: var(--second-text-color);
+          }
+        }
+
+
+      }
+    }
+  }
+
+
+  .window-mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: $z-index-1;
+    visibility: hidden;
+    opacity: 0;
+    transition-t("transform, opacity", "0, 0", "0.38, 0.38", "ease, ease");
+
+    .header-drawer-show & {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+}
+
+.header-drawer-show {
+  overflow: hidden;
+}
 
         </div>
 
@@ -183,7 +370,7 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">
                         Vue（二十五）：Vue中的ajax
                     </a>
                 </h3>
@@ -211,7 +398,7 @@ github用户搜索案例public/index.html
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -225,12 +412,12 @@ github用户搜索案例public/index.html
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>&nbsp;
+                            <a href="../../tags/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">跨域问题</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -238,7 +425,7 @@ github用户搜索案例public/index.html
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%9AVue%E4%B8%AD%E7%9A%84ajax/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -248,7 +435,7 @@ github用户搜索案例public/index.html
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">
                         Vue（二十四）：Vue脚手架之配置代理
                     </a>
                 </h3>
@@ -270,7 +457,7 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -284,12 +471,12 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">配置代理</a>&nbsp;
+                            <a href="../../tags/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">配置代理</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -297,7 +484,7 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -307,7 +494,7 @@ vue.config.js 是一个可选的配置文件，如果项目的 (和 package.json
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">
                         Vue（二十三）：Vue脚手架之过渡与动画
                     </a>
                 </h3>
@@ -340,7 +527,7 @@ v-...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -354,12 +541,12 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">过渡与动画</a>&nbsp;
+                            <a href="../../tags/%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">过渡与动画</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -367,7 +554,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -377,7 +564,7 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">
                         Vue（二十二）：Vue脚手架之nextTick
                     </a>
                 </h3>
@@ -404,7 +591,7 @@ v-...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -418,12 +605,12 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/nextTick/">nextTick</a>&nbsp;
+                            <a href="../../tags/nextTick/">nextTick</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -431,7 +618,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BnextTick/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -441,7 +628,7 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">
                         Vue（二十一）：Vue脚手架之消息的订阅与发布
                     </a>
                 </h3>
@@ -465,7 +652,7 @@ v-...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -479,17 +666,17 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                            <a href="../../tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">订阅与发布</a>&nbsp;
+                            <a href="../../tags/%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">订阅与发布</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -497,7 +684,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E6%B6%88%E6%81%AF%E7%9A%84%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -507,7 +694,7 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">
+                    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">
                         Vue（二十）：Vue脚手架之全局事件总线
                     </a>
                 </h3>
@@ -533,7 +720,7 @@ v-...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -547,17 +734,17 @@ v-...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                            <a href="../../tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">全局事件总线</a>&nbsp;
+                            <a href="../../tags/%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">全局事件总线</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -565,7 +752,7 @@ v-...
         
     </div>
 
-    <a href="/2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/11/Vue%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -575,7 +762,7 @@ v-...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">
+                    <a href="../../2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">
                         Vue（十九）：Vue脚手架之组件的自定义事件
                     </a>
                 </h3>
@@ -602,7 +789,7 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -616,17 +803,17 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                            <a href="../../tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">自定义事件</a>&nbsp;
+                            <a href="../../tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">自定义事件</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -634,7 +821,7 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
         
     </div>
 
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/08/Vue%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8B%E7%BB%84%E4%BB%B6%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -644,7 +831,7 @@ A是父组件，B是子组件，子组件想给父组件传数据，那么就要
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">
+                    <a href="../../2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">
                         JS提升（一）：浏览器本地存储（WebStorage）
                     </a>
                 </h3>
@@ -671,7 +858,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
+                            <a href="../../categories/JavaScript/">JavaScript</a>&nbsp;
                         </li>
                     
                     
@@ -685,7 +872,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/WebStorage/">WebStorage</a>&nbsp;
+                            <a href="../../tags/WebStorage/">WebStorage</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -693,7 +880,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/08/JS%E6%8F%90%E5%8D%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%EF%BC%88WebStorage%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -703,7 +890,7 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">
+                    <a href="../../2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">
                         Vue（十八）：Vue脚手架之Todo-List案例
                     </a>
                 </h3>
@@ -730,7 +917,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -744,17 +931,17 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
+                            <a href="../../tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E6%A1%88%E4%BE%8B/">案例</a>&nbsp;
+                            <a href="../../tags/%E6%A1%88%E4%BE%8B/">案例</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -762,7 +949,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/08/Vue%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8BTodo-List%E6%A1%88%E4%BE%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -772,7 +959,7 @@ xxxSto...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">
+                    <a href="../../2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">
                         Vue（十七）：Vue脚手架之ref、props、mixin、plugin、scoped
                     </a>
                 </h3>
@@ -796,7 +983,7 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="../../categories/Vue/">Vue</a>&nbsp;
                         </li>
                     
                     
@@ -810,27 +997,27 @@ xxxSto...
                     
                         <li>
                             
-                            <a href="/tags/Vue-CLI/">Vue CLI</a>&nbsp;
+                            <a href="../../tags/Vue-CLI/">Vue CLI</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/ref/">ref</a>&nbsp;
+                            <a href="../../tags/ref/">ref</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/props/">props</a>&nbsp;
+                            <a href="../../tags/props/">props</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/mixin/">mixin</a>&nbsp;
+                            <a href="../../tags/mixin/">mixin</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/plugin/">plugin</a>&nbsp;
+                            <a href="../../tags/plugin/">plugin</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -838,7 +1025,7 @@ xxxSto...
         
     </div>
 
-    <a href="/2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/04/07/Vue%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9AVue%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B9%8Bref%E3%80%81props%E3%80%81mixin%E3%80%81plugin%E3%80%81scoped/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -849,13 +1036,13 @@ xxxSto...
         <div class="paginator">
     
         <a class="prev btn"
-           href="/page/7/"
+           href="../7/"
         >上一页</a>
     
 
     
         <a class="next btn"
-           href="/page/9/"
+           href="../9/"
         >下一页</a>
     
 </div>

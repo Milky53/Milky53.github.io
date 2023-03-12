@@ -12,9 +12,9 @@
         Wu Shihan&#39;Blog
     </title>
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
-    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="shortcut icon" href="../../images/photo.JPG">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
@@ -47,126 +47,313 @@
     <div class="page-main-content">
 
         <div class="page-main-content-top">
-            <header class="header-wrapper">
+            $logo-title-font-size = 2rem;
+$pc-search-icon-font-size = 1.5rem;
+$menu-bar-line-height = 2.5px;
+$logo-image-box-width = 46px;
 
-    <div class="header-content">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                Wu Shihan&#39;Blog
-            </a>
-        </div>
+.header-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  padding-top: $scroll-progress-bar-height;
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/links"
-                            >
-                                友链
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+  hover-style(false, 0, 0);
 
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/links">友链</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
+  .header-content {
+    position: relative;
+    height: 100%;
+    width: $main-content-width;
+    max-width: $content-max-width;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: $z-index-5;
 
-    <div class="window-mask"></div>
 
-</header>
+    &.has-first-screen {
+      max-width: $content-max-width * 1.2;
+    }
 
+    +keep-tablet() {
+      width: $main-content-width-tablet;
+    }
+
+    +keep-mobile() {
+      width: $main-content-width-mobile;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      transition-t("transform", "0", "0.2", "linear");
+
+      .header-shrink & {
+        transform: scale(0.72);
+        transform-origin: left;
+      }
+
+
+      if (hexo-config('base_info.logo_img') && hexo-config('base_info.logo_img') != '') {
+        .logo-image {
+          width: $logo-image-box-width;
+          height: $logo-image-box-width;
+          margin-right: 8px;
+
+
+          +keep-tablet() {
+            width: $logo-image-box-width * 0.9;
+            height: $logo-image-box-width * 0.9;
+          }
+
+          +keep-mobile() {
+            width: $logo-image-box-width * 0.8;
+            height: $logo-image-box-width * 0.8;
+          }
+
+          img {
+            border-radius: 6px;
+            width: 100%;
+          }
+        }
+
+      }
+
+      .logo-title {
+        font-size: $logo-title-font-size;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1;
+        color: var(--first-text-color);
+
+        +keep-tablet() {
+          font-size: $logo-title-font-size * 0.9;
+        }
+
+        +keep-mobile() {
+          font-size: $logo-title-font-size * 0.8;
+        }
+      }
+
+    }
+
+
+    .right {
+
+      .pc {
+
+        .menu-list {
+          display: flex;
+          align-items: center;
+
+          +keep-tablet() {
+            display: none;
+          }
+
+
+          .menu-item {
+            float: left;
+            position: relative;
+            margin-left: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: var(--default-text-color);
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+
+            a:hover, .active {
+
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                transform: translateX(-50%);
+                background: var(--primary-color);
+                transition-t("transform, bottom", "0, 0", "0.2, 0.2", "linear, linear");
+
+                .header-shrink & {
+                  bottom: -($header-shrink-height / 2 - 12);
+                }
+              }
+            }
+
+            &.search {
+              font-size: $pc-search-icon-font-size;
+              margin-left: 26px;
+
+              i {
+                color: var(--default-text-color);
+              }
+
+            }
+          }
+
+
+        }
+
+      }
+
+
+      .mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon-item {
+          display: none;
+          position: relative;
+          cursor: pointer;
+          font-size: 18px;
+          margin-left: 12px;
+          width: 20px;
+          height: 20px;
+          color: var(--default-text-color);
+
+          i {
+            color: var(--default-text-color);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          +keep-tablet() {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .menu-bar {
+
+          .menu-bar-middle {
+            width: 18px;
+            height: $menu-bar-line-height;
+            position: relative;
+            background: var(--default-text-color);
+
+            .header-drawer-show & {
+              background: transparent;
+            }
+
+
+            &::before, &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              width: 100%;
+              height: $menu-bar-line-height;
+              background: var(--default-text-color);
+              transition-t("transform", "0", "0.38", "ease");
+            }
+
+
+            &::before {
+              top: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(6px) rotate(45deg);
+              }
+            }
+
+
+            &::after {
+              bottom: -6px;
+
+              .header-drawer-show & {
+                transform: translateY(-6px) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .header-drawer {
+    width: 100%;
+    padding: $header-height 0 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    z-index: $z-index-2;
+    background: var(--background-color);
+    transition-t("transform", "0", "0.38", "ease");
+
+    .header-drawer-show & {
+      transform: scaleY(1);
+    }
+
+    .drawer-menu-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .drawer-menu-item {
+        font-size: 1rem;
+        margin: 6px 0;
+        height: 38px;
+
+        a {
+          padding: 6px 20px;
+          border-radius: 20px;
+          color: var(--default-text-color);
+
+          &:hover {
+            color: var(--second-text-color);
+            border: 1px solid var(--default-text-color);
+          }
+
+
+          &.active {
+            border: 1px solid var(--default-text-color);
+            color: var(--second-text-color);
+          }
+        }
+
+
+      }
+    }
+  }
+
+
+  .window-mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: $z-index-1;
+    visibility: hidden;
+    opacity: 0;
+    transition-t("transform, opacity", "0, 0", "0.38, 0.38", "ease, ease");
+
+    .header-drawer-show & {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+}
+
+.header-drawer-show {
+  overflow: hidden;
+}
 
         </div>
 
@@ -183,7 +370,7 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">
+                    <a href="../../2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">
                         CSS基础（四）：单位
                     </a>
                 </h3>
@@ -215,7 +402,7 @@ em...
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="../../categories/CSS/">CSS</a>&nbsp;
                         </li>
                     
                     
@@ -229,17 +416,17 @@ em...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="../../tags/CSS/">CSS</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E5%8D%95%E4%BD%8D/">单位</a>&nbsp;
+                            <a href="../../tags/%E5%8D%95%E4%BD%8D/">单位</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>&nbsp;
+                            <a href="../../tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -247,7 +434,7 @@ em...
         
     </div>
 
-    <a href="/2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/03/01/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BD%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -257,7 +444,7 @@ em...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">
+                    <a href="../../2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">
                         CSS基础（三）：选择器的权重
                     </a>
                 </h3>
@@ -286,7 +473,7 @@ em...
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="../../categories/CSS/">CSS</a>&nbsp;
                         </li>
                     
                     
@@ -300,7 +487,7 @@ em...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="../../tags/CSS/">CSS</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -308,7 +495,7 @@ em...
         
     </div>
 
-    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E6%9D%83%E9%87%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -318,7 +505,7 @@ em...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">
+                    <a href="../../2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">
                         CSS基础（二）：继承
                     </a>
                 </h3>
@@ -340,7 +527,7 @@ em...
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="../../categories/CSS/">CSS</a>&nbsp;
                         </li>
                     
                     
@@ -354,7 +541,7 @@ em...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="../../tags/CSS/">CSS</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -362,7 +549,7 @@ em...
         
     </div>
 
-    <a href="/2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/02/27/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%BB%A7%E6%89%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -372,7 +559,7 @@ em...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">
+                    <a href="../../2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">
                         CSS基础（一）：选择器的分类及作用
                     </a>
                 </h3>
@@ -399,7 +586,7 @@ em...
                     
                         <li>
                             
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
+                            <a href="../../categories/CSS/">CSS</a>&nbsp;
                         </li>
                     
                     
@@ -413,7 +600,7 @@ em...
                     
                         <li>
                             
-                            <a href="/tags/CSS/">CSS</a>&nbsp;
+                            <a href="../../tags/CSS/">CSS</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -421,7 +608,7 @@ em...
         
     </div>
 
-    <a href="/2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/02/26/CSS%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BD%9C%E7%94%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -431,7 +618,7 @@ em...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">
+                    <a href="../../2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">
                         HTML基础（二）：相对路径
                     </a>
                 </h3>
@@ -452,7 +639,7 @@ em...
                     
                         <li>
                             
-                            <a href="/categories/HTML/">HTML</a>&nbsp;
+                            <a href="../../categories/HTML/">HTML</a>&nbsp;
                         </li>
                     
                     
@@ -466,12 +653,12 @@ em...
                     
                         <li>
                             
-                            <a href="/tags/HTML/">HTML</a>&nbsp;
+                            <a href="../../tags/HTML/">HTML</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/%E8%B7%AF%E5%BE%84/">路径</a>&nbsp;
+                            <a href="../../tags/%E8%B7%AF%E5%BE%84/">路径</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -479,7 +666,7 @@ em...
         
     </div>
 
-    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -489,7 +676,7 @@ em...
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">
+                    <a href="../../2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">
                         HTML基础（一）：meta标签
                     </a>
                 </h3>
@@ -514,7 +701,7 @@ charset：指定网页的字符集编码
                     
                         <li>
                             
-                            <a href="/categories/HTML/">HTML</a>&nbsp;
+                            <a href="../../categories/HTML/">HTML</a>&nbsp;
                         </li>
                     
                     
@@ -528,17 +715,17 @@ charset：指定网页的字符集编码
                     
                         <li>
                             
-                            <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>&nbsp;
+                            <a href="../../tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/HTML/">HTML</a>&nbsp;
+                            <a href="../../tags/HTML/">HTML</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/meta/">meta</a>&nbsp;
+                            <a href="../../tags/meta/">meta</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -546,7 +733,7 @@ charset：指定网页的字符集编码
         
     </div>
 
-    <a href="/2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="../../2022/02/26/HTML%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9Ameta%E6%A0%87%E7%AD%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -557,7 +744,7 @@ charset：指定网页的字符集编码
         <div class="paginator">
     
         <a class="prev btn"
-           href="/page/13/"
+           href="../13/"
         >上一页</a>
     
 
