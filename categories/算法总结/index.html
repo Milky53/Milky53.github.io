@@ -9,7 +9,7 @@
     
     <title>
         
-            关于 |
+            分类: 算法总结 |
         
         Wu Shihan&#39;Blog
     </title>
@@ -80,7 +80,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class=""
+                            <a class="active"
                                href="/categories"
                             >
                                 分类
@@ -104,7 +104,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/about"
                             >
                                 关于
@@ -143,7 +143,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class=""
+                    <a class="active"
                        href="/categories">分类</a>
                 </li>
             
@@ -158,7 +158,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/about">关于</a>
                 </li>
             
@@ -178,105 +178,42 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="page-template-container">
-        
-        
-        <div class="page-template-content markdown-body">
-            
-                <h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><h2 id="About-me-关于我"><a href="#About-me-关于我" class="headerlink" title="About me | 关于我"></a>About me | 关于我</h2><p>吴诗寒「 研究生在读 」</p>
-<p>Research interests:</p>
-<ul>
-<li>Computer Vision (CV)</li>
-<li>Deep Learning (DL)</li>
-<li>Back-end Development</li>
-</ul>
-<h2 id="Contact-me-联系我"><a href="#Contact-me-联系我" class="headerlink" title="Contact me | 联系我"></a>Contact me | 联系我</h2><ul>
-<li>WeChat: <a class="link"   target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/IMG_8594(20220324-113615).114db4dxgxwg.webp" >五三<i class="fas fa-external-link-alt"></i></a><!-- - GitHub: https://github.com/Milky53/ --></li>
-<li>Email: <a class="link"   href="mailto:&#115;&#104;&#105;&#x68;&#x61;&#110;&#x77;&#117;&#x63;&#x73;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#x6f;&#x6d;" >&#115;&#104;&#105;&#x68;&#x61;&#110;&#x77;&#117;&#x63;&#x73;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#x6f;&#x6d;<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-
-            
+    <div class="category-container">
+        <div class="category-name">
+            <i class="fas fa-folder"></i>&nbsp;算法总结
         </div>
-        <div class="page-template-comments">
+        <div class="category-post-list">
             
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
+<div class="archive-list-container">
     
-
-        
-            
-    <div class="valine-container">
-        <script data-pjax
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script data-pjax>
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
-                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = 'Wu Shihan';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('true') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
-
-
-
-        
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[1]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/07/02/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"
+                        >算法总结（一）：滑动窗口</a>
+                        <span class="article-date">07-02</span>
+                    </li>
+                
+            </ul>
+        </section>
     
 </div>
 
-            
         </div>
+    </div>
+    <div class="category-paginator">
+        <div class="paginator">
+    
+
+    
+</div>
+
     </div>
 </div>
 
