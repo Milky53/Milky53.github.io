@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Wu Shihan">
+    
+    <title>
+        
+            分布式事务 |
+        
+        Wu Shihan&#39;Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/photo.JPG">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"wu_shi_han.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#99CC99","avatar":"/images/photo.JPG","favicon":"/images/photo.JPG","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"无论终点在哪儿，过程一定很精彩。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Wu Shihan&#39;Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">分布式事务</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-07-07 21:55:10</span>
+        <span class="mobile">2023-07-07 21:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="分布式事务简介"><a href="#分布式事务简介" class="headerlink" title="分布式事务简介"></a>分布式事务简介</h1><h2 id="事务ACID"><a href="#事务ACID" class="headerlink" title="事务ACID"></a>事务ACID</h2><ul>
+<li>A（atomic）：原子性，构成事务的所有操作，要么都执行，要么全部不执行，不可能出现部分成功或部分失败的情况。</li>
+<li>C（consistency）：一致性，事务执行前后，数据库的一致性约束没有被破坏。</li>
+<li>I（isolation）：隔离性，数据库中的事务一般都是并发的，并发的两个事务的执行互补干扰，一个事务不能看到其它事务运行过程的中间状态。通过配置事务隔离级别，可以避免脏读、重复读等问题。</li>
+<li>D（durability）：持久性，事务完成之后，该事务对数据库的更改会被持久化到数据库，且不会被回滚。</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><ul>
+<li><p>本地事务：同一数据库和服务器，数据库和应用在同一个服务器</p>
+</li>
+<li><p>分布式事务：</p>
+<p>分布式事务是指事务的参与者、支持事务的服务器、资源服务器、事务管理器分别位于<strong>不同的分布式系统的不同节点之上</strong>，且属于不同应用，分布式事务要保证这些操作要么全部成功，要么全部失败。本质上来说，分布式事务就是<strong>保证不同数据库的数据一致性</strong>。</p>
+</li>
+<li><p>举例：</p>
+<p>分布式系统会把一个应用系统拆分为可独立部署的多个服务，因此需要服务与服务之间远程协作才能完成事务操作，这种分布式系统环境下由不同的服务之间通过网络远程协作完成事务称之为分布式事务。（用户注册送积分、创建订单接库存、银行转账、<strong>素材上传并创建审核流程</strong>）</p>
+<p>其实只要涉及到操作<strong>多个数据源</strong>，就可能会产生分布式事务问题。</p>
+</li>
+</ul>
+<h1 id="分布式事务理论"><a href="#分布式事务理论" class="headerlink" title="分布式事务理论"></a>分布式事务理论</h1><h2 id="CAP定律"><a href="#CAP定律" class="headerlink" title="CAP定律"></a>CAP定律</h2><ul>
+<li><p>Consistency（一致性）：分布式系统中所有数据库（不同数据库）中的数据，在同一时刻是否是一致的。</p>
+</li>
+<li><p>Avaliability（可用性）：是否能响应客户端的请求，也就是说会不会影响用户体验。</p>
+</li>
+<li><p>Partition tolerance（分区容错性）：网络延迟，不可避免。</p>
+<p><strong>三者不可兼得，一般只能保证CP或AP</strong></p>
+</li>
+</ul>
+<p>在分布式系统中，P是必然存在的，所以只能在C和A之间进行取舍，这种条件下就诞生了BASE理论</p>
+<h2 id="BASE理论"><a href="#BASE理论" class="headerlink" title="BASE理论"></a>BASE理论</h2><p>Basically Available（基本可用）、Soft state（软状态）和Eventually consistent（最终一致性）三个短语缩写。是对C和A权衡的结果。</p>
+<p>BASE核心一致性：即使无法做到强一致性，但每个应用可用根据自身业务特点，采用适当的方式来使系统达到最终一致性。</p>
+<ul>
+<li>基本可用：允许损失一部分可用性，对应核心业务可用，非核心业务可以延迟响应</li>
+<li>软状态：允许系统中的数据存在中间状态，比如非核心业务中的数据</li>
+<li>最终一致性：强调的是所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。</li>
+</ul>
+<h1 id="分布式事务解决方案"><a href="#分布式事务解决方案" class="headerlink" title="分布式事务解决方案"></a>分布式事务解决方案</h1><h2 id="2PC，两阶段提交协议"><a href="#2PC，两阶段提交协议" class="headerlink" title="2PC，两阶段提交协议"></a>2PC，两阶段提交协议</h2><p>2PC，两阶段提交协议，是将整个事务流程分为两个阶段。</p>
+<ul>
+<li><p>P指准备阶段（Prepare phase）：<strong>事务管理器给</strong>每个<strong>参与者</strong>（不同服务）发送Prepare消息，每个数据库参与者在本地执行事务，并写本地的Undo&#x2F;Redo日志，此时事务没有提交。</p>
+<p>（<strong>Undo log</strong>记录修改前的数据，用于数据库回滚，<strong>Redo log</strong>是记录修改后的数据，用于提交事务后写入数据文件）</p>
+</li>
+<li><p>C指提交阶段（Commit phase）：如果事务管理器收到了参与者的执行失败或者超时消息时，直接给每个参与者发送回滚（Rollback）消息；否则额，发送给提交（Commit）消息；参与者根据事务管理器的指令执行提交或者回滚操作，并释放事务处理过程中使用的资源（日志删除）。</p>
+</li>
+</ul>
+<h2 id="Seata简介"><a href="#Seata简介" class="headerlink" title="Seata简介"></a>Seata简介</h2><p>Seata是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务，提供了AT、TCC、SAGA（补偿型）和XA事务模式。</p>
+<ul>
+<li><p>TC（Transaction Coordinator）-事务协调者 </p>
+<p>（其实就是Seata服务端）</p>
+</li>
+<li><p>TM（Transaction Manager）-事务管理器</p>
+<p>（开启全局事务、提交或回滚全局事务）</p>
+</li>
+<li><p>RM（Resource Manager）-资源管理器</p>
+</li>
+</ul>
+<h2 id="Seata-AT模式"><a href="#Seata-AT模式" class="headerlink" title="Seata-AT模式"></a>Seata-AT模式</h2><p>AT模式是一种无侵入的分布式事务解决方案，在AT模式下，用户只需要关注自己的“业务SQL”，用户的“业务SQL”作为一阶段，Seata框架会自动生成事务的二阶段提交和回滚操作。</p>
+<h3 id="整体机制"><a href="#整体机制" class="headerlink" title="整体机制"></a>整体机制</h3><p>二阶段提交协议的演变：</p>
+<ul>
+<li>一阶段：在一阶段中，Seata会拦截“业务SQL”，首先解析SQL语义，找到要更新的业务数据，在数据被更新前，保存下来undo log，<em>然后执行“业务SQL”更新数据，更新之后再次保存redo log</em>（难道不是先写redo再更新数据库？待查），最后生成行锁，这些操作都在<strong>本地数据库事务内</strong>完成，这样保证一阶段的原子性。</li>
+<li>二阶段：负责整体的回滚和提交，如果之前一阶段中某个服务的本地事务没有通过，那就执行<strong>全局回滚</strong>（多个服务本地事务回滚），否则执行<strong>全局提交</strong>，回滚用到的就是一阶段记录的undo log，通过回滚记录生产反向更新SQL并执行，以完成分支的回滚。当然事务完成后会释放所有资源和删除所有日志。<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.2e9h0u62s9hc.webp"
+                     
+                ></li>
+</ul>
+<p>Java中使用@GlobalTransactional注解保证分布式事务</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.55fog8mpsuk0.webp"
+                     
+                ></p>
+<p>AT模式保证最终一致性，存在中间状态，属于补偿型的。</p>
+<h2 id="Seata-XA模式"><a href="#Seata-XA模式" class="headerlink" title="Seata-XA模式"></a>Seata-XA模式</h2><p>XA规范 描述了全局的事务管理器与局部的资源管理器之间的接口。XA规范的目的允许多个资源（如数据库，应用服务器，消息队列等）在同一事务中访问，这样可以使<strong>ACID属性跨越应用程序而保持有效</strong>。</p>
+<p>DTO模型定义如下角色：</p>
+<ul>
+<li>AP：应用程序，可以理解为使用DTP分布式事务的程序</li>
+<li>RM：资源管理器，可以理解为事务的参与者，一般是指数据库的实例（MySql），通过资源管理器对该数据库进行控制，资源管理器控制着分支事务。</li>
+<li>TM：事务管理器，负责协调和管理事务，控制全局事务，协调各个RM</li>
+<li>DTP模式定义TM和RM之间通讯的接口规范叫XA，简单理解为数据库提供的2PC接口协议，基于数据库的XA协议来实现来实现的2PC又称为XA方案。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.vxvnjrfqscg.webp"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.oyw7bf4oj4g.webp"
+                     
+                ></p>
+<p>XA模式是强一致性，全局一致性，没有中间状态，没有undo log</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.5t46hzjgsh00.webp"
+                     
+                ></p>
+<h2 id="Seata-TCC模式"><a href="#Seata-TCC模式" class="headerlink" title="Seata-TCC模式"></a>Seata-TCC模式</h2><p>TCC是一种侵入式的分布式事务解决方案，但它完全不依赖数据库，能够实现跨数据库、跨应用资源管理。（一般使用不多，金融业使用较多）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230722/image.4m5wgrhmhso0.webp"
+                     
+                ></p>
+<h2 id="Seata-Saga模式"><a href="#Seata-Saga模式" class="headerlink" title="Seata-Saga模式"></a>Seata-Saga模式</h2><p>Saga模式是Seata提供的长事务解决方案，在Saga模式中，业务流程中每个参与者都提交本地事务，当出现某个参与者失败则补偿前面已经成功的参与者，一阶段正向服务和二阶段补偿服务都由业务开发实现。</p>
+<p>Saga模式下分布式事务通常是由事件驱动的，各个参与者之间是异步执行的，Saga模式是一种长事务解决方案，提供了<strong>异构系统的事务统一处理模型</strong>。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：分布式事务</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-07-07 21:55:10</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/07/07/分布式事务/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/07/08/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">分布式锁</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/07/02/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">算法总结（一）：滑动窗口</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'QexeIUQCFCuu3ci1cg6PeWFt-gzGzoHsz',
+                    appKey: 'R9AnejwulsdWWkdHCjtubrKR',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Wu Shihan';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wu Shihan</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">分布式事务简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1ACID"><span class="nav-number">1.1.</span> <span class="nav-text">事务ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">事务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%90%86%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">分布式事务理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP%E5%AE%9A%E5%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">CAP定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASE%E7%90%86%E8%AE%BA"><span class="nav-number">2.2.</span> <span class="nav-text">BASE理论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">分布式事务解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC%EF%BC%8C%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.1.</span> <span class="nav-text">2PC，两阶段提交协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata%E7%AE%80%E4%BB%8B"><span class="nav-number">3.2.</span> <span class="nav-text">Seata简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata-AT%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">Seata-AT模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%9C%BA%E5%88%B6"><span class="nav-number">3.3.1.</span> <span class="nav-text">整体机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata-XA%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.4.</span> <span class="nav-text">Seata-XA模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata-TCC%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.5.</span> <span class="nav-text">Seata-TCC模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata-Saga%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text">Seata-Saga模式</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@
     
     <title>
         
-            关于 |
+            分布式锁 |
         
         Wu Shihan&#39;Blog
     </title>
@@ -104,7 +104,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/about"
                             >
                                 关于
@@ -158,7 +158,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/about">关于</a>
                 </li>
             
@@ -178,27 +178,179 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="page-template-container">
-        
-        
-        <div class="page-template-content markdown-body">
-            
-                <h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><h2 id="About-me-关于我"><a href="#About-me-关于我" class="headerlink" title="About me | 关于我"></a>About me | 关于我</h2><p>吴诗寒「 研究生在读 」</p>
-<p>Research interests:</p>
-<ul>
-<li>Computer Vision (CV)</li>
-<li>Deep Learning (DL)</li>
-<li>Back-end Development</li>
-</ul>
-<h2 id="Contact-me-联系我"><a href="#Contact-me-联系我" class="headerlink" title="Contact me | 联系我"></a>Contact me | 联系我</h2><ul>
-<li>WeChat: <a class="link"   target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Milky53/image-hosting@master/IMG_8594(20220324-113615).114db4dxgxwg.webp" >五三<i class="fas fa-external-link-alt"></i></a><!-- - GitHub: https://github.com/Milky53/ --></li>
-<li>Email: <a class="link"   href="mailto:&#x73;&#104;&#105;&#x68;&#x61;&#110;&#x77;&#x75;&#99;&#x73;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;" >&#x73;&#104;&#105;&#x68;&#x61;&#110;&#x77;&#x75;&#99;&#x73;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
+    <div class="article-content-container">
 
-            
+        <div class="article-title">
+            <span class="title-hover-animation">分布式锁</span>
         </div>
-        <div class="page-template-comments">
-            
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Wu Shihan</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-07-08 12:10:10</span>
+        <span class="mobile">2023-07-08 12:10</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>831 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>适用场景：秒杀系统超卖、网约车系统司机抢订单、保存时若不存在则插入存在则更新。（都可以归结为这样的业务逻辑：先查询一次数据库，再更新一次数据库）</p>
+<h1 id="为什么需要分布式锁"><a href="#为什么需要分布式锁" class="headerlink" title="为什么需要分布式锁"></a>为什么需要分布式锁</h1><p>因为现在大部分服务部署在多台服务器上，JVM层面的加锁（synchronized、Lock）只能实现单服务器上互斥，多服务器中的锁互不认识，不能满足集群服务需求。</p>
+<p>因此需要一个第三方，多台服务都去访问这个第三方以获得锁。</p>
+<h1 id="分布式锁解决方案"><a href="#分布式锁解决方案" class="headerlink" title="分布式锁解决方案"></a>分布式锁解决方案</h1><h2 id="mysql方案"><a href="#mysql方案" class="headerlink" title="mysql方案"></a>mysql方案</h2><p>利用mysql中的主键或唯一索引的不可重复性来获得锁。</p>
+<p>每个请求都试图往数据库中的表中插入数据（获取同一把锁），比如把同一个商品id作为主键值插入，如果插入失败则表示已经有别的请求获得了这把锁，则需要等待其释放（即使用完毕后从数据库中删除该条记录）。</p>
+<p>性能分析：跟数据库配置有关，且mysql是基于磁盘的io性能会比较不好。</p>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>利用redis中的SETNX，setnx key value 将key的值设为value，当且仅当key不存在；若给定的key存在，则setnx不做任何动作。</p>
+<p><strong>执行流程</strong>：</p>
+<ol>
+<li>获取锁：setnx key value</li>
+<li>执行业务逻辑</li>
+<li>释放锁：del key</li>
+</ol>
+<p><strong>死锁现象：</strong></p>
+<p>​        如果服务在执行第2步的时候挂掉了，此时还没有释放锁，也就是说当前key会一直存在于redis当中，就会造成死锁，其它服务再来获取锁就会一直等待。</p>
+<p><strong>如何解决死锁：</strong></p>
+<p>​        利用redis的过期时间，setnx key value ex 10</p>
+<p><strong>过期时间太短导致的问题：</strong></p>
+<ol>
+<li>业务逻辑没有执行完锁就过期了，被别的请求抢了锁</li>
+<li>最终删除锁删除的是别的请求的锁</li>
+</ol>
+<p><strong>如何解决以上两个问题：</strong></p>
+<ol>
+<li><p>看门狗（watch dog）锁续期机制：每隔定期时间向Redis服务器重新设置锁的过期时间以延长lifetime</p>
+</li>
+<li><p>根据value判断，防止释放别人的锁：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(getKey()==我自己加的值)&#123;</span><br><span class="line">	del key;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">	不删;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>Redis锁性能如何提升：</strong></p>
+<p>分段锁：比如同一个商品（id相同）有100个库存，此时同时有一千万请求进来。以id直接作为锁的key会导致，非常多个请求等待，因此分段设置key，将100个库存十个十个为一组，1<del>10为key&#x3D;1，11</del>20为key&#x3D;2……，这样就可以一下处理10个请求，把锁的效率提升了十倍。</p>
+<p><strong>Redis单节点故障导致的问题：</strong></p>
+<p>会导致各个请求都不能加锁，因此用Redis集群来支撑加锁机制。</p>
+<p><strong>Redis集群会导致的问题：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.staticaly.com/gh/Milky53/picx-images-hosting@master/20230708/image.1kmwscl3vpc0.webp"
+                     
+                ></p>
+<p>A服务向master redis获取锁，master还没将信息同步给slave，此时master挂掉，自动选取slava作为新的主节点，B服务向新主获取锁，成功获取到，会发生超卖。</p>
+<p><strong>如何解决上述问题：</strong></p>
+<p>Redis红锁（Redisson）方案：让redis集群（奇数台）之间的数据不做同步，每次请求多台redis进行加锁，超过一半数目的redis加锁成功，则视为成功。</p>
+<h2 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h2>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：分布式锁</li>
+        <li>本文作者：Wu Shihan</li>
+        <li>创建时间：2023-07-08 12:10:10</li>
+        <li>
+            本文链接：https://keep.xpoet.cn/2023/07/08/分布式锁/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/07/07/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">分布式事务</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
                 <div class="comments-container">
     <div id="comment-anchor"></div>
     <div class="comment-area-title">
@@ -275,8 +427,8 @@
     
 </div>
 
-            
-        </div>
+            </div>
+        
     </div>
 </div>
 
@@ -320,6 +472,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -366,6 +539,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-number">1.</span> <span class="nav-text">为什么需要分布式锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">分布式锁解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E6%96%B9%E6%A1%88"><span class="nav-number">2.1.</span> <span class="nav-text">mysql方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number">2.2.</span> <span class="nav-text">redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper"><span class="nav-number">2.3.</span> <span class="nav-text">zookeeper</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -423,6 +604,8 @@
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 

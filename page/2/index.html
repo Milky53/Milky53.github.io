@@ -183,6 +183,130 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2023/02/11/MySQL%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
+                        MySQL（十七）：索引的创建与设计原则
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        索引的分类
+按功能逻辑：普通索引、唯一索引、主键索引、全文索引
+按物理实现方式：聚簇索引、非聚簇索引
+按作用字段个数：单列索引、联合索引
+
+创建索引CREATE TABLE方式
+隐式的方式创建索引：在声明有主键约束、唯一性约束、外键约束的字段上，会自...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 11 2023 11:52:00 GMT+0800">2023-02-11</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%B4%A2%E5%BC%95/">索引</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/02/11/MySQL%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2023/02/11/MySQL%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E4%B8%8E%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+                        MySQL（十八）：索引优化与查询优化
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+哪些维度可以进行数据库调优？
+
+索引失效、没有充分利用到索引 —— 索引建立
+关联查询太多JOIN（设计缺陷或不得已的需求）——SQL优化
+服务器调优及各个参数设置（缓冲、线程数等）——调整my.cnf
+数据过多——分库分表
+
+
+其实用不用索引，最...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Feb 11 2023 11:52:00 GMT+0800">2023-02-11</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/MySQL/">MySQL</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E7%B4%A2%E5%BC%95/">索引</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">数据库调优</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/02/11/MySQL%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E4%B8%8E%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2023/02/10/MySQL%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%EF%BC%9AMySQL%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84/">
                         MySQL（十三）：MySQL逻辑架构
                     </a>
@@ -671,132 +795,6 @@ SQL接口
     </div>
 
     <a href="/2023/02/09/MySQL%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9A%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/09/MySQL%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E8%A7%86%E5%9B%BE/">
-                        MySQL（八）：视图
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        常见的数据库对象
-视图概述
-有些数据是敏感字段，值给某个级别以上的人员开放，其他人的查询视图中则不提供这个字段
-视图是一个虚拟表，本身不具有数据，占用很少的内存空间
-视图建立在已有表的基础上，视图赖以建立的这些表称为基表。
-视图可以理解为存储起来的S...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Feb 09 2023 19:43:00 GMT+0800">2023-02-09</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/MySQL/">MySQL</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%A7%86%E5%9B%BE/">视图</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/02/09/MySQL%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E8%A7%86%E5%9B%BE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/09/MySQL%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E7%BA%A6%E6%9D%9F/">
-                        MySQL（七）：约束
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        数据完整性与约束的分类
-为什么需要约束？
-为了保证数据的完整性
-
-
-
-
-约束：对表中字段的限制
-
-约束的分类：
-
-角度一：约束字段的个数
-单列约束 vs 多列约束
-
-
-角度二：约束的作用范围
-列级约束：将此约束声明在对应字段的后面
-表级约束：在表中所...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Feb 09 2023 19:09:00 GMT+0800">2023-02-09</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/MySQL/">MySQL</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E7%BA%A6%E6%9D%9F/">约束</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/02/09/MySQL%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E7%BA%A6%E6%9D%9F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
